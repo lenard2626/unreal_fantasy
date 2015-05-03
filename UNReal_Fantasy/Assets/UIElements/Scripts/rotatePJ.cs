@@ -19,15 +19,15 @@ public class rotatePJ : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetMouseButton(0)) {
-			xDeg -= Input.GetAxis("Mouse X") * speed * friction;
-			yDeg += Input.GetAxis("Mouse Y") * speed * friction;
-			fromRotation = transform.rotation;
-			toRotation = Quaternion.Euler(0,xDeg,0);
-			transform.rotation = Quaternion.Lerp(fromRotation,toRotation,Time.deltaTime  * lerpSpeed);
+
 		}
 	}
 
-	void onMouseEnter(){
-		Debug.Log("hola mouseenter");
+	void OnMouseDrag() {
+		xDeg -= Input.GetAxis("Mouse X") * speed * friction;
+		yDeg += Input.GetAxis("Mouse Y") * speed * friction;
+		fromRotation = transform.rotation;
+		toRotation = Quaternion.Euler(0,xDeg,0);
+		transform.rotation = Quaternion.Lerp(fromRotation,toRotation,Time.deltaTime  * lerpSpeed);
 	}
 }
