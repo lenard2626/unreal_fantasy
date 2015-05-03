@@ -1,0 +1,13 @@
+# Blender MTL File: 'Ethan_armcrossed.blend'
+# Material Count: 1
+
+newmtl EthanWhite
+Ns 3.921569
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd W:\2013_10 - Sample Assets\SampleAssets - Workspace\sourceimages\EthanAlbedo.psd
+map_Bump W:\\2013_10 - Sample Assets\\SampleAssets - Workspace\\sourceimages\\EthanNormals.psd
