@@ -4,4 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/gui-6.unity
+  - enabled: 1
+    path: Assets/Scenes/gui-3.unity
+  - enabled: 1
+    path: Assets/Scenes/gui-7.unity
+  - enabled: 1
+    path: Assets/Scenes/MainWorld.unity
