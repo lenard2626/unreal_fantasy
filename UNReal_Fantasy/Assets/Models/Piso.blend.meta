@@ -1,10 +1,17 @@
 fileFormatVersion: 2
-guid: 2f28e7f4e38b80a4f86ba94948e4a5a2
-timeCreated: 1430719279
+guid: a6de05fe92606d54b921f7e8f3329f46
+timeCreated: 1430081160
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Plane
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
