@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c24d9af32e90e49afd7c12c3a5569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  irA: MainWorld
+  irA: gui-6
   inactivo: {fileID: 2100000, guid: 80515ecb6faa87c47bfcb101533fdbb8, type: 2}
   activo: {fileID: 2100000, guid: d4bd7dac008ba7246ba46651a72e6b02, type: 2}
   presionado: {fileID: 2100000, guid: 5ae9a150dd9512a4ba38ce51df9330c8, type: 2}
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c24d9af32e90e49afd7c12c3a5569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  irA: MainWorld
+  irA: gui-6
   inactivo: {fileID: 2100000, guid: 5fc8ee0af47884941aceb80e0e3afd22, type: 2}
   activo: {fileID: 2100000, guid: ac482401c8ec00c47a939962fbf2c0b3, type: 2}
   presionado: {fileID: 2100000, guid: bce072b95a00bc94bba2e206ff9e7594, type: 2}
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c24d9af32e90e49afd7c12c3a5569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  irA: MainWorld
+  irA: gui-6
   inactivo: {fileID: 2100000, guid: d997d897b785bba4b994cca43e599fda, type: 2}
   activo: {fileID: 2100000, guid: 7cbfc6255acfb0347b00ab8c0476ff32, type: 2}
   presionado: {fileID: 2100000, guid: 628f563ec20eff94d8a6f2e3105fb501, type: 2}

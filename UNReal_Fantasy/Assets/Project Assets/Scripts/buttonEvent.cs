@@ -26,4 +26,9 @@ public class buttonEvent : MonoBehaviour {
 		rend.material.mainTexture=inactiveTexture;
 	}
 
+	public void loadScene(string name){
+		Application.LoadLevel(name);
+
+	}
+
 }
