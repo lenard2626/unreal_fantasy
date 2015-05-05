@@ -17,6 +17,6 @@ public class consultar : MonoBehaviour {
 	}
 	void OnMouseUp(){
 		gameObject.GetComponent<Renderer>().material = activo; 
-		Application.LoadLevel ("gui-7");
+		Application.LoadLevel ("gui-8");
 	}
 }
