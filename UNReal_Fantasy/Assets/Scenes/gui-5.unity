@@ -319,7 +319,6 @@ GameObject:
   - 33: {fileID: 1347450425}
   - 64: {fileID: 1347450424}
   - 23: {fileID: 1347450423}
-  - 114: {fileID: 1347450422}
   - 114: {fileID: 1347450421}
   m_Layer: 0
   m_Name: BotonLaNevera
@@ -343,20 +342,6 @@ MonoBehaviour:
   inactivo: {fileID: 2100000, guid: 80515ecb6faa87c47bfcb101533fdbb8, type: 2}
   activo: {fileID: 2100000, guid: d4bd7dac008ba7246ba46651a72e6b02, type: 2}
   presionado: {fileID: 2100000, guid: 5ae9a150dd9512a4ba38ce51df9330c8, type: 2}
---- !u!114 &1347450422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1347450420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
-  activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
-  presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
 --- !u!23 &1347450423
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -491,7 +476,6 @@ GameObject:
   - 33: {fileID: 1416762453}
   - 64: {fileID: 1416762452}
   - 23: {fileID: 1416762451}
-  - 114: {fileID: 1416762450}
   - 114: {fileID: 1416762449}
   m_Layer: 0
   m_Name: BotonPaisalandia
@@ -527,20 +511,6 @@ MonoBehaviour:
   inactivo: {fileID: 2100000, guid: 5fc8ee0af47884941aceb80e0e3afd22, type: 2}
   activo: {fileID: 2100000, guid: ac482401c8ec00c47a939962fbf2c0b3, type: 2}
   presionado: {fileID: 2100000, guid: bce072b95a00bc94bba2e206ff9e7594, type: 2}
---- !u!114 &1416762450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416762447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
-  activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
-  presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
 --- !u!23 &1416762451
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1131,7 +1101,6 @@ GameObject:
   - 33: {fileID: 1821089414}
   - 64: {fileID: 1821089413}
   - 23: {fileID: 1821089412}
-  - 114: {fileID: 1821089411}
   - 114: {fileID: 1821089410}
   m_Layer: 0
   m_Name: BotonPlayaYSol
@@ -1167,20 +1136,6 @@ MonoBehaviour:
   inactivo: {fileID: 2100000, guid: d997d897b785bba4b994cca43e599fda, type: 2}
   activo: {fileID: 2100000, guid: 7cbfc6255acfb0347b00ab8c0476ff32, type: 2}
   presionado: {fileID: 2100000, guid: 628f563ec20eff94d8a6f2e3105fb501, type: 2}
---- !u!114 &1821089411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1821089408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
-  activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
-  presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
 --- !u!23 &1821089412
 MeshRenderer:
   m_ObjectHideFlags: 0
