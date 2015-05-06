@@ -14,6 +14,7 @@ ModelImporter:
     100012: Plane_005
     100014: Plane_006
     100016: Plane_007
+    100018: Cube
     400000: //RootNode
     400002: Plane
     400004: Plane_001
@@ -23,6 +24,7 @@ ModelImporter:
     400012: Plane_005
     400014: Plane_006
     400016: Plane_007
+    400018: Cube
     2300000: Plane
     2300002: Plane_001
     2300004: Plane_002
@@ -32,6 +34,7 @@ ModelImporter:
     2300012: Plane_006
     2300014: Plane_007
     2300016: //RootNode
+    2300018: Cube
     3300000: Plane
     3300002: Plane_001
     3300004: Plane_002
@@ -41,6 +44,7 @@ ModelImporter:
     3300012: Plane_006
     3300014: Plane_007
     3300016: //RootNode
+    3300018: Cube
     4300000: Plane_001
     4300002: Plane
     4300004: Plane_002
@@ -49,6 +53,7 @@ ModelImporter:
     4300010: Plane_005
     4300012: Plane_006
     4300014: Plane_007
+    4300016: Cube
     7400000: Default Take
     9500000: //RootNode
   materials:
