@@ -495,7 +495,7 @@ MonoBehaviour:
   barraFondo: {fileID: 2800000, guid: aa84b5ef19666a044a8b36f8e7842708, type: 3}
   barraFrente: {fileID: 2800000, guid: f554a8fc1aa21164aa73d113bd647fd0, type: 3}
   progreso: 0
-  velocidadProgreso: 10
+  velocidadProgreso: 50
 --- !u!4 &1522527674
 Transform:
   m_ObjectHideFlags: 0

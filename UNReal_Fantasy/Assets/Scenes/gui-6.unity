@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: gui-8
   inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
   activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
   presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}

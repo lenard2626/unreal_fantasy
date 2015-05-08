@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 
   inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
   activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
   presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
@@ -258,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 
   inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
   activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
   presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
@@ -327,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c24d9af32e90e49afd7c12c3a5569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  irA: MainWorld
+  irA: gui-7
   inactivo: {fileID: 2100000, guid: 6024e453a678a39418ce489d7cd2dbf0, type: 2}
   activo: {fileID: 2100000, guid: b87b65afd4c5e7842a7cb0b3d3d71790, type: 2}
   presionado: {fileID: 2100000, guid: f8355e7ca146d5d4e9fa6c0015773ad0, type: 2}
@@ -922,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 
   inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
   activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
   presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}

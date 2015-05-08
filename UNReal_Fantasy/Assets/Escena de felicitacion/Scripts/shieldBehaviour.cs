@@ -7,7 +7,7 @@ public class shieldBehaviour : MonoBehaviour {
 	public int speedY=10;
 	public int maxDeltaY=100;
 	public int timeoutAfterCongrats=2;
-
+	public string sceneToLoad;
 	private int countY=0;
 	private Text congratsTextRef=null;
 	private int timeoutACCount=0;
@@ -28,7 +28,7 @@ public class shieldBehaviour : MonoBehaviour {
 			if(timeoutACCount<timeoutAfterCongrats){
 				timeoutACCount+=1;
 			}else{
-				Application.LoadLevel("MainWorld");
+				Application.LoadLevel(sceneToLoad);
 			}
 		}
 	}

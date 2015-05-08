@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class consultar : MonoBehaviour {
+	public string sceneToLoad;
 	public Material inactivo;
 	public Material activo;
 	public Material presionado;
@@ -17,6 +18,6 @@ public class consultar : MonoBehaviour {
 	}
 	void OnMouseUp(){
 		gameObject.GetComponent<Renderer>().material = activo; 
-		Application.LoadLevel ("gui-8");
+		Application.LoadLevel (sceneToLoad);
 	}
 }
