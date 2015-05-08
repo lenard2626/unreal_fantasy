@@ -254,7 +254,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 651583347}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1074935187
+--- !u!1 &1074935187 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 6090f41bb9a49ed4aa2b5bd7dfb9a96d, type: 3}
   m_PrefabInternal: {fileID: 1619850208}
@@ -285,7 +285,7 @@ CapsuleCollider:
   m_Height: 191.800003
   m_Direction: 1
   m_Center: {x: 0, y: 92.6100006, z: 0}
---- !u!4 &1074935190
+--- !u!4 &1074935190 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 6090f41bb9a49ed4aa2b5bd7dfb9a96d, type: 3}
   m_PrefabInternal: {fileID: 1619850208}
@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 83e41a1785d19d84bbd77823a5d74d0f, type: 3}
     m_FontSize: 20
