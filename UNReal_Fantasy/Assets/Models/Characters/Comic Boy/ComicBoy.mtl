@@ -1,0 +1,41 @@
+# Max2Mtl Version 4.0 Mar 10th, 2001
+#
+# Multi/Sub Material__213 (4) to come 
+#
+newmtl Skin
+Ka  0.7 0.7 0.8
+Kd  0.7 0.7 0.8
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+map_Kd Skin.png
+#
+newmtl Clothes
+Ka  0.7 0.8 0.7
+Kd  0.7 0.8 0.7
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+map_Kd clothes.png
+#
+newmtl Eyeblack
+Ka  0.0 0.0 0.0
+Kd  0.0 0.0 0.0
+Ks  1.0 1.0 1.0
+d  1.0
+Ns  35.1
+illum 2
+#
+newmtl EyeWhite
+Ka  0.9 0.9 0.9
+Kd  0.9 0.9 0.9
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  16.5
+illum 2
+#
+# Multi/Sub Material__213 done 
+#
+# EOF
