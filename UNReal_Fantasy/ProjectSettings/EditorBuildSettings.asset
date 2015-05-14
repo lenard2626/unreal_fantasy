@@ -6,20 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/gui-1.unity
+    path: Assets/Project Assets/Scenes/gui-1.unity
   - enabled: 1
-    path: Assets/Scenes/gui-2.unity
+    path: Assets/Project Assets/Scenes/gui-2.unity
   - enabled: 1
-    path: Assets/Scenes/gui-3.unity
+    path: Assets/Project Assets/Scenes/gui-3.unity
   - enabled: 1
-    path: Assets/Scenes/gui-4.unity
+    path: Assets/Project Assets/Scenes/gui-4.unity
   - enabled: 1
-    path: Assets/Scenes/gui-5.unity
+    path: Assets/Project Assets/Scenes/gui-5.unity
   - enabled: 1
-    path: Assets/Scenes/gui-6.unity
+    path: Assets/Project Assets/Scenes/gui-6.unity
   - enabled: 1
-    path: Assets/Scenes/gui-7.unity
+    path: Assets/Project Assets/Scenes/gui-7.unity
   - enabled: 1
-    path: Assets/Scenes/MainWorld.unity
+    path: Assets/Project Assets/Scenes/MainWorld.unity
   - enabled: 1
-    path: Assets/Scenes/gui-8.unity
+    path: Assets/Project Assets/Scenes/gui-8.unity
