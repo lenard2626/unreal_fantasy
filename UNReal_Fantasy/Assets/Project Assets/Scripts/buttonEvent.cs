@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 public class buttonEvent : MonoBehaviour {
-	public gui1MainScript gui1Controller;
 	public Renderer rend;
 	public Texture2D inactiveTexture;
 	public Texture2D pressedTexture;
@@ -31,15 +30,6 @@ public class buttonEvent : MonoBehaviour {
 
 	}
 
-	public void validatelogin(string name){
-		gui1Controller = GameObject.Find("Canvas").GetComponent<gui1MainScript>();
-		InputField username = GameObject.Find("UsernameField").GetComponent<InputField>();
-		InputField password = GameObject.Find("PassField").GetComponent<InputField>();
-		if (username.text == "test" && password.text == "test") {
-			this.loadScene (name);
-		} else {
-			gui1Controller.showLoginError();
-		}
-	}
+
 
 }
