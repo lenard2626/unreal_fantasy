@@ -392,6 +392,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423811130993a4d829655ad44de8680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &344384709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 344384711}
+  - 114: {fileID: 344384710}
+  m_Layer: 0
+  m_Name: SessionData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &344384710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 344384709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c004d71075d140dea24c52938b55c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiUrl: http://localhost:8080/UnrealFantasyApi
+--- !u!4 &344384711
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 344384709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.20000005, y: .600000024, z: -53.2000008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &376558215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,6 +1100,7 @@ GameObject:
   - 222: {fileID: 842732132}
   - 114: {fileID: 842732131}
   - 114: {fileID: 842732130}
+  - 114: {fileID: 842732133}
   m_Layer: 5
   m_Name: registrarButton
   m_TagString: Untagged
@@ -1124,16 +1165,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120245594}
-        m_MethodName: test
-        m_Mode: 1
+      - m_Target: {fileID: 842732133}
+        m_MethodName: loadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: gui-register
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1165,6 +1206,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842732128}
+--- !u!114 &842732133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842732128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a7782eb5f50364aad1472a04c62fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 0}
+  inactiveTexture: {fileID: 0}
+  pressedTexture: {fileID: 0}
+  activeTexture: {fileID: 0}
+  sceneName: 
 --- !u!1 &889759369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1264,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Usuario:'
+  m_Text: 'Email:'
 --- !u!222 &889759371
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1491,7 +1548,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ingrese Usuario...
+  m_Text: Ingrese Email...
 --- !u!222 &1564083871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1668,8 +1725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a946a9e5cb9bc75429e3e651c7e85204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  session: {fileID: 0}
   reporter: {fileID: 0}
-  apiUrl: http://localhost:8080/UnrealFantasyApi
+  nextScene: gui-3
 --- !u!114 &2120245595
 MonoBehaviour:
   m_ObjectHideFlags: 0

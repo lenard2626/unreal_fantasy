@@ -192,10 +192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c24d9af32e90e49afd7c12c3a5569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  irA: gui-1
-  inactivo: {fileID: 2100000, guid: 0d33c40a309033844b04e8029608b806, type: 2}
-  activo: {fileID: 2100000, guid: 1854021317302a047b4bf206d8212610, type: 2}
-  presionado: {fileID: 2100000, guid: 98127d262da1995489147663db3cbd1a, type: 2}
+  irA: gui-3
+  inactivo: {fileID: 2100000, guid: a3c7f6e46fb8a431d9001c37d86597c9, type: 2}
+  activo: {fileID: 2100000, guid: eaa85b42be52b4fb0a4c96d5c3a706c3, type: 2}
+  presionado: {fileID: 2100000, guid: eed77381b5bc94180b55f2204fd23dba, type: 2}
 --- !u!114 &651583350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0d33c40a309033844b04e8029608b806, type: 2}
+  - {fileID: 2100000, guid: a3c7f6e46fb8a431d9001c37d86597c9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

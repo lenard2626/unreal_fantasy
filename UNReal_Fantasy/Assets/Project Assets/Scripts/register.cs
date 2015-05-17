@@ -1,72 +1,39 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
-using UnityEngine.UI;
 
-public class gui1MainScript : MonoBehaviour {
+public class register : MonoBehaviour {
 	public sessionData session;
-	public static GameObject errorText;
 	public errorReport reporter;
 	private String apiUrl;
 	public String nextScene;
 
+	// Use this for initialization
 	void Start () {
-		this.hideLoginError();
 		this.session = GameObject.Find("SessionData").GetComponent<sessionData>();
 		this.apiUrl = session.apiUrl;
 	}
-
+	
+	// Update is called once per frames
 	void Update () {
 	
-	}
-
-	public void hideLoginError(){
-		if (!errorText) {
-			errorText = GameObject.Find ("errorText");
-		}
-		errorText.SetActive(false);
-	}
-	public void showLoginError(){
-		if (!errorText) {
-			errorText = GameObject.Find ("errorText");
-		}
-		errorText.SetActive(true);
 	}
 
 	public void executeRoutine(String name){
 		StartCoroutine(name);
 	}
 
-	public IEnumerator login() {
+	public IEnumerator registerAction() {
+
 		InputField username = GameObject.Find("UsernameField").GetComponent<InputField>();
 		InputField password = GameObject.Find("PassField").GetComponent<InputField>();
 
-		WWWForm loginData = new WWWForm ();
-		loginData.AddField ("email", username.text);
-		loginData.AddField ("password", ComputeHash(password.text));
-
-
-		HTTP.Request someRequest = new HTTP.Request( "post", apiUrl+"/user/findUser",loginData );
-		someRequest.Send();
-		
-		while( !someRequest.isDone )
-		{
-			yield return null;
-		}
-		if (someRequest.response.Text.Equals("sucess")) {
-			Application.LoadLevel(nextScene);
-		} else {
-			this.showLoginError();
-		}
-	}
-
-	/*public IEnumerator register() {
 		WWWForm registerForm = new WWWForm ();
-		registerForm.AddField ("email", "davidcamiloneo@gmail.com");
-		registerForm.AddField ("password", "asdasads");
-
+		registerForm.AddField ("email", username.text);
+		registerForm.AddField ("password", ComputeHash(password.text));
 	
-		HTTP.Request someRequest = new HTTP.Request ("post", "http://localhost:8080/UnrealFantasyApi/user/save", registerForm);
+		HTTP.Request someRequest = new HTTP.Request ("post", apiUrl+"/user/save", registerForm);
 		someRequest.Send ();
 		
 		while (!someRequest.isDone) {
@@ -74,8 +41,7 @@ public class gui1MainScript : MonoBehaviour {
 		}
 		
 		// parse some JSON, for example:
-		Debug.Log ("YAY");
-		if (!someRequest.response.Text.Equals ("")) {
+		if (!someRequest.response.Text.Equals("")) {
 		  
 			JSONObject responseJSON = new JSONObject (someRequest.response.Text);
 			String requestErrors = "Errores: \n";
@@ -87,8 +53,11 @@ public class gui1MainScript : MonoBehaviour {
 			reporter = GetComponent<errorReport>();
 			reporter.errorText = requestErrors;
 			reporter.enabled = true;
+		}else{
+			Application.LoadLevel(nextScene);
 		}
-	}*/
+
+	}
 
 	public static string ComputeHash(string s){
 		// Form hash
@@ -101,6 +70,4 @@ public class gui1MainScript : MonoBehaviour {
 		}
 		return sb.ToString();
 	}
-	
-	
 }
