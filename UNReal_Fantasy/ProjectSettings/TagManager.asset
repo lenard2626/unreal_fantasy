@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - gizmo
+  - model
+  - enemy
+  - selectable
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ ModelImporter:
     7400000: attack
     7400002: walk
     7400004: attack
-    7400006: walk1
+    7400006: run
     7400008: Cube|attack0
     7400010: Cube|walk0
     7400012: attack1
@@ -120,7 +120,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: walk1
+      name: run
       takeName: Cube|walk
       firstFrame: 0
       lastFrame: 39
