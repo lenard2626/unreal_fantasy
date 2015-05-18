@@ -4,8 +4,14 @@ using System;
 
 public class sessionData : MonoBehaviour {
 
-	public static sessionData currentSession;
+	private static sessionData currentSession;
 	public static String userLoggedEmail;
+	public static String userHash;
+	public static int charactersNumber;
+	public static JSONObject userCharacters;
+
+	public Material [] classMaterials = new Material[4];
+	public String[] classNames = new String[4];
 	public  String apiUrl;
 	// Use this for initialization
 	void Start () {

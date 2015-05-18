@@ -54,6 +54,8 @@ public class register : MonoBehaviour {
 			reporter.errorText = requestErrors;
 			reporter.enabled = true;
 		}else{
+			sessionData.userLoggedEmail = username.text;
+			sessionData.userHash = ComputeHash(username.text+ComputeHash(password.text)+username.text);
 			Application.LoadLevel(nextScene);
 		}
 

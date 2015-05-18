@@ -53,42 +53,19 @@ public class gui1MainScript : MonoBehaviour {
 		{
 			yield return null;
 		}
-		if (someRequest.response.Text.Equals("sucess")) {
-			Application.LoadLevel(nextScene);
+		if (!someRequest.response.Text.Equals("")) {
+			String userHash = ComputeHash(username.text+ComputeHash(password.text)+username.text);
+			if(someRequest.response.Text.Equals(userHash)){ 
+				sessionData.userLoggedEmail = username.text;
+				sessionData.userHash = userHash;
+				Application.LoadLevel(nextScene);
+			}
 		} else {
 			this.showLoginError();
 		}
 	}
 
-	/*public IEnumerator register() {
-		WWWForm registerForm = new WWWForm ();
-		registerForm.AddField ("email", "davidcamiloneo@gmail.com");
-		registerForm.AddField ("password", "asdasads");
 
-	
-		HTTP.Request someRequest = new HTTP.Request ("post", "http://localhost:8080/UnrealFantasyApi/user/save", registerForm);
-		someRequest.Send ();
-		
-		while (!someRequest.isDone) {
-			yield return null;
-		}
-		
-		// parse some JSON, for example:
-		Debug.Log ("YAY");
-		if (!someRequest.response.Text.Equals ("")) {
-		  
-			JSONObject responseJSON = new JSONObject (someRequest.response.Text);
-			String requestErrors = "Errores: \n";
-			ArrayList requesteErrorsList = new ArrayList(responseJSON.GetField("errors").list);
-			foreach (JSONObject element in requesteErrorsList) {
-				requestErrors += "-"+element.GetField("message")+"\n"; 
-			}
-			Debug.Log(requestErrors);
-			reporter = GetComponent<errorReport>();
-			reporter.errorText = requestErrors;
-			reporter.enabled = true;
-		}
-	}*/
 
 	public static string ComputeHash(string s){
 		// Form hash

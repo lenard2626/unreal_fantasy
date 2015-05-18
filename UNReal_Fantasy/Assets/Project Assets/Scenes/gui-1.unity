@@ -419,6 +419,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c004d71075d140dea24c52938b55c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  classMaterials:
+  - {fileID: 2100000, guid: 61a14a49b0297dc47a71a60fdd97dccd, type: 2}
+  - {fileID: 2100000, guid: e5cd7d65b48311544850afc5ce02a36e, type: 2}
+  - {fileID: 2100000, guid: b962bacc75e59e345902569cfd4f4ffe, type: 2}
+  - {fileID: 2100000, guid: acb3487c6537ee44a9b4cd0ca8bf586d, type: 2}
+  classNames:
+  - Nerd
+  - Deportista
+  - Avispao
+  - Artista
   apiUrl: http://localhost:8080/UnrealFantasyApi
 --- !u!4 &344384711
 Transform:
@@ -471,7 +481,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1040,8 +1050,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842127408}
   m_LocalRotation: {x: -.707097232, y: 0, z: 0, w: .707116306}
-  m_LocalPosition: {x: .023697, y: -.0265270006, z: 2.21409988}
-  m_LocalScale: {x: 5.69614601, y: 3.21021605, z: 3.17209435}
+  m_LocalPosition: {x: 0, y: -.370000005, z: 0}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 2120245593}
   m_Father: {fileID: 0}
@@ -1697,8 +1707,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2120245589}
   m_LocalRotation: {x: .707097232, y: 0, z: 0, w: .707116306}
-  m_LocalPosition: {x: 0, y: 0, z: .0399999991}
-  m_LocalScale: {x: .0165298209, y: .0297080018, z: 1.05717909}
+  m_LocalPosition: {x: 0, y: 0, z: -.25}
+  m_LocalScale: {x: .0127416998, y: .0255051237, z: .918524444}
   m_Children:
   - {fileID: 798410548}
   - {fileID: 1783243043}
@@ -1711,7 +1721,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -.0399999991, y: 2}
+  m_AnchoredPosition: {x: -.0199999996, y: 4.21000004}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2120245594
