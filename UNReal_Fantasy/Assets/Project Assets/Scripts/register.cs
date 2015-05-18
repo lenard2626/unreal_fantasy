@@ -49,7 +49,6 @@ public class register : MonoBehaviour {
 			foreach (JSONObject element in requesteErrorsList) {
 				requestErrors += "-"+element.GetField("message")+"\n"; 
 			}
-			Debug.Log(requestErrors);
 			reporter = GetComponent<errorReport>();
 			reporter.errorText = requestErrors;
 			reporter.enabled = true;

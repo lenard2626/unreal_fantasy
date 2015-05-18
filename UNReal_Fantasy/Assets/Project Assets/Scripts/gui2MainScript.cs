@@ -42,6 +42,7 @@ public class gui2MainScript : MonoBehaviour {
 		GameObject ClassTitle = GameObject.Find ("className");
 		PJ.GetComponent<MeshRenderer> ().material = this.classMaterials [this.actualClass];
 		ClassTitle.GetComponent<Text> ().text = this.classNames [this.actualClass];
+		sessionData.creation_selectedClass = this.actualClass;
 	}
 
 

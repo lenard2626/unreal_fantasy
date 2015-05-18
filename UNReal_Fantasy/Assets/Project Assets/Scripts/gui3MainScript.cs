@@ -32,8 +32,26 @@ public class gui3MainScript : MonoBehaviour {
 	}
 
 
+	public void nextCharacter(){
+		this.selectedCharacter += 1;
+		if (this.selectedCharacter > this.characters.Count-1) {
+			this.selectedCharacter = 0;
+		}
+		this.loadCharacter ();
+	}
+
+	public void prevCharacter(){
+		this.selectedCharacter -= 1;
+		if (this.selectedCharacter <0) {
+			this.selectedCharacter = this.characters.Count-1;
+		}
+		this.loadCharacter ();
+	}
+
 	public void loadCharacter (){
 		JSONObject actualCharacter = (JSONObject)this.characters[selectedCharacter];
+		sessionData.load_selectedPjClass = (int)actualCharacter.GetField ("type").n;
+		sessionData.load_selectedPjName = actualCharacter.GetField ("name").str;
 		GameObject.Find("PJ/default").GetComponent<MeshRenderer>().material = session.classMaterials[(int)actualCharacter.GetField("type").n];
 		GameObject.Find("nombrePersonajeTxt").GetComponent<Text>().text = actualCharacter.GetField("name").str;
 		GameObject.Find ("clasePersonajeTxt").GetComponent<Text> ().text = session.classNames [(int)actualCharacter.GetField ("type").n];

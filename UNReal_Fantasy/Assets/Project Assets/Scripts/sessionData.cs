@@ -10,6 +10,12 @@ public class sessionData : MonoBehaviour {
 	public static int charactersNumber;
 	public static JSONObject userCharacters;
 
+	public static int creation_selectedClass;
+	public static String creation_selectedName;
+
+	public static int load_selectedPjClass;
+	public static String load_selectedPjName;
+
 	public Material [] classMaterials = new Material[4];
 	public String[] classNames = new String[4];
 	public  String apiUrl;

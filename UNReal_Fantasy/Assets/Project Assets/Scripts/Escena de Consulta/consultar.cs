@@ -1,11 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 
 public class consultar : MonoBehaviour {
 	public string sceneToLoad;
 	public Material inactivo;
 	public Material activo;
 	public Material presionado;
+	private sessionData session;
+	private errorReport reporter;
+	private String apiUrl;
+
+	void Start(){
+		this.session = GameObject.Find("SessionData").GetComponent<sessionData>();
+		this.apiUrl = session.apiUrl;
+	}
 
 	void OnMouseEnter(){
 		gameObject.GetComponent<Renderer>().material = activo; 
@@ -18,6 +28,42 @@ public class consultar : MonoBehaviour {
 	}
 	void OnMouseUp(){
 		gameObject.GetComponent<Renderer>().material = activo; 
-		Application.LoadLevel (sceneToLoad);
+		String characterName = GameObject.Find ("characterName/Text").GetComponent<Text> ().text;
+		sessionData.creation_selectedName = characterName;
+		StartCoroutine ("createCharacter");
 	}
+
+
+	public IEnumerator createCharacter(){
+
+		WWWForm requestData = new WWWForm ();
+		requestData.AddField ("email", sessionData.userLoggedEmail);
+		requestData.AddField ("userHash", sessionData.userHash);
+		requestData.AddField ("characterName", sessionData.creation_selectedName);
+		requestData.AddField ("characterType", sessionData.creation_selectedClass);
+		
+		HTTP.Request someRequest = new HTTP.Request( "post", apiUrl+"/character/createCharacter",requestData );
+		someRequest.Send();
+		
+		while( !someRequest.isDone )
+		{
+			yield return null;
+		}
+
+		if (someRequest.response.Text.Equals("")) {
+			Application.LoadLevel (sceneToLoad);
+		} else {
+			JSONObject responseJSON = new JSONObject (someRequest.response.Text);
+			String requestErrors = "Errores: \n";
+			ArrayList requesteErrorsList = new ArrayList(responseJSON.GetField("errors").list);
+			foreach (JSONObject element in requesteErrorsList) {
+				requestErrors += "-"+element.GetField("message")+"\n"; 
+			}
+			reporter = GetComponent<errorReport>();
+			reporter.errorText = requestErrors;
+			reporter.enabled = true;
+		}
+
+	}
+
 }
