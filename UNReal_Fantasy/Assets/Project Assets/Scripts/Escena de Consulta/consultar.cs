@@ -52,6 +52,8 @@ public class consultar : MonoBehaviour {
 
 		if (someRequest.response.Text.Equals("")) {
 			Application.LoadLevel (sceneToLoad);
+			sessionData.load_selectedPjClass = sessionData.creation_selectedClass;
+			sessionData.load_selectedPjName = sessionData.creation_selectedName;
 		} else {
 			JSONObject responseJSON = new JSONObject (someRequest.response.Text);
 			String requestErrors = "Errores: \n";

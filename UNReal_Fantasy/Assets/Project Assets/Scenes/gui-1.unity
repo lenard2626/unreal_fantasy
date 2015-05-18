@@ -429,7 +429,7 @@ MonoBehaviour:
   - Deportista
   - Avispao
   - Artista
-  apiUrl: http://localhost:8080/UnrealFantasyApi
+  apiUrl: https://unrealfantasy.herokuapp.com/
 --- !u!4 &344384711
 Transform:
   m_ObjectHideFlags: 0

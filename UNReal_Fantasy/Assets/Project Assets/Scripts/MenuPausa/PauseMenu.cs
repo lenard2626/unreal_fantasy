@@ -28,8 +28,8 @@ public class PauseMenu : MonoBehaviour {
 		}
 		
 		//main menu return button (level 0)
-		if(GUI.Button(new Rect(Screen.width/8, Screen.height/4, Screen.width/4, Screen.height/10), "Menu Principal")) {
-			Application.LoadLevel(0);
+		if(GUI.Button(new Rect(Screen.width/8, Screen.height/4, Screen.width/4, Screen.height/10), "Menu de Seleccion de Personajes")) {
+			Application.LoadLevel("gui-3");
 		}
 		
 		//quit button

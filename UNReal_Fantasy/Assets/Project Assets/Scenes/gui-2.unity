@@ -270,8 +270,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 651583347}
   m_LocalRotation: {x: 7.8987803e-08, y: 1, z: -1.32918367e-05, w: -.000234292282}
-  m_LocalPosition: {x: 1.16221786, y: 1, z: -4.18964815}
-  m_LocalScale: {x: .0794027746, y: .125612959, z: .0435355082}
+  m_LocalPosition: {x: 1.16199994, y: 1, z: -4.20900011}
+  m_LocalScale: {x: .0706778914, y: .111810438, z: .0387517661}
   m_Children: []
   m_Father: {fileID: 2031843640}
   m_RootOrder: 1
@@ -287,9 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   irA: gui-3
-  inactivo: {fileID: 2100000, guid: a3c7f6e46fb8a431d9001c37d86597c9, type: 2}
-  activo: {fileID: 2100000, guid: eaa85b42be52b4fb0a4c96d5c3a706c3, type: 2}
-  presionado: {fileID: 2100000, guid: eed77381b5bc94180b55f2204fd23dba, type: 2}
+  inactivo: {fileID: 2100000, guid: 4e26ea4c783fa0d44afcdb434f690598, type: 2}
+  activo: {fileID: 2100000, guid: 2d773e4261311824aac27158bfa22ce8, type: 2}
+  presionado: {fileID: 2100000, guid: 3f6c559555cb82c478924248bb822d1b, type: 2}
 --- !u!114 &651583350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: a3c7f6e46fb8a431d9001c37d86597c9, type: 2}
+  - {fileID: 2100000, guid: 4e26ea4c783fa0d44afcdb434f690598, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
