@@ -8,6 +8,8 @@ TagManager:
   - model
   - enemy
   - selectable
+  - Dialog
+  - DgImage
   layers:
   - Default
   - TransparentFX

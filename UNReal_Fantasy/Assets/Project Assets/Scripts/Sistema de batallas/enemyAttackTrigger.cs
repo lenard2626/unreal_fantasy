@@ -28,6 +28,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	void Start () {
 		//parent=(GetComponent<Transform>().root).GetComponent<GameObject>();			///Lo que hay que hacer para sacarle el parent a un script...
+		player=GameObject.FindGameObjectWithTag("Player");
 		playerTrans = player.GetComponent<Transform>();
 		meshAnim = GetComponentInChildren<Animation> ();
  
