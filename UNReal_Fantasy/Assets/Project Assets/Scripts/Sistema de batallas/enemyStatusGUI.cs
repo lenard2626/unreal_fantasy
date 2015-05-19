@@ -72,7 +72,7 @@ public class enemyStatusGUI : MonoBehaviour {
 		//Deteccion de doble click para ataque de pesonaje
 		if(Input.GetButtonDown("Fire1")){
 			if(Time.time-lastClickTime<catchTime){
-				player.GetComponent<playerAttack>().setAttackedEnemy(this);
+				player.GetComponent<playerAttack>().setAttackingEnemy(this);
 			}else{
 
 			}
@@ -139,23 +139,26 @@ public class enemyStatusGUI : MonoBehaviour {
 
 	void OnMouseDown(){
 		ShowStatus ();
+		player.GetComponent<playerAttack>().setIsTargetSelected(true);
 	}
 
 	//Muestra el estado, se autoselecciona para el jugador como enemigo activo y oculta las demas interfaces
 	public void ShowStatus(){
 		//deselecciona los demas enemigos marcados con el tag selectable (usado para seleccionables con interfaz emergente)
-		GameObject[] others=GameObject.FindGameObjectsWithTag ("selectable");
-		enemyStatusGUI cur_gui = null;
-		foreach (GameObject cur_object in others) {
-			if(cur_gui=cur_object.GetComponent<enemyStatusGUI>())
-				cur_gui.hideStatus();
+		if (!showStatus) {
+			GameObject[] others=GameObject.FindGameObjectsWithTag ("selectable");
+			enemyStatusGUI cur_gui = null;
+			foreach (GameObject cur_object in others) {
+				if(cur_gui=cur_object.GetComponent<enemyStatusGUI>())
+					cur_gui.hideStatus();
+			}
 		}
 		showStatus = true;
 	}
 	//Oculta el estado y se deselecciona como enemigo activo
 	public void hideStatus(){
 		showStatus = false;
-		player.GetComponent<playerAttack> ().setAttackedEnemy (null);
+		player.GetComponent<playerAttack> ().setAttackingEnemy (null);
 	}
 
 
