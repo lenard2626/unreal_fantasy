@@ -8,7 +8,10 @@ public class playerAttack : MonoBehaviour {
 	public float attackCoolDown=3;
 	public float meleeAttackRange=5;				//El rango de ataque del enemigo cuerp a cuerpo 			
 
+	public float moveSpeed=10;
+
 	private float attackCDTimer=0;
+	private bool isTargetSelected=false;		//Dice si en determinado instante, el jugador tiene un objetivo señalado
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
 	private Animation anim;
 
@@ -16,13 +19,15 @@ public class playerAttack : MonoBehaviour {
 	
 	void Start () {
 		anim = GetComponent<Animation> ();
+		meleeAttackRange *= meleeAttackRange;			//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		//Evalua si esta atacando un enemigo
-		if (attackedEnemyScript != null) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
-			if (meleeAttackRange > Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position)) {
+		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
+			var distanceToEnemy = Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position);
+			Debug.Log("Distancia al enemigo "+distanceToEnemy);
+			if (meleeAttackRange > distanceToEnemy) {
 				isAttacking=true;
 			}else{
 				approachToTarget();
@@ -33,19 +38,24 @@ public class playerAttack : MonoBehaviour {
 		}
 	}
 
-	public void setAttackedEnemy(enemyStatusGUI aesIn){
+	public void setAttackingEnemy(enemyStatusGUI aesIn){
 		attackedEnemyScript=aesIn;						//Funcion que recibe el componente "enemyStatusScript", para que el personaje principal pueda atacar al enemigo
-		if (aesIn != null) {
-			isAttacking=false;
-		}
 	}
 
 	public void approachToTarget(){
+		Debug.Log("acercandose al enemigo...");
 		//Acerca automaticamente el jugador al enemigo
 		if(!anim.IsPlaying ("run"))anim.Play("run");
+
 		transform.position = Vector3.MoveTowards (transform.position,
-		                                          new Vector3(attackedEnemyScript.getTransform().position.x,transform.position.y,attackedEnemyScript.getTransform().position.z),
-		                                          10 * Time.deltaTime);
+		                                          new Vector3(attackedEnemyScript.getTransform().position.x,
+													            transform.position.y,
+													            attackedEnemyScript.getTransform().position.z),
+		                                          moveSpeed * Time.deltaTime);
+	}
+	
+	public void setIsTargetSelected(bool itsIn){
+		isTargetSelected = itsIn;
 	}
 
 	void attack(){
