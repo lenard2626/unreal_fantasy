@@ -5,60 +5,88 @@ public class enemyStatusGUI : MonoBehaviour {
 
 	
 	// texturas
-	public Texture2D healthBackground; // back segment
-	public Texture2D healthForeground; // front segment
-	public Texture2D healthDamage; // draining segment
-	public GUISkin HUDSkin; // Styles up the health integer
+	public Texture2D icon;
+	public Texture2D statusLayoutBg; // fondo del layout para estatus
+	public Texture2D closeBtn;
+
+	public Texture2D healthBackground; 	// fondo blanco (no el quee stan pensando)
+
+	public Texture2D healthForeground; // barra roja
+	public Texture2D healthDamage; // barra amarilla de daño
+	
+	//public Texture2D staminaForeground; // barra roja
+	//public Texture2D staminaDamage; // barra amarilla de daño
+
+	public GUISkin HUDSkin; // skin alternativo (no esta en uso)
+	public GUIStyle style;
 
 	//interfaz
-	public int layoutWidth=300;
-	public int layoutHeight=150;
-	public int layoutBorderX=10;
-	public int layoutBorderY=10;
+	public int layoutWidth=282;
+	public int layoutHeight=77;
+
 	public string enemyName;
 	public GameObject gizmo_npc;
 	public bool showStatus=true;
 
-	int healthBarPosX = 0;
-	int healthBarPosY = 15;
-	int healthBarHeight = 20;
+	//Desde donde empiean los elementos 
+	private int anchorX = 0;			
+	private int anchorY = 0;
+	int barH = 20;
 
 	//posiciones relativas al jugador
 	public GameObject player;
 	public int yGUIDistance=120;
-	public int selectableDistance=300;		//A que distancia puede el jugador seleccionar este enemigo?
-	
-	//values   
-	private float previousHealth; //a value for reducing previous current health through attacks
-	private float healthBar; //a value for creating the health bar size
-	private float myFloat; // an empty float value to affect drainage speed
-	public static float maxHP=1000; // maximum HP
-	public static float curHP=maxHP; // current HP
+	public int selectableDistance=300;		
 
+	//referencia de posicion a pasar al jugador atacante (para que el jugador sepa a donde dirigirse)
+	private Transform thisTransform;
+	
+	//valores para la barra de vida   
+	private float previousHealth; 
+	private float healthBar; 
+	private float myFloat; 
+
+	public static float maxHP=1000; 
+	public float curHP=maxHP; 
+
+	private float lastClickTime=0f;
+	private float catchTime=0.25f;
 
 	void Start () {
 		curHP=maxHP;
-		previousHealth = maxHP; // assign the empty value to store the value of max health
-		healthBar = /*layoutWidth-2*layoutBorderX*/100f; // create the health bar width
-		myFloat = (maxHP / 100) * 10; // affects the health drainage
+		previousHealth = maxHP; 
+		healthBar = layoutWidth*0.8f; 
+		anchorX = (int)(layoutWidth * 0.1f);
+		anchorY = (int)(layoutWidth * 0.05);
+		myFloat = (maxHP / 100) * 10; 
 
 		//Ocultamos el gizmo (solo se muestra en mouseenter)
 		gizmo_npc.GetComponent<MeshRenderer>().enabled = false;
+
+		thisTransform=GetComponent<Transform> ();
 	}
 	
 	void Update(){
 		adjustCurrentHealth();
+
+		//Deteccion de doble click para ataque de pesonaje
+		if(Input.GetButtonDown("Fire1")){
+			if(Time.time-lastClickTime<catchTime){
+				player.GetComponent<playerAttack>().setAttackedEnemy(this);
+			}else{
+
+			}
+			lastClickTime=Time.time;
+		}
 	}
 	
 	public void adjustCurrentHealth(){
-		
-		/**Deduct the current health value from its damage**/  
+
 		if(previousHealth > curHP){
 			previousHealth -= ((maxHP / curHP) * (myFloat)) * Time.deltaTime; // deducts health damage
 		} else {
 			previousHealth = curHP;
 		}
-		
 		if(previousHealth < 0){
 			previousHealth = 0;
 		}
@@ -67,7 +95,6 @@ public class enemyStatusGUI : MonoBehaviour {
 			curHP = maxHP;
 			previousHealth = maxHP;
 		}
-		
 		if(curHP < 0){
 			curHP = 0;
 		}
@@ -75,25 +102,36 @@ public class enemyStatusGUI : MonoBehaviour {
 	
 	void OnGUI () {
 
-		Vector2 targetPos;
-		targetPos = player.GetComponentInChildren<Camera> ().WorldToScreenPoint (transform.position);
+		//Vector2 targetPos=new Vector2(test1,test2);
+		//Vector2 targetPos = player.GetComponentInChildren<Camera> ().WorldToScreenPoint (transform.position);			//para ubicar la interfaz sobre el objeto seleccionado
 
-		if (showStatus &&
-		    (targetPos.x>0 && targetPos.y>0 )) {								//Para evitar mostrar la interfaz cuando el enemigo esta detras de la camara
+		if (showStatus) {								
 			float previousAdjustValue = (previousHealth * healthBar) / maxHP;
 			float percentage = healthBar * (curHP / maxHP);
 
+			GUI.skin = HUDSkin;
+			GUILayout.BeginArea (new Rect((Screen.width-layoutWidth)/2 , 10, layoutWidth, layoutHeight),"");		//Interfaz al centro de la pantalla
+			//Fondo del layout
+			GUI.DrawTexture (new Rect (0, 0,layoutWidth, layoutHeight), statusLayoutBg);  
 
+			//Nombre
+			GUI.Label (new Rect (16,16,245,12),enemyName,style);
 
-			//GUI.skin = HUDSkin;
-			GUILayout.BeginArea (new Rect (targetPos.x, yGUIDistance, layoutWidth, layoutHeight), /*curHP + "/" + maxHP*/enemyName);
+			//Icono de estado
+			//GUI.DrawTexture (new Rect (anchorX, anchorY, healthBar , barH), icon);  
 
-			GUI.DrawTexture (new Rect (healthBarPosX, healthBarPosY, (healthBar * 2), healthBarHeight), healthBackground);       
-			GUI.DrawTexture (new Rect (healthBarPosX, healthBarPosY, (previousAdjustValue * 2), healthBarHeight), healthDamage);
-			GUI.DrawTexture (new Rect (healthBarPosX, healthBarPosY, (percentage * 2), healthBarHeight), healthForeground);
+			//Barra de salud
+			GUI.DrawTexture (new Rect (anchorX, 3*anchorY, healthBar, 20), healthBackground);       
+			GUI.DrawTexture (new Rect (anchorX, 3*anchorY, previousAdjustValue, 20), healthDamage);
+			GUI.DrawTexture (new Rect (anchorX, 3*anchorY, percentage, 20), healthForeground);
+			//Cantidad de salud
+			GUI.Label (new Rect (anchorX, 3*anchorY, healthBar, 20),(int)(previousHealth) + "/" + maxHP.ToString (),style);
 
-			GUI.Label (new Rect (healthBarPosX,healthBarPosY, (healthBar * 2), healthBarHeight),(int)(previousHealth) + "/" + maxHP.ToString ());
-			GUILayout.EndArea ();
+			//Boton de cerrado
+			if(GUI.Button(new Rect(layoutWidth-anchorX, anchorY, 15, 15),closeBtn)){
+				hideStatus();
+			}
+			GUILayout.EndArea (); 
 		} else {
 			gizmo_npc.GetComponent<MeshRenderer>().enabled = true;
 		}
@@ -103,18 +141,21 @@ public class enemyStatusGUI : MonoBehaviour {
 		ShowStatus ();
 	}
 
+	//Muestra el estado, se autoselecciona para el jugador como enemigo activo y oculta las demas interfaces
 	public void ShowStatus(){
 		//deselecciona los demas enemigos marcados con el tag selectable (usado para seleccionables con interfaz emergente)
 		GameObject[] others=GameObject.FindGameObjectsWithTag ("selectable");
 		enemyStatusGUI cur_gui = null;
 		foreach (GameObject cur_object in others) {
 			if(cur_gui=cur_object.GetComponent<enemyStatusGUI>())
-				cur_gui.showStatus=false;
+				cur_gui.hideStatus();
 		}
 		showStatus = true;
 	}
+	//Oculta el estado y se deselecciona como enemigo activo
 	public void hideStatus(){
 		showStatus = false;
+		player.GetComponent<playerAttack> ().setAttackedEnemy (null);
 	}
 
 
@@ -124,4 +165,11 @@ public class enemyStatusGUI : MonoBehaviour {
 	void OnMouseOut(){
 		gizmo_npc.GetComponent<MeshRenderer>().enabled = false;
 	}
+
+
+	//setters y getters (evitan el exceso de variables publicas)
+	public Transform getTransform(){
+		return thisTransform;
+	}
+
 }
