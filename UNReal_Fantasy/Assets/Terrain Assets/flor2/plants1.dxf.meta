@@ -1,0 +1,112 @@
+fileFormatVersion: 2
+guid: 2dfa51491b30e764eb2deb22e5927251
+timeCreated: 1431969010
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: coreopsi_1InfInt
+    100002: coreopsi_1Pdcel
+    100004: coreopsi_1Pdncle
+    100006: coreopsi_1Petal1
+    100008: coreopsi_1stLeaf
+    100010: coreopsi_1stPetiole
+    100012: coreopsi_Intrnd
+    100014: coreopsi_Leaf
+    100016: coreopsi_Petiole
+    100018: //RootNode
+    400000: coreopsi_1InfInt
+    400002: coreopsi_1Pdcel
+    400004: coreopsi_1Pdncle
+    400006: coreopsi_1Petal1
+    400008: coreopsi_1stLeaf
+    400010: coreopsi_1stPetiole
+    400012: coreopsi_Intrnd
+    400014: coreopsi_Leaf
+    400016: coreopsi_Petiole
+    400018: //RootNode
+    2300000: coreopsi_1InfInt
+    2300002: coreopsi_1Pdcel
+    2300004: coreopsi_1Pdncle
+    2300006: coreopsi_1Petal1
+    2300008: coreopsi_1stLeaf
+    2300010: coreopsi_1stPetiole
+    2300012: coreopsi_Intrnd
+    2300014: coreopsi_Leaf
+    2300016: coreopsi_Petiole
+    3300000: coreopsi_1InfInt
+    3300002: coreopsi_1Pdcel
+    3300004: coreopsi_1Pdncle
+    3300006: coreopsi_1Petal1
+    3300008: coreopsi_1stLeaf
+    3300010: coreopsi_1stPetiole
+    3300012: coreopsi_Intrnd
+    3300014: coreopsi_Leaf
+    3300016: coreopsi_Petiole
+    4300000: coreopsi_1InfInt
+    4300002: coreopsi_1Pdcel
+    4300004: coreopsi_1Pdncle
+    4300006: coreopsi_1Petal1
+    4300008: coreopsi_1stLeaf
+    4300010: coreopsi_1stPetiole
+    4300012: coreopsi_Intrnd
+    4300014: coreopsi_Leaf
+    4300016: coreopsi_Petiole
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
