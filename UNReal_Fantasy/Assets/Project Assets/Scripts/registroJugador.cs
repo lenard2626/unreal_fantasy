@@ -1,32 +1,87 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class registroJugador : MonoBehaviour {
-	public int state;
-	public ArrayList missions = new ArrayList ();
+	public int state=0;
+	public List<Mision> missions = new List<Mision>();
 	public Sprite interrogante;
 	public bool hasMission=false;
+	public Mision misionActual;
+	void start(){}
 
-	void start(){
-		state = 0;
-	}
+	public void loadMissions(){
+		if (!hasMission) {
+			this.addMission (new Mision (0, "Bienvenido a la Universidad", "Busca al vendedor de la plaza central, el te dara un consejo muy valioso.", "Jimmy", "Nigga"));
+			this.addMission (new Mision(1, "Estudiar no es facil", "Busca al profesor Cuchilla, el seguramente tiene ideas de como enseñarte cosas nuevas. El se encuentra en la perola", "Nigga", "ProfesorCuchilla"));
+			this.addMission (new Mision(2, "La biblioteca, tu mejor aliada", "Busque la biblioteca, Tiene parcial mañana señor, le aconsejo ir a la biblioteca a estudiar porque o sino le pongo 0!!!", "ProfesorCuchilla", "TriggerBiblioteca"));
+			this.addMission (new Mision(3, "Edicifios cerrados y otras viscicitudes", "No lo puedo dejar entrar a la biblioteca, lea el aviso de la puerta.", "Celador", "TriggerAviso"));
+			this.addMission (new Mision(4, "El encuentro fatal", "Camina hacia la playita para llegar a la biblioteca del C&T", "TriggerAviso", "Capucho"));
 
-	public void addMission(string mision){
-		state++;
-		hasMission = true;
-		missions.Add (mision);
-	}
-	public void completeMission(string mision){
-		missions.Remove (mision);
-		hasMission = false;
-	}
-	public void listMissions(){
-		Text menuMisiones=GameObject.FindGameObjectWithTag ("MenuMisiones").GetComponent<Text> ();
-		Canvas canvasMisiones=GameObject.Find ("MenuMisiones").GetComponent<Canvas> ();
-		foreach (string mission in missions) {
-			menuMisiones.text=mission;
-			canvasMisiones.enabled=true;
+			this.misionActual=this.getMision(0);
+			hasMission=true;
 		}
+	}
+	public Mision getMision(int id){
+		Mision mision= null;
+		foreach (Mision mission in missions) {
+			if(mission.idMision==id)mision=mission;
+		}
+		return mision;
+	}
+	public void addMission(Mision mision){
+		missions.Add (mision);
+		mision.estado = Mision.SININICIAR;
+	}
+	public void startMission(Mision mision){
+		Image imagenMisionAceptada=GameObject.Find ("ImagenMisionAceptada").GetComponent<Image> ();
+		Image imagenMisionCompletada=GameObject.Find ("ImagenMisionCompletada").GetComponent<Image> ();
+		AudioSource soundMisiones=GameObject.Find ("MisionesAceptadas").GetComponent<AudioSource> ();
+		soundMisiones.Play ();
+		imagenMisionAceptada.enabled = true;
+		imagenMisionAceptada.CrossFadeAlpha (0, 6f, false);
+		imagenMisionCompletada.CrossFadeAlpha (1, 0, false);
+		imagenMisionCompletada.enabled = false;
+		mision.estado = Mision.ENPROGRESO;
+	}
+	public void cancelMission(Mision mision){
+		mision.estado = Mision.SININICIAR;
+		Image imagenMisionAceptada=GameObject.Find ("ImagenMisionAceptada").GetComponent<Image> ();
+		AudioSource soundMisiones=GameObject.Find ("MisionesAceptadas").GetComponent<AudioSource> ();
+		soundMisiones.Play ();
+		imagenMisionAceptada.CrossFadeAlpha (1, 0, false);
+		imagenMisionAceptada.enabled = false;
+
+	}
+	public void completeMission(Mision mision){
+		AudioSource soundMisiones=GameObject.Find ("MisionesCompletadas").GetComponent<AudioSource> ();
+		Image imagenMisionCompletada=GameObject.Find ("ImagenMisionCompletada").GetComponent<Image> ();
+		imagenMisionCompletada.enabled = true;
+		imagenMisionCompletada.CrossFadeAlpha (0, 6f, false);
+		soundMisiones.Play ();
+		mision.estado = Mision.FINALIZADA;
+	}
+	public void finishMission(Mision mision){
+		mision.estado = Mision.ENTREGADA;
+		AudioSource soundMisiones=GameObject.Find ("MisionesCompletadas").GetComponent<AudioSource> ();
+		Image imagenMisionAceptada=GameObject.Find ("ImagenMisionAceptada").GetComponent<Image> ();
+		soundMisiones.Play ();
+		Canvas canvasMisiones=GameObject.Find ("MenuMisiones").GetComponent<Canvas> ();
+		imagenMisionAceptada.CrossFadeAlpha (1, 0, false);
+		imagenMisionAceptada.enabled = false;
+		canvasMisiones.enabled=false;
+	}
+	public void showMission(Mision mission){
+		Text menuMisiones=GameObject.Find ("TextoMision").GetComponent<Text> ();
+		Text detallesMisiones=GameObject.Find ("TextoDetalles").GetComponent<Text> ();
+		Canvas canvasMisiones=GameObject.Find ("MenuMisiones").GetComponent<Canvas> ();
+		menuMisiones.text=mission.nombre;
+		detallesMisiones.text=mission.detalles;
+		canvasMisiones.enabled=true;
+	}
+	public void hideMissions(){
+		Canvas canvasMisiones=GameObject.Find ("MenuMisiones").GetComponent<Canvas> ();
+		canvasMisiones.enabled=false;
 	}
 }
