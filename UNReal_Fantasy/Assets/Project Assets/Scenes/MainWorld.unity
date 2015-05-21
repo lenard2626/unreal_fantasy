@@ -20946,7 +20946,7 @@ Transform:
   m_LocalScale: {x: .562974513, y: .562974691, z: .562974513}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &992545643
 GameObject:
   m_ObjectHideFlags: 0
@@ -27642,6 +27642,7 @@ GameObject:
   - 4: {fileID: 1349085901}
   - 218: {fileID: 1349085900}
   - 154: {fileID: 1349085899}
+  - 64: {fileID: 1349085902}
   m_Layer: 0
   m_Name: LaPlayita
   m_TagString: Untagged
@@ -27668,10 +27669,10 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: bdc3e1d2dbde2a14ebeb55842a03939d, type: 2}
-  m_TreeDistance: 2000
+  m_TreeDistance: 233
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
+  m_TreeMaximumFullLODCount: 10000
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
@@ -27702,6 +27703,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1939120490}
   m_RootOrder: 4
+--- !u!64 &1349085902
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1349085898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 0}
 --- !u!4 &1349662494 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: d02634b957733f84682ae78448fa4b66, type: 3}
@@ -38119,7 +38132,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1926870069}
-  m_LocalRotation: {x: .627633989, y: .625944555, z: .326872319, w: .327755123}
+  m_LocalRotation: {x: .627634048, y: .625944614, z: .326872349, w: .327755153}
   m_LocalPosition: {x: -.692749798, y: 1.3683691, z: -1.97927475}
   m_LocalScale: {x: .297406137, y: .206143886, z: -.00856385939}
   m_Children: []
