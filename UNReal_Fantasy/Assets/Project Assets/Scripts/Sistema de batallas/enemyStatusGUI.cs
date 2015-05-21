@@ -7,7 +7,7 @@ public class enemyStatusGUI : MonoBehaviour {
 	// texturas
 	public Texture2D icon;
 	public Texture2D statusLayoutBg; // fondo del layout para estatus
-	public Texture2D closeBtn;
+	//public Texture2D closeBtn;
 
 	public Texture2D healthBackground; 	// fondo blanco (no el quee stan pensando)
 
@@ -17,7 +17,7 @@ public class enemyStatusGUI : MonoBehaviour {
 	//public Texture2D staminaForeground; // barra roja
 	//public Texture2D staminaDamage; // barra amarilla de daño
 
-	public GUISkin HUDSkin; // skin alternativo (no esta en uso)
+	//public GUISkin HUDSkin; // skin alternativo (no esta en uso)
 	public GUIStyle style;
 
 	//interfaz
@@ -49,8 +49,9 @@ public class enemyStatusGUI : MonoBehaviour {
 	public static float maxHP=1000; 
 	public float curHP=maxHP; 
 
+	//Variables para manejo de doble clic
 	private float lastClickTime=0f;
-	private float catchTime=0.25f;
+	private float catchTime=0.4f;
 
 	void Start () {
 		curHP=maxHP;
@@ -109,7 +110,7 @@ public class enemyStatusGUI : MonoBehaviour {
 			float previousAdjustValue = (previousHealth * healthBar) / maxHP;
 			float percentage = healthBar * (curHP / maxHP);
 
-			GUI.skin = HUDSkin;
+			//GUI.skin = HUDSkin;
 			GUILayout.BeginArea (new Rect((Screen.width-layoutWidth)/2 , 10, layoutWidth, layoutHeight),"");		//Interfaz al centro de la pantalla
 			//Fondo del layout
 			GUI.DrawTexture (new Rect (0, 0,layoutWidth, layoutHeight), statusLayoutBg);  
@@ -128,9 +129,9 @@ public class enemyStatusGUI : MonoBehaviour {
 			GUI.Label (new Rect (anchorX, 3*anchorY, healthBar, 20),(int)(previousHealth) + "/" + maxHP.ToString (),style);
 
 			//Boton de cerrado
-			if(GUI.Button(new Rect(layoutWidth-anchorX, anchorY, 15, 15),closeBtn)){
+			/*if(GUI.Button(new Rect(layoutWidth-anchorX, anchorY, 15, 15),closeBtn)){
 				hideStatus();
-			}
+			}*/
 			GUILayout.EndArea (); 
 		} else {
 			gizmo_npc.GetComponent<MeshRenderer>().enabled = true;

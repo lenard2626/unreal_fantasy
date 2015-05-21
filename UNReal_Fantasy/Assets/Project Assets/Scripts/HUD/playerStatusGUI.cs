@@ -13,28 +13,28 @@ public class playerStatusGUI : MonoBehaviour {
 	
 	//interfaz
 	public int layoutWidth=300;
-
 	public int layoutHeight=100;
-	public int layoutBorderX=10;
-	public int layoutBorderY=10;
+
 	public string playerName="test";
 
 	public GUIStyle style;
 	
 	private int anchorX = 0;
 	private int anchorY = 0;
+	public bool showStatus=true;
+	  
+	private float previousHealth; 
+	private float healthBar; 
+	private float myFloat; 
 
-	bool showStatus=true;
-	
-	//values   
-	private float previousHealth; //a value for reducing previous current health through attacks
-	private float healthBar; //a value for creating the health bar size
-	private float myFloat; // an empty float value to affect drainage speed
-	public static float maxHP=5000; // maximum HP
-	private float curHP=0; // current HP
+	//Valores de estado del personaje
+	public static float maxHP=5000; 
+	private float curHP=0; 
+	private int experience=0;
+	private int level=1;
 	
 	
-	void Start () {
+	void Awake () {
 		curHP=maxHP;
 		previousHealth = maxHP; // assign the empty value to store the value of max health
 		healthBar = layoutWidth*0.8f; // create the health bar width
@@ -57,7 +57,6 @@ public class playerStatusGUI : MonoBehaviour {
 		
 		if(previousHealth < 0){
 			previousHealth = 0;
-
 		}
 		
 		if(curHP > maxHP){
@@ -77,11 +76,14 @@ public class playerStatusGUI : MonoBehaviour {
 			float percentage = healthBar * (curHP / maxHP);
 
 			//Area de HUD para estado del personaje
-			GUILayout.BeginArea (new Rect(10, 10, layoutWidth, layoutHeight), /*curHP + "/" + maxHP*/"");
+			GUILayout.BeginArea (new Rect(10, 10, layoutWidth, layoutHeight),"");
 			//Fondo del layout
 			GUI.DrawTexture (new Rect (0, 0,layoutWidth, layoutHeight), statusLayoutBg);  
 			//Nombre del personaje
-			GUI.Label (new Rect (anchorX,anchorY,layoutWidth-anchorX,layoutHeight-anchorY),playerName,style);
+			GUI.Label (new Rect (anchorX,anchorY,2*layoutWidth/3,layoutHeight-anchorY),playerName,style);
+
+			//Nivel del personaje
+			GUI.Label (new Rect (2*layoutWidth/3,anchorY,layoutWidth/3,layoutHeight-anchorY),"Nivel: "+GetComponent<playerInfoGUI>().level,style);
 
 			//Boton de cerrado
 			if(GUI.Button(new Rect(layoutWidth-anchorX,anchorY, 15, 15),closeBtn)){

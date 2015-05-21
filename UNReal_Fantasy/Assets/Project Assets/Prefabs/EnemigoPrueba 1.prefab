@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 481212}
   - 143: {fileID: 14362814}
-  - 114: {fileID: 11439926}
   m_Layer: 0
   m_Name: EnemigoPrueba 1
   m_TagString: enemy
@@ -323,31 +322,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0eb58c1a47d57428b2726b17b0af2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  statusLayoutBg: {fileID: 0}
   healthBackground: {fileID: 2800000, guid: 83748ff74fd7141e186488bc0158f00a, type: 3}
   healthForeground: {fileID: 2800000, guid: d35d2ab8d69905e46b27fe102897528b, type: 3}
   healthDamage: {fileID: 2800000, guid: d35d2ab8d69905e46b27fe102897528b, type: 3}
-  HUDSkin: {fileID: 0}
+  style:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
   layoutWidth: 300
   layoutHeight: 150
-  layoutBorderX: 10
-  layoutBorderY: 10
   enemyName: Cubo asesino
   gizmo_npc: {fileID: 100000, guid: c143f89085fd9074e8de58c7769f4ee8, type: 3}
   showStatus: 0
   player: {fileID: 0}
   yGUIDistance: 120
   selectableDistance: 300
---- !u!114 &11439926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a43aa89c25473654a9e68e5f879be53d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  curHP: 1000
 --- !u!114 &11477520
 MonoBehaviour:
   m_ObjectHideFlags: 1

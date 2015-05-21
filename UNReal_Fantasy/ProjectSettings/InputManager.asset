@@ -293,3 +293,51 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
+  - serializedVersion: 3
+    m_Name: showStatus
+    descriptiveName: Muestra la barra de estad
+    descriptiveNegativeName: Oculta la barra de estado
+    negativeButton: 
+    positiveButton: z
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: showEnemyStatus
+    descriptiveName: Muestra la barra de estado del enemigo seleccionado
+    descriptiveNegativeName: Oculta la barra de estado del enemigo seleccionado
+    negativeButton: 
+    positiveButton: m
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: showPlayerInfo
+    descriptiveName: Muestra la caja de estadisticas del personaje
+    descriptiveNegativeName: Oculta la caja de estadisticas del personaje
+    negativeButton: 
+    positiveButton: x
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0

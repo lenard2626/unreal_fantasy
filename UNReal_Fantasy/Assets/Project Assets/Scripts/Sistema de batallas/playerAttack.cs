@@ -7,7 +7,6 @@ public class playerAttack : MonoBehaviour {
 	public float meleeDamage=70;
 	public float attackCoolDown=3;
 	public float meleeAttackRange=5;				//El rango de ataque del enemigo cuerp a cuerpo 			
-
 	public float moveSpeed=10;
 
 	private float attackCDTimer=0;
@@ -71,5 +70,9 @@ public class playerAttack : MonoBehaviour {
 	public void die(){
 		Debug.Log ("jugador: me muero....");
 		if(!anim.IsPlaying ("die"))anim.Play("die");
+	}
+
+	public enemyStatusGUI getAttackedEnemyScript(){
+		return attackedEnemyScript;
 	}
 }
