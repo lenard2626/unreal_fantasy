@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: 1coral-li
     100002: //RootNode
+    100004: default
     400000: 1coral-li
     400002: //RootNode
+    400004: default
     2300000: 1coral-li
+    2300002: default
     3300000: 1coral-li
+    3300002: default
     4300000: 1coral-li
+    4300002: default
   materials:
     importMaterials: 1
     materialName: 0
@@ -36,7 +41,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
