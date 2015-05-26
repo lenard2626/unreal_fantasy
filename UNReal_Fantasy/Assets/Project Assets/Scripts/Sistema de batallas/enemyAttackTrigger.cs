@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof (enemyStatusGUI))]
+
 public class enemyAttackTrigger : MonoBehaviour {
 	
 
-	public GameObject player;						//Para acceder a componentes de player
-
-	public GameObject parent;						//Para acceder a componentes del parent
+	private GameObject player;						//Para acceder a componentes de player
 
 	/*Variables publicas para configurar el ataque*/
 	public float meleeDamage=50;
 	public float meleeAttackRange=2;				//El rango de ataque del enemigo cuerp a cuerpo 
 	public float moveSpeed=5;
-	public float attackCoolDown=3;					//Segundos entre ataques
+	public float attackCoolDown=3;					//0-10: rango de tiempo entre ataques
  
 	private Animation meshAnim;
 
@@ -28,13 +28,13 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	void Start () {
 		//parent=(GetComponent<Transform>().root).GetComponent<GameObject>();			///Lo que hay que hacer para sacarle el parent a un script...
-		player=GameObject.FindGameObjectWithTag("Player");
+		player=GameObject.Find("PersonajePrincipal");
 		playerTrans = player.GetComponent<Transform>();
 		meshAnim = GetComponentInChildren<Animation> ();
  
-		enemyPatrolScript = GetComponentInParent<enemyPatrol>();
-		playerStatusBar = player.GetComponent<playerStatusGUI>();
+		enemyPatrolScript = GetComponent<enemyPatrol>();
 		enemyStatusScript = GetComponent<enemyStatusGUI> ();
+		playerStatusBar = player.GetComponent<playerStatusGUI>();
 
 		meleeAttackRange *= meleeAttackRange;						//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
@@ -62,7 +62,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 			enemyPatrolScript.disableLocalMovement=true;
 			isApproaching=true;
 			enemyStatusScript.ShowStatus();
-
+			Debug.Log("Ataca!!!!");
 		}
 	}
 	void OnTriggerExit(Collider playerCollider){
@@ -70,6 +70,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 			enemyPatrolScript.disableLocalMovement=false;
 			isApproaching=false;
 			isAttacking=false;
+			Debug.Log("Ataca!!!!");
 		}
 	}
 
@@ -78,6 +79,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 		transform.position = Vector3.MoveTowards (transform.position,
 		                                          new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z),
 		                                            moveSpeed * Time.deltaTime);
+		//transform.LookAt (player.transform.position);
 
 	}
 
@@ -98,11 +100,11 @@ public class enemyAttackTrigger : MonoBehaviour {
 	public void die(){
 		Debug.Log ("enemigo: me muero....");
 		if (!meshAnim.IsPlaying ("die")) {
-			fadeObject(3.0f,0.0f);
-			Destroy(parent);
+			//fadeObject(3.0f,0.0f);
+			Destroy(this);
 		}
 	}
-
+	/*
 	public void fadeObject(float time,float targetAlpha)
 	{
 		float t = 0.0f;
@@ -131,4 +133,5 @@ public class enemyAttackTrigger : MonoBehaviour {
 			                                         targetAlpha);
 		}
 	}
+	*/
 }

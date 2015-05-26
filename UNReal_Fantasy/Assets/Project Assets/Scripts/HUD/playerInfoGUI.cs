@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[RequireComponent(typeof(playerAttack))]
 public class playerInfoGUI : MonoBehaviour {
 	
 	
@@ -31,11 +33,11 @@ public class playerInfoGUI : MonoBehaviour {
 	public int intelligence=1;
 	public int agility=1;
 	public int spirit=1;
-
+	/*
 	public int testx=0;
 	public int testy=0;
-
-	public Texture2D lineTexture;
+*/
+	//public Texture2D lineTexture;
 
 
 	void Start () {
@@ -88,7 +90,7 @@ public class playerInfoGUI : MonoBehaviour {
 			//Metodo alternativo: pentagono con triangulos
 
 			Color c=new Color(0,255,0,1.0f);
-			DrawStatusPlygon(new Vector2(50,50),4,50);
+			//DrawStatusPlygon(new Vector2(50,50),4,50);
 
 			GUILayout.EndArea ();
 		} 
@@ -98,7 +100,7 @@ public class playerInfoGUI : MonoBehaviour {
 		showStatus = false;
 	}
 
-
+	/*
 	void DrawStatusPlygon (Vector2 center,int nsides,int radius)
 	{    
 		Vector2[] vertices=new Vector2[nsides];
@@ -109,8 +111,8 @@ public class playerInfoGUI : MonoBehaviour {
 				DrawLine(vertices[i-1],vertices[i],Color.white,1);
 			}
 		}
-	}
-
+	}*/
+	/*
 	void DrawLine(Vector2 pointA,Vector2 pointB,Color color,float width) {
 		var matrix = GUI.matrix;
 		if (!lineTexture) {
@@ -127,5 +129,5 @@ public class playerInfoGUI : MonoBehaviour {
 		GUI.matrix = matrix;
 		GUI.color = savedColor;
 	}
-
+*/
 }

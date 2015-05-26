@@ -21,8 +21,8 @@ public class enemyStatusGUI : MonoBehaviour {
 	public GUIStyle style;
 
 	//interfaz
-	public int layoutWidth=282;
-	public int layoutHeight=77;
+	public int layoutWidth=250;
+	public int layoutHeight=100;
 
 	public string enemyName;
 	public GameObject gizmo_npc;
@@ -34,7 +34,7 @@ public class enemyStatusGUI : MonoBehaviour {
 	int barH = 20;
 
 	//posiciones relativas al jugador
-	public GameObject player;
+	private GameObject player;
 	public int yGUIDistance=120;
 	public int selectableDistance=300;		
 
@@ -63,6 +63,9 @@ public class enemyStatusGUI : MonoBehaviour {
 
 		//Ocultamos el gizmo (solo se muestra en mouseenter)
 		gizmo_npc.GetComponent<MeshRenderer>().enabled = false;
+
+		if (!player)
+			player = GameObject.Find("PersonajePrincipal");
 
 		thisTransform=GetComponent<Transform> ();
 	}

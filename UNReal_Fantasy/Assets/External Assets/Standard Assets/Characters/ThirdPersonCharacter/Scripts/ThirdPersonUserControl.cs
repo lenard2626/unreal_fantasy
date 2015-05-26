@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
+	[RequireComponent(typeof (playerAttack))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
@@ -12,6 +13,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+		private bool m_Attack;
+
+		private playerAttack playerAttackScript;
 
         
         private void Start()
@@ -30,6 +34,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+
+			playerAttackScript = GetComponent<playerAttack>();
         }
 
 
@@ -39,6 +45,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
+
+			if (Input.GetKey(KeyCode.E)) {
+				playerAttackScript.setAttacking(true);
+				m_Attack=true;
+			}
         }
 
 
@@ -49,6 +60,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
             bool crouch = Input.GetKey(KeyCode.C);
+
 
             // calculate move direction to pass to character
             if (m_Cam != null)
@@ -68,7 +80,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 #endif
 
             // pass all parameters to the character control script
-            m_Character.Move(m_Move, crouch, m_Jump);
+			m_Character.Move(m_Move, crouch, m_Jump,m_Attack);
             m_Jump = false;
         }
     }
