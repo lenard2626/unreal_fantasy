@@ -61,9 +61,6 @@ public class mostrardialogo : MonoBehaviour {
 				avisoTrigger.enabled=true;
 			}
 			if(player.misionActual.estado==Mision.SININICIAR){
-				MeshRenderer[] interrogante = this.GetComponentsInChildren<MeshRenderer>();
-				interrogante[0].enabled=true;
-				interrogante[1].enabled=true;
 				GUI.TextArea (rectText, player.misionActual.detalles);
 				if(GUI.Button(rectBtn1, "Aceptar")) {
 					isOpened=false;
@@ -75,15 +72,9 @@ public class mostrardialogo : MonoBehaviour {
 					isOpened=false;
 				}
 			}else if(player.misionActual.estado==Mision.FINALIZADA){
-				MeshRenderer[] interrogante = this.GetComponentsInChildren<MeshRenderer>();
-				interrogante[0].enabled=false;
-				interrogante[1].enabled=false;
 				GUI.TextArea (rectText, "Hola, como estas, en que puedo ayudarte!");
 					isOpened=false;
 			}else if(player.misionActual.estado==Mision.ENPROGRESO){
-				MeshRenderer[] interrogante = this.GetComponentsInChildren<MeshRenderer>();
-				interrogante[0].enabled=false;
-				interrogante[1].enabled=false;
 				GUI.TextArea (rectText, "Espero que cumplas lo que te pedi");
 				if (GUI.Button(rectBtn2, "Cancelar")){
 					GUI.TextArea (rectText, "Vuelve Pronto!!");
@@ -94,9 +85,6 @@ public class mostrardialogo : MonoBehaviour {
 			}
 			//texto.text = this.transform.parent.name + (this.transform.parent.name == "Jimmy");
 		} else if(this.transform.parent.name == player.misionActual.finaliza && player.misionActual.estado == Mision.ENPROGRESO){
-			MeshRenderer[] interrogante = this.GetComponentsInChildren<MeshRenderer>();
-			interrogante[0].enabled=false;
-			interrogante[1].enabled=false;
 			if(this.transform.parent.name=="Nigga"&& player.misionActual.idMision==0){
 				GUI.TextArea (rectText, "Me contaron que el profesor Cuchilla, es bueno explicando, pero es muy de malgenio, si tienes suerte " +
 					"el te puede ayudar con tu experiencia universitaria...");
@@ -118,9 +106,6 @@ public class mostrardialogo : MonoBehaviour {
 				//isOpened=false;
 			}
 		} else if(this.transform.parent.name == player.misionActual.finaliza && player.misionActual.estado == Mision.FINALIZADA){
-			MeshRenderer[] interrogante = this.GetComponentsInChildren<MeshRenderer>();
-			interrogante[0].enabled=true;
-			interrogante[1].enabled=true;
 			GUI.TextArea (rectText, "Deseas finalizar la mision: "+ player.misionActual.nombre + "?");
 			if(GUI.Button(rectBtn1, "Aceptar")) {
 				player.finishMission(player.misionActual);
