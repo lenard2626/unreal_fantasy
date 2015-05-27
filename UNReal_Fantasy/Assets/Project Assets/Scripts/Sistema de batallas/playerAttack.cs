@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 [RequireComponent(typeof(playerInfoGUI))]
+
 public class playerAttack : MonoBehaviour {
 	
 	/*Variables publicas para configurar el ataque*/
@@ -13,12 +15,18 @@ public class playerAttack : MonoBehaviour {
 	private float attackCDTimer=0;
 	private bool isTargetSelected=false;		//Dice si en determinado instante, el jugador tiene un objetivo señalado
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
+
 	private Animation anim;
+
+	private Animator animtr;
+	private ThirdPersonUserControl tpc;
 	
 	private enemyStatusGUI attackedEnemyScript=null;		//acceso al script de estado del enemigo
 	
 	void Start () {
 		anim = GetComponent<Animation> ();
+		animtr = GetComponent<Animator> ();
+		tpc = GetComponent<ThirdPersonUserControl> ();	//Para usar las funciones de movimiento de ethan
 		meleeAttackRange *= meleeAttackRange;			//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
 	// Update is called once per frame
@@ -29,6 +37,7 @@ public class playerAttack : MonoBehaviour {
 			Debug.Log("Distancia al enemigo "+distanceToEnemy);
 			if (meleeAttackRange > distanceToEnemy) {
 				isAttacking=true;
+				tpc.setFollow(Vector3.zero);
 			}else{
 				approachToTarget();
 			}
@@ -46,12 +55,16 @@ public class playerAttack : MonoBehaviour {
 		Debug.Log("acercandose al enemigo...");
 		//Acerca automaticamente el jugador al enemigo
 		//if(!anim.IsPlaying ("run"))anim.Play("run");
-		
-		transform.position = Vector3.MoveTowards (transform.position,
-		                                          new Vector3(attackedEnemyScript.getTransform().position.x,
-		            transform.position.y,
-		            attackedEnemyScript.getTransform().position.z),
-		                                          moveSpeed * Time.deltaTime);
+
+		Vector3 des = new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z);
+
+		//Moviendo al personaje en la forma tradicional
+		/*
+		transform.position = Vector3.MoveTowards (transform.position,des), moveSpeed * Time.deltaTime);
+		*/
+		//Moviendo al personaje junto al anim state
+		tpc.setFollow (des);
+
 		//transform.LookAt (attackedEnemyScript.getTransform().position);
 	}
 	
@@ -61,6 +74,7 @@ public class playerAttack : MonoBehaviour {
 	
 	void attack(){
 		if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
+			animtr.SetBool ("Attacking",true);
 			//calcula el daño
 			attackedEnemyScript.curHP -= meleeDamage;
 			//if(!anim.IsPlaying ("attack"))anim.Play("attack");

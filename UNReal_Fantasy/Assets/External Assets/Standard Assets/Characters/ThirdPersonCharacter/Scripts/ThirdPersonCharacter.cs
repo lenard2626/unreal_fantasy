@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
-		bool m_Attacking;
+		public bool m_Attacking;
 
 		playerAttack playerAttackScript; 
 
