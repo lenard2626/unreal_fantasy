@@ -76,9 +76,8 @@ public class enemyStatusGUI : MonoBehaviour {
 		//Deteccion de doble click para ataque de pesonaje
 		if(Input.GetButtonDown("Fire1")){
 			if(Time.time-lastClickTime<catchTime){
+				Debug.Log ("Enemigo clickeado");
 				player.GetComponent<playerAttack>().setAttackingEnemy(this);
-			}else{
-
 			}
 			lastClickTime=Time.time;
 		}

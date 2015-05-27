@@ -46,11 +46,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
-
-			if (Input.GetKey(KeyCode.E)) {
-				playerAttackScript.setAttacking(true);
-				m_Attack=true;
-			}
         }
 
 

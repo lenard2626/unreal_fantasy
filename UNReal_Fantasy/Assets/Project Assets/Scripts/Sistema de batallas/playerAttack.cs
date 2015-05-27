@@ -73,6 +73,7 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	void attack(){
+		Debug.Log("atacando al enemigo!!!");
 		if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
 			animtr.SetBool ("Attacking",true);
 			//calcula el daño
@@ -89,7 +90,6 @@ public class playerAttack : MonoBehaviour {
 	
 	public void die(){
 		Debug.Log ("jugador: me muero....");
-		//if(!anim.IsPlaying ("die"))anim.Play("die");
 	}
 	
 	public enemyStatusGUI getAttackedEnemyScript(){

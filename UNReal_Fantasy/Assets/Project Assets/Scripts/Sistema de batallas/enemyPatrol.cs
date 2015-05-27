@@ -15,12 +15,15 @@ public class enemyPatrol : MonoBehaviour {
 	private float maxCurrentIdleTime=0f;
 	private float idleTimeCounter=0f;
 
-	private Animation anim;
+	private Animator animtr;
+
+	private Transform thisTransform;
 	
 	void Start () {
 		transform.position = patrolPoints[0].position;
 		currentTarget = 0;
-		anim = GetComponentInChildren<Animation> ();
+		animtr = GetComponentInParent<Animator> ();
+		thisTransform = GetComponent<Transform> ();
 	}	
 
 	void Update () {
@@ -44,16 +47,28 @@ public class enemyPatrol : MonoBehaviour {
 			}
 			
 			//Control de animacion
-			if (isIdle && !anim.IsPlaying("attack")) {//TODO: Cambiar por la animacion "idle"
-				anim.Play("attack");		
+
+			if (isIdle /*&& anim!=null&&!anim.IsPlaying("attack")*/) {//TODO: Cambiar por la animacion "idle"
+				//anim.Play("attack");		
+				animtr.SetBool("Idle",true);
+				animtr.SetBool("Walking",false);
 			} else {
-				if(!anim.IsPlaying("walk") && !isIdle) anim.Play("walk");
+				//if(!anim.IsPlaying("walk") && !isIdle) anim.Play("walk");
+				animtr.SetBool("Idle",false);
+				animtr.SetBool("Walking",true);
 			}
-			
+
+
 			if (!isIdle) {
-				transform.position = Vector3.MoveTowards (transform.position,
+
+				thisTransform.position = Vector3.MoveTowards (transform.position,
 				                                          patrolPoints [currentTarget].position,
 				                                          moveSpeed * Time.deltaTime);
+
+				thisTransform.LookAt(patrolPoints [currentTarget].position);
+
+				//thisTransform.rotation = Quaternion.RotateTowards(transform.rotation, patrolPoints [currentTarget].rotation, moveSpeed * Time.deltaTime);
+				//thisTransform.rotation = Quaternion.LookRotation(patrolPoints [currentTarget].position);
 			}
 		}
 	}

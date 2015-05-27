@@ -11,6 +11,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 	/*Variables publicas para configurar el ataque*/
 	public float meleeDamage=50;
 	public float meleeAttackRange=2;				//El rango de ataque del enemigo cuerp a cuerpo 
+	public float viewRange=15;						//El rango en el cual debe entrar el jugador para ser atacado por el enemigo
 	public float moveSpeed=5;
 	public float attackCoolDown=3;					//0-10: rango de tiempo entre ataques
  
@@ -31,6 +32,10 @@ public class enemyAttackTrigger : MonoBehaviour {
 		player=GameObject.Find("PersonajePrincipal");
 		playerTrans = player.GetComponent<Transform>();
 		meshAnim = GetComponentInChildren<Animation> ();
+
+		//Configuramos el SphereCollider en base al radio de ataque
+		SphereCollider attackTriggerScript = GetComponent<SphereCollider>();
+		attackTriggerScript.radius = viewRange;
  
 		enemyPatrolScript = GetComponent<enemyPatrol>();
 		enemyStatusScript = GetComponent<enemyStatusGUI> ();
@@ -75,10 +80,11 @@ public class enemyAttackTrigger : MonoBehaviour {
 	}
 
 	void approach(){
-		if(!meshAnim.IsPlaying ("run"))meshAnim.Play("run");
+		//if(!meshAnim.IsPlaying ("run"))meshAnim.Play("run");
 		transform.position = Vector3.MoveTowards (transform.position,
 		                                          new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z),
 		                                            moveSpeed * Time.deltaTime);
+		transform.LookAt(player.transform.position);
 		//transform.LookAt (player.transform.position);
 
 	}
@@ -90,7 +96,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 			if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
 				//ataca
 				playerStatusBar.setCurrentHP(playerStatusBar.getCurrentHP() - meleeDamage);
-				if(!meshAnim.IsPlaying ("attack"))meshAnim.Play("attack");
+				//if(!meshAnim.IsPlaying ("attack"))meshAnim.Play("attack");
 				attackCDTimer = Time.time;
 			}
 		}
