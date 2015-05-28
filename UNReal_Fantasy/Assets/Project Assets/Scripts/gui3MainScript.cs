@@ -52,6 +52,12 @@ public class gui3MainScript : MonoBehaviour {
 		JSONObject actualCharacter = (JSONObject)this.characters[selectedCharacter];
 		sessionData.load_selectedPjClass = (int)actualCharacter.GetField ("type").n;
 		sessionData.load_selectedPjName = actualCharacter.GetField ("name").str;
+		sessionData.load_selectedPjId = (long)actualCharacter.GetField ("id").n;
+		sessionData.saveX = actualCharacter.GetField ("x").n;
+		sessionData.saveY = actualCharacter.GetField ("y").n;
+		sessionData.saveZ = actualCharacter.GetField ("z").n;
+		sessionData.saveLastMision = (int)actualCharacter.GetField ("lastMision").n;
+
 		GameObject.Find("PJ/default").GetComponent<MeshRenderer>().material = session.classMaterials[(int)actualCharacter.GetField("type").n];
 		GameObject.Find("nombrePersonajeTxt").GetComponent<Text>().text = actualCharacter.GetField("name").str;
 		GameObject.Find ("clasePersonajeTxt").GetComponent<Text> ().text = session.classNames [(int)actualCharacter.GetField ("type").n];

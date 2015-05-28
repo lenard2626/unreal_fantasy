@@ -50,10 +50,15 @@ public class consultar : MonoBehaviour {
 			yield return null;
 		}
 
-		if (someRequest.response.Text.Equals("")) {
+		if (someRequest.response.Text.Length < 5) {
 			Application.LoadLevel (sceneToLoad);
 			sessionData.load_selectedPjClass = sessionData.creation_selectedClass;
 			sessionData.load_selectedPjName = sessionData.creation_selectedName;
+			sessionData.saveX = -71.17f;
+			sessionData.saveY = 0.1f;
+			sessionData.saveZ = -25.66f;
+			sessionData.saveLastMision = 0;
+			sessionData.load_selectedPjId = Convert.ToInt64(someRequest.response.Text);
 		} else {
 			JSONObject responseJSON = new JSONObject (someRequest.response.Text);
 			String requestErrors = "Errores: \n";
