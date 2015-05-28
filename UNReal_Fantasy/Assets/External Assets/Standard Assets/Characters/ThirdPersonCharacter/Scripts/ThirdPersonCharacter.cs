@@ -5,6 +5,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
+
+	[RequireComponent(typeof(playerAttack))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;
@@ -28,6 +30,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
+		public bool m_Attacking;
+
+		playerAttack playerAttackScript; 
 
 
 		void Start()
@@ -40,10 +45,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+
+			playerAttackScript = GetComponent<playerAttack>();
 		}
 
 
-		public void Move(Vector3 move, bool crouch, bool jump)
+		public void Move(Vector3 move, bool crouch, bool jump,bool attack)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -66,6 +73,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			else
 			{
 				HandleAirborneMovement();
+			}
+
+			//control de pose de ataque y ataque
+			if (attack) {
+				m_Attacking = attack;
+				Debug.Log("cambiando ataque a "+attack);
+
 			}
 
 			ScaleCapsuleForCrouching(crouch);
@@ -122,6 +136,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetBool("Crouch", m_Crouching);
 			m_Animator.SetBool("OnGround", m_IsGrounded);
+
+			m_Animator.SetBool("Attacking",m_Attacking);
+
 			if (!m_IsGrounded)
 			{
 				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
@@ -150,6 +167,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				// don't use that while airborne
 				m_Animator.speed = 1;
 			}
+
+			//Seteamos la velocidad de la animacion a la de ataque
+			if(m_Attacking){
+				m_Animator.speed = (1.0f /playerAttackScript.getAttackCoolDown());		//Escala de velocidad de ataque
+
+			}
 		}
 
 
@@ -174,6 +197,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.1f;
 			}
+
+
 		}
 
 		void ApplyExtraTurnRotation()
