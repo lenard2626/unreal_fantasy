@@ -9,9 +9,13 @@ public class TriggerSaludo : MonoBehaviour {
 
 	void OnTriggerEnter() { 
 		GetComponent<AudioSource>().Play(); 
+		Animator animador=this.GetComponentInParent<Animator> ();
+		animador.SetBool ("enterOnTrigger", true);
 	} 
 
 	void OnTriggerExit() {
 		GetComponent<AudioSource>().Stop(); 
+		Animator animador=this.GetComponentInParent<Animator> ();
+		animador.SetBool ("enterOnTrigger", false);
 	}
 }

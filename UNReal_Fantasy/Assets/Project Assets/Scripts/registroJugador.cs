@@ -61,6 +61,9 @@ public class registroJugador : MonoBehaviour {
 		imagenMisionCompletada.CrossFadeAlpha (0, 6f, false);
 		soundMisiones.Play ();
 		mision.estado = Mision.FINALIZADA;
+		Animator animador=this.GetComponent<Animator> ();
+		animador.SetBool ("MissionComplete", true);
+
 	}
 	public void finishMission(Mision mision){
 		mision.estado = Mision.ENTREGADA;
@@ -71,6 +74,8 @@ public class registroJugador : MonoBehaviour {
 		imagenMisionAceptada.CrossFadeAlpha (1, 0, false);
 		imagenMisionAceptada.enabled = false;
 		canvasMisiones.enabled=false;
+		Animator animador=this.GetComponent<Animator> ();
+		animador.SetBool ("MissionComplete", false);
 	}
 	public void showMission(Mision mission){
 		Text menuMisiones=GameObject.Find ("TextoMision").GetComponent<Text> ();
@@ -83,5 +88,7 @@ public class registroJugador : MonoBehaviour {
 	public void hideMissions(){
 		Canvas canvasMisiones=GameObject.Find ("MenuMisiones").GetComponent<Canvas> ();
 		canvasMisiones.enabled=false;
+	}
+	void Update(){
 	}
 }
