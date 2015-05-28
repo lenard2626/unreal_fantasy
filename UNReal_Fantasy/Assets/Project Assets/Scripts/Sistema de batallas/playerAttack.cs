@@ -56,7 +56,7 @@ public class playerAttack : MonoBehaviour {
 		//Acerca automaticamente el jugador al enemigo
 		//if(!anim.IsPlaying ("run"))anim.Play("run");
 
-		Vector3 des = new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z);
+		Vector3 des = (new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z))-transform.position;
 
 		//Moviendo al personaje en la forma tradicional
 		/*
@@ -90,6 +90,7 @@ public class playerAttack : MonoBehaviour {
 	
 	public void die(){
 		Debug.Log ("jugador: me muero....");
+		Application.LoadLevel("MainWorld");
 	}
 	
 	public enemyStatusGUI getAttackedEnemyScript(){

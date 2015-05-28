@@ -105,9 +105,11 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	public void die(){
 		Debug.Log ("enemigo: me muero....");
+
 		if (!meshAnim.IsPlaying ("die")) {
 			//fadeObject(3.0f,0.0f);
-			Destroy(this);
+			//Destroy(this);
+			Application.LoadLevel("MainWorld");
 		}
 	}
 	/*
