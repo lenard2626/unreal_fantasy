@@ -23,19 +23,15 @@ public class signosMisiones : MonoBehaviour {
 			personaje = GameObject.Find (misionActual.dueño);
 			exclamacion = personaje.GetComponentsInChildren<MeshRenderer> () [1];
 			exclamacion.enabled = false;
+		} else if (misionActual.estado == Mision.FINALIZADA) {
 			personaje = GameObject.Find (misionActual.finaliza);
-			interrogante = personaje.GetComponentsInChildren<MeshRenderer>()[0];
+			interrogante = personaje.GetComponentsInChildren<MeshRenderer> () [0];
 			interrogante.enabled = true;
-		} else if(misionActual.estado == Mision.FINALIZADA){
+		} else if (misionActual.estado == Mision.ENTREGADA) {
 			personaje = GameObject.Find (misionActual.finaliza);
-			interrogante = personaje.GetComponentsInChildren<MeshRenderer>()[0];
+			interrogante = personaje.GetComponentsInChildren<MeshRenderer> () [0];
 			interrogante.enabled = false;
-		} else if(misionActual.estado == Mision.ENTREGADA){
-
-			personaje = GameObject.Find (misionActual.dueño);
-			exclamacion = personaje.GetComponentsInChildren<MeshRenderer> () [1];
-			exclamacion.enabled = false;
-		}
+		} 
 
 
 	}

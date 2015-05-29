@@ -47,7 +47,7 @@ public class mostrardialogo : MonoBehaviour {
 		GUI.skin.textArea.normal.textColor = Color.white;
 		GUI.skin.font = fuente;
 
-		Rect rectText = new Rect (Screen.width / 6, Screen.width / 100, Screen.width/3, Screen.height / 7);
+		Rect rectText = new Rect (Screen.width / 6, Screen.width / 100, Screen.width/2, Screen.height / 7);
 		Rect rectBtn1 = new Rect (Screen.width * 4 / 6, Screen.width / 80, Screen.width / 7, Screen.height / 11);
 		Rect rectBtn2 = new Rect (Screen.width * 5 / 6, Screen.width / 80, Screen.width / 7, Screen.height / 11);
 		if (this.transform.parent.name == player.misionActual.dueño) {
@@ -110,21 +110,23 @@ public class mostrardialogo : MonoBehaviour {
 				player.finishMission(player.misionActual);
 				player.hideMissions();
 				GUI.TextArea (rectText, player.misionActual.nombre + " finalizada!!!");
-				if(player.misionActual.idMision==2){
-					mostrardialogo biblioTrigger = GameObject.Find ("TriggerBiblioteca").GetComponentInChildren<mostrardialogo>();
-					biblioTrigger.enabled=false;
-					isOpened=false;
-				}
 				player.state++;
 				//if(player.getMision(player.state)!=null){
-					player.misionActual= player.getMision(player.state);
-					isOpened=false;
+					
 				//}
 			}else if (GUI.Button(rectBtn2, "Cancelar")){
 				GUI.TextArea (rectText, "Vuelve Pronto!!");
 				isOpened=false;
 			}
-		} else if(this.transform.parent.name != player.misionActual.dueño && (this.transform.parent.name != player.misionActual.finaliza || player.misionActual.estado==Mision.ENTREGADA)){
+		} else if(this.transform.parent.name == player.misionActual.finaliza && player.misionActual.estado == Mision.ENTREGADA){
+			if(player.misionActual.idMision==2){
+				mostrardialogo biblioTrigger = GameObject.Find ("TriggerBiblioteca").GetComponentInChildren<mostrardialogo>();
+				biblioTrigger.enabled=false;
+				isOpened=false;
+			}
+			player.misionActual= player.getMision(player.state);
+			isOpened=false;
+		}else if(this.transform.parent.name != player.misionActual.dueño && (this.transform.parent.name != player.misionActual.finaliza || player.misionActual.estado==Mision.ENTREGADA)){
 			if(this.transform.parent.name=="Jimmy"){
 				GUI.TextArea (rectText, "Hola, como estas, en que puedo ayudarte? ");
 			} else if(this.transform.parent.name=="Nigga"){
