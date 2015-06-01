@@ -48,12 +48,6 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
-    m_Controller: {fileID: 0}
-  - m_Name: New Bool
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
@@ -68,7 +62,7 @@ AnimatorController:
     m_DefaultWeight: 0
     m_IKPass: 1
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_MultiThreadedStateMachine: 1
 --- !u!206 &20600000
 BlendTree:
@@ -770,7 +764,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .900786817
+  m_TransitionDuration: 1.41721725
   m_TransitionOffset: 0
   m_ExitTime: .120106764
   m_HasExitTime: 1
@@ -793,9 +787,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .220588207
+  m_TransitionDuration: .220588297
   m_TransitionOffset: 0
-  m_ExitTime: .779411793
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -888,9 +882,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .46773538
+  m_TransitionDuration: .542040348
   m_TransitionOffset: 0
-  m_ExitTime: .747020602
+  m_ExitTime: .450204313
   m_HasExitTime: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -1027,7 +1021,7 @@ AnimatorStateMachine:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: movementLayer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 110298501}
@@ -1040,7 +1034,7 @@ AnimatorStateMachine:
     m_Position: {x: 192, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110282042}
-    m_Position: {x: 456, y: 240, z: 0}
+    m_Position: {x: 504, y: 228, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1049,8 +1043,8 @@ AnimatorStateMachine:
       first: {fileID: 110700000}
       second: []
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 36, y: 108, z: 0}
+  m_AnyStatePosition: {x: 24, y: 24, z: 0}
+  m_EntryPosition: {x: 12, y: 108, z: 0}
   m_ExitPosition: {x: 588, y: -72, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 110298501}

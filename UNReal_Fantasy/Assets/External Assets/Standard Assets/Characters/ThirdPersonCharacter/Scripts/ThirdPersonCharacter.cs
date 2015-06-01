@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
-		public bool m_Attacking;
+		bool m_Attacking;
 
 		playerAttack playerAttackScript; 
 
@@ -137,7 +137,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetBool("Crouch", m_Crouching);
 			m_Animator.SetBool("OnGround", m_IsGrounded);
 
-			m_Animator.SetBool("Attacking",m_Attacking);
+			//m_Animator.SetBool("Attacking",m_Attacking);			//-->De esto se encarga playerAttack
 
 			if (!m_IsGrounded)
 			{
@@ -170,7 +170,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			//Seteamos la velocidad de la animacion a la de ataque
 			if(m_Attacking){
-				m_Animator.speed = (1.0f /playerAttackScript.getAttackCoolDown());		//Escala de velocidad de ataque
+				//player
 
 			}
 		}

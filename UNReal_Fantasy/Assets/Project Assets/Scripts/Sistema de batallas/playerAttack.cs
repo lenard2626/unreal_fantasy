@@ -49,23 +49,24 @@ public class playerAttack : MonoBehaviour {
 
 	public void setAttackingEnemy(enemyStatusGUI aesIn){
 		attackedEnemyScript=aesIn;						//Funcion que recibe el componente "enemyStatusScript", para que el personaje principal pueda atacar al enemigo
+		isTargetSelected = true;
 	}
 	
 	public void approachToTarget(){
 		Debug.Log("acercandose al enemigo...");
-		//Acerca automaticamente el jugador al enemigo
-		//if(!anim.IsPlaying ("run"))anim.Play("run");
 
+		//Mueve el personaje
 		Vector3 des = (new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z))-transform.position;
-
-		//Moviendo al personaje en la forma tradicional
-		/*
-		transform.position = Vector3.MoveTowards (transform.position,des), moveSpeed * Time.deltaTime);
-		*/
+		
 		//Moviendo al personaje junto al anim state
 		tpc.setFollow (des);
-
-		//transform.LookAt (attackedEnemyScript.getTransform().position);
+	}
+	public void stop(){
+		Debug.Log("alto!!!");
+		//Decimos que no siga nada
+		tpc.setFollow (Vector3.zero);
+		setAttacking (false);
+		setIsTargetSelected (false);
 	}
 	
 	public void setIsTargetSelected(bool itsIn){
@@ -74,8 +75,10 @@ public class playerAttack : MonoBehaviour {
 	
 	void attack(){
 		Debug.Log("atacando al enemigo!!!");
-		if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
-			animtr.SetBool ("Attacking",true);
+		animtr.SetBool ("Attacking",true);
+		animtr.speed = (10.0f /getAttackCoolDown());		//Escala de velocidad de ataque
+		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
+
 			//calcula el daño
 			attackedEnemyScript.curHP -= meleeDamage;
 			//if(!anim.IsPlaying ("attack"))anim.Play("attack");
@@ -102,5 +105,8 @@ public class playerAttack : MonoBehaviour {
 	}
 	public void setAttacking(bool attack){
 		isAttacking = attack;
+	}
+	public Vector3 getDestination(){
+		return attackedEnemyScript.getTransform().position;
 	}
 }

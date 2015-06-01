@@ -30,6 +30,7 @@ public class customController : MonoBehaviour {
 		if (Input.GetButtonDown ("EscapeFromBattle")) {
 			//Abandona el ataque
 			playerAtkScript.setAttacking(false);
+			playerAtkScript.stop();
 		}
 	}
 }

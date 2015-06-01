@@ -66,9 +66,6 @@ public class enemyPatrol : MonoBehaviour {
 				                                          moveSpeed * Time.deltaTime);
 
 				thisTransform.LookAt(patrolPoints [currentTarget].position);
-
-				//thisTransform.rotation = Quaternion.RotateTowards(transform.rotation, patrolPoints [currentTarget].rotation, moveSpeed * Time.deltaTime);
-				//thisTransform.rotation = Quaternion.LookRotation(patrolPoints [currentTarget].position);
 			}
 		}
 	}

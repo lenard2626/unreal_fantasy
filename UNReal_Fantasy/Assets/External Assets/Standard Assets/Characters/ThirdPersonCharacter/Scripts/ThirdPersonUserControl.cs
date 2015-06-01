@@ -17,8 +17,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private bool m_Attack;
 
 		private playerAttack playerAttackScript;
-
-        
+		
         private void Start()
         {
             // get the transform of the main camera
@@ -35,7 +34,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
-
 			playerAttackScript = GetComponent<playerAttack>();
         }
 
@@ -53,12 +51,24 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
 			bool crouch = Input.GetKey(KeyCode.C);
+			if(Input.GetKey(KeyCode.E)){
+				Debug.Log("presionado E");
+				playerAttackScript.approachToTarget();
+			}
+			//Si esta persiguiendo al objetivo y presiona "q", cancela el movimiento
+			if(Input.GetKey(KeyCode.Q)==true && playerAttackScript.getDestination()!=null){
+				Debug.Log("presionado Q");
+				playerAttackScript.stop();
+				m_Attack=false;
+			}
+
             //Si no le decimos que siga algun punto...
 			if (m_Follow==null ||m_Follow == Vector3.zero) {
 				// read inputs
 				float h = CrossPlatformInputManager.GetAxis("Horizontal");
 				float v = CrossPlatformInputManager.GetAxis("Vertical");
 
+				//Cancelamos el ataque (si esta atacando)
 
 				// calculate move direction to pass to character
 				if (m_Cam != null) {
