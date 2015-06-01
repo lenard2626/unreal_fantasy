@@ -21,6 +21,7 @@ public class sessionData : MonoBehaviour {
 	public static float saveY;
 	public static float saveZ;
 	public static int saveLastMision;
+	public static int saveLastMisionState;
 
 	public Material [] classMaterials = new Material[4];
 	public String[] classNames = new String[4];
@@ -61,7 +62,8 @@ public class sessionData : MonoBehaviour {
 		saveCharacter.AddField ("y",saveY.ToString());
 		saveCharacter.AddField ("z",saveZ.ToString());
 		saveCharacter.AddField ("lastmision", saveLastMision.ToString());
-		
+		saveCharacter.AddField ("lastmisionstate", saveLastMisionState.ToString());
+
 		HTTP.Request someRequest = new HTTP.Request ("post", this.apiUrl+"/character/saveCharacter", saveCharacter);
 		someRequest.Send ();
 		

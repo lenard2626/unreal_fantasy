@@ -14,6 +14,7 @@ public class loadPJ : MonoBehaviour {
 		this.pj.transform.position = new Vector3(sessionData.saveX,sessionData.saveY,sessionData.saveZ);
 		this.pj.GetComponent<registroJugador> ().loadMissions ();
 		this.pj.GetComponent<registroJugador> ().misionActual = this.pj.GetComponent<registroJugador> ().missions.Find (it => it.idMision == sessionData.saveLastMision);
+		this.pj.GetComponent<registroJugador> ().misionActual.estado = sessionData.saveLastMisionState;
 		//this.pj.GetComponent<registroJugador> ().startMission (this.pj.GetComponent<registroJugador> ().misionActual);
 	}
 	
@@ -27,6 +28,7 @@ public class loadPJ : MonoBehaviour {
 		sessionData.saveY =pj.GetComponent<Transform> ().position.y;
 		sessionData.saveZ = pj.GetComponent<Transform> ().position.z;
 		sessionData.saveLastMision = pj.GetComponent<registroJugador> ().misionActual.idMision;
+		sessionData.saveLastMisionState = pj.GetComponent<registroJugador> ().misionActual.estado;
 		session.saveCharacter ();
 	}
 
