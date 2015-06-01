@@ -58,6 +58,7 @@ public class consultar : MonoBehaviour {
 			sessionData.saveY = 0.1f;
 			sessionData.saveZ = -25.66f;
 			sessionData.saveLastMision = 0;
+			sessionData.saveLastMisionState=0;
 			sessionData.load_selectedPjId = Convert.ToInt64(someRequest.response.Text);
 		} else {
 			JSONObject responseJSON = new JSONObject (someRequest.response.Text);
