@@ -56,10 +56,11 @@ public class playerAttack : MonoBehaviour {
 		Debug.Log("acercandose al enemigo...");
 
 		//Mueve el personaje
-		Vector3 des = (new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z))-transform.position;
-		
-		//Moviendo al personaje junto al anim state
-		tpc.setFollow (des);
+		if (attackedEnemyScript != null) {
+			Vector3 des = (new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z))-transform.position;
+			//Moviendo al personaje junto al anim state
+			tpc.setFollow (des);
+		}
 	}
 	public void stop(){
 		Debug.Log("alto!!!");
