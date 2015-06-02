@@ -23,6 +23,13 @@ public class sessionData : MonoBehaviour {
 	public static int saveLastMision;
 	public static int saveLastMisionState;
 
+	public static float lastXBeforeBattle;
+	public static float lastYBeforeBattle;
+	public static float lastZBeforeBattle;
+	public static int saveLastMisionBeforeBattle;
+	public static int saveLastMisionStateBeforeBattle;
+	public static int inBattle = 0;  
+
 	public Material [] classMaterials = new Material[4];
 	public String[] classNames = new String[4];
 	public  String apiUrl;
@@ -69,6 +76,19 @@ public class sessionData : MonoBehaviour {
 		while (!someRequest.isDone) {
 			yield return null;
 		}
+	}
+
+
+	public static void loadPjAfterBattle(){
+		sessionData session = GameObject.Find("SessionData").GetComponent<sessionData>();
+		GameObject pj = GameObject.Find ("PersonajePrincipal");
+		pj.transform.position = new Vector3(lastXBeforeBattle,lastYBeforeBattle,lastZBeforeBattle);
+		pj.GetComponent<registroJugador> ().loadMissions ();
+		pj.GetComponent<registroJugador> ().misionActual = pj.GetComponent<registroJugador> ().missions.Find (it => it.idMision == saveLastMisionBeforeBattle);
+		pj.GetComponent<registroJugador> ().misionActual.estado = saveLastMisionStateBeforeBattle;
+		inBattle = 0;
+		GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
+		GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;
 	}
 
 }

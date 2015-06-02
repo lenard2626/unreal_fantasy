@@ -103,6 +103,9 @@ public class playerAttack : MonoBehaviour {
 	public void win(){
 		Debug.Log ("jugador: ganeeeeee...");
 		animtr.SetBool("VictoryDance",true);
+		sessionData.saveLastMisionStateBeforeBattle = Mision.FINALIZADA;
+		sessionData.inBattle = 2;
+		Application.LoadLevel ("MainWorld");
 	}
 	
 	public enemyStatusGUI getAttackedEnemyScript(){

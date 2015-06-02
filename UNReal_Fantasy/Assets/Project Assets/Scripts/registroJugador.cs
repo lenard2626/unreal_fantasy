@@ -9,7 +9,9 @@ public class registroJugador : MonoBehaviour {
 	public Sprite interrogante;
 	public bool hasMission=false;
 	public Mision misionActual;
-	void start(){}
+	void start(){
+
+	}
 
 	public void loadMissions(){
 		if (!hasMission) {
@@ -45,6 +47,13 @@ public class registroJugador : MonoBehaviour {
 		imagenMisionCompletada.CrossFadeAlpha (1, 0, false);
 		imagenMisionCompletada.enabled = false;
 		if (misionActual.escena != null) {
+
+			GameObject pj = GameObject.Find("PersonajePrincipal");
+			sessionData.lastXBeforeBattle =pj.GetComponent<Transform> ().position.x;
+			sessionData.lastYBeforeBattle =pj.GetComponent<Transform> ().position.y;
+			sessionData.lastZBeforeBattle =pj.GetComponent<Transform> ().position.z;
+			sessionData.saveLastMisionBeforeBattle = pj.GetComponent<registroJugador> ().misionActual.idMision;
+			sessionData.inBattle = 1;
 			Application.LoadLevel(misionActual.escena);
 		}
 		mision.estado = Mision.ENPROGRESO;
