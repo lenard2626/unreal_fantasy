@@ -24,6 +24,8 @@ public class playerAttack : MonoBehaviour {
 	private ThirdPersonUserControl tpc;
 	
 	private enemyStatusGUI attackedEnemyScript=null;		//acceso al script de estado del enemigo
+
+	private screenFade screenfade;
 	
 	void Start () {
 		animtr = GetComponent<Animator> ();
@@ -98,6 +100,8 @@ public class playerAttack : MonoBehaviour {
 	
 	public void die(){
 		Debug.Log ("jugador: me muero....");
+		sessionData.saveLastMisionStateBeforeBattle = Mision.SININICIAR;
+		sessionData.inBattle = 0;
 		Application.LoadLevel("MainWorld");
 	}
 	public void win(){
