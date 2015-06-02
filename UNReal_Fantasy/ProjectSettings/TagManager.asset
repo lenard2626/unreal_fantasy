@@ -10,6 +10,8 @@ TagManager:
   - selectable
   - Dialog
   - DgImage
+  - MenuMisiones
+  - fader
   layers:
   - Default
   - TransparentFX
