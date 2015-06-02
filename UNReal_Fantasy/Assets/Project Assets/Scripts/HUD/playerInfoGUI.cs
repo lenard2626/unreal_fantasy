@@ -33,6 +33,8 @@ public class playerInfoGUI : MonoBehaviour {
 	public int intelligence=1;
 	public int agility=1;
 	public int spirit=1;
+
+	private sessionData sd;
 	/*
 	public int testx=0;
 	public int testy=0;
@@ -100,34 +102,4 @@ public class playerInfoGUI : MonoBehaviour {
 		showStatus = false;
 	}
 
-	/*
-	void DrawStatusPlygon (Vector2 center,int nsides,int radius)
-	{    
-		Vector2[] vertices=new Vector2[nsides];
-		for (int i=0; i<nsides; i++) {
-			vertices[i]=center+new Vector2(radius*Mathf.Cos(radius*i*Mathf.Deg2Rad*360),
-			                               radius*Mathf.Sin(radius*i*Mathf.Deg2Rad*360));
-			if(i>=1){
-				DrawLine(vertices[i-1],vertices[i],Color.white,1);
-			}
-		}
-	}*/
-	/*
-	void DrawLine(Vector2 pointA,Vector2 pointB,Color color,float width) {
-		var matrix = GUI.matrix;
-		if (!lineTexture) {
-			lineTexture =new Texture2D(1, 1);
-			lineTexture.SetPixel(0, 0, Color.white);
-			lineTexture.Apply();
-		}
-		var savedColor = GUI.color;
-		GUI.color = color;
-		var angle = Vector2.Angle(pointB-pointA, Vector2.right);
-		if (pointA.y > pointB.y) { angle = -angle; }
-		GUIUtility.RotateAroundPivot(angle, pointA);
-		GUI.DrawTexture(new Rect(pointA.x, pointA.y, (pointB - pointA).magnitude, width), lineTexture);
-		GUI.matrix = matrix;
-		GUI.color = savedColor;
-	}
-*/
 }

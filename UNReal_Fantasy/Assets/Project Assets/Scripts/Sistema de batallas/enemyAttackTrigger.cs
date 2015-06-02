@@ -17,9 +17,12 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	private Transform playerTrans;
 	private playerStatusGUI playerStatusBar;
+	private playerAttack playerAtkScript;
 	private enemyPatrol enemyPatrolScript;
 	private enemyStatusGUI enemyStatusScript;
+
 	private Animator pAnimtr;
+	private SFX sfx;
 
 	private bool isApproaching=false;			//Dice si en determinado instante, el enemigo acecha al jugador
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
@@ -35,10 +38,14 @@ public class enemyAttackTrigger : MonoBehaviour {
 		//Configuramos el SphereCollider en base al radio de ataque
 		SphereCollider attackTriggerScript = GetComponent<SphereCollider>();
 		attackTriggerScript.radius = viewRange;
+		sfx = GetComponent<SFX> ();
  
 		enemyPatrolScript = GetComponent<enemyPatrol>();
 		enemyStatusScript = GetComponent<enemyStatusGUI> ();
 		playerStatusBar = player.GetComponent<playerStatusGUI>();
+		playerAtkScript = player.GetComponent<playerAttack>();
+
+		pAnimtr.speed =1.0f /attackCoolDown;						//Escala de velocidad de ataque
 
 		meleeAttackRange *= meleeAttackRange;						//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
@@ -70,7 +77,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 			enemyPatrolScript.disableLocalMovement=true;
 			isApproaching=true;
 			enemyStatusScript.ShowStatus();
-			Debug.Log("Ataca!!!!");
+			//Debug.Log("Ataca!!!!");
 		}
 	}
 	void OnTriggerExit(Collider playerCollider){
@@ -99,7 +106,8 @@ public class enemyAttackTrigger : MonoBehaviour {
 			if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
 				//ataca
 				playerStatusBar.setCurrentHP(playerStatusBar.getCurrentHP() - meleeDamage);
-
+				//Reproduce un sonido de ataque asociado
+				sfx.PlayRandomAttack();
 				attackCDTimer = Time.time;
 			}
 		}
@@ -108,5 +116,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	public void die(){
 		Debug.Log ("enemigo: me muero....");
+		Destroy (transform.parent.gameObject);
+		playerAtkScript.win ();						//Le decimos al jugador que gano
 	}
 }

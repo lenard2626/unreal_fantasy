@@ -50,7 +50,6 @@ public class sessionData : MonoBehaviour {
 
 	public void saveCharacter(){
 		StartCoroutine ("saveChar");
-
 	}
 
 

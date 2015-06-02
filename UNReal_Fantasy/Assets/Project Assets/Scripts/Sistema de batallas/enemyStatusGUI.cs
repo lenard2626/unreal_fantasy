@@ -104,10 +104,6 @@ public class enemyStatusGUI : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-
-		//Vector2 targetPos=new Vector2(test1,test2);
-		//Vector2 targetPos = player.GetComponentInChildren<Camera> ().WorldToScreenPoint (transform.position);			//para ubicar la interfaz sobre el objeto seleccionado
-
 		if (showStatus) {								
 			float previousAdjustValue = (previousHealth * healthBar) / maxHP;
 			float percentage = healthBar * (curHP / maxHP);

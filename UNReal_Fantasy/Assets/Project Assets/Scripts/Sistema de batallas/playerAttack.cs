@@ -16,16 +16,19 @@ public class playerAttack : MonoBehaviour {
 	private bool isTargetSelected=false;		//Dice si en determinado instante, el jugador tiene un objetivo señalado
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
 
-	private Animation anim;
+	private CapsuleCollider ccollider;			//Necesario para evitar colisiones
 
 	private Animator animtr;
+	private SFX sfx;
+
 	private ThirdPersonUserControl tpc;
 	
 	private enemyStatusGUI attackedEnemyScript=null;		//acceso al script de estado del enemigo
 	
 	void Start () {
-		anim = GetComponent<Animation> ();
 		animtr = GetComponent<Animator> ();
+		sfx = GetComponentInChildren<SFX> ();
+		ccollider = GetComponent<CapsuleCollider> ();
 		tpc = GetComponent<ThirdPersonUserControl> ();	//Para usar las funciones de movimiento de ethan
 		meleeAttackRange *= meleeAttackRange;			//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
@@ -34,8 +37,8 @@ public class playerAttack : MonoBehaviour {
 		//Evalua si esta atacando un enemigo
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
 			var distanceToEnemy = Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position);
-			Debug.Log("Distancia al enemigo "+distanceToEnemy);
-			if (meleeAttackRange > distanceToEnemy) {
+			//Debug.Log("Distancia al enemigo "+distanceToEnemy);
+			if (meleeAttackRange+(ccollider.radius*ccollider.radius)>= distanceToEnemy) {
 				isAttacking=true;
 				tpc.setFollow(Vector3.zero);
 			}else{
@@ -53,7 +56,7 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	public void approachToTarget(){
-		Debug.Log("acercandose al enemigo...");
+		//Debug.Log("acercandose al enemigo...");
 
 		//Mueve el personaje
 		if (attackedEnemyScript != null) {
@@ -75,14 +78,15 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	void attack(){
-		Debug.Log("atacando al enemigo!!!");
+		//Debug.Log("atacando al enemigo!!!");
 		animtr.SetBool ("Attacking",true);
-		animtr.speed = (10.0f /getAttackCoolDown());		//Escala de velocidad de ataque
+		animtr.speed = (1.0f /getAttackCoolDown());		//Escala de velocidad de ataque
 		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
 
 			//calcula el daño
 			attackedEnemyScript.curHP -= meleeDamage;
-			//if(!anim.IsPlaying ("attack"))anim.Play("attack");
+			//Reproduce un sonido de ataque asociado
+			sfx.PlayRandomAttack();
 			attackCDTimer = Time.time;
 		}
 	}
@@ -95,6 +99,10 @@ public class playerAttack : MonoBehaviour {
 	public void die(){
 		Debug.Log ("jugador: me muero....");
 		Application.LoadLevel("MainWorld");
+	}
+	public void win(){
+		Debug.Log ("jugador: ganeeeeee...");
+		animtr.SetBool("VictoryDance",true);
 	}
 	
 	public enemyStatusGUI getAttackedEnemyScript(){
