@@ -7,7 +7,7 @@ public class enemyStatusGUI : MonoBehaviour {
 	// texturas
 	public Texture2D icon;
 	public Texture2D statusLayoutBg; // fondo del layout para estatus
-	//public Texture2D closeBtn;
+	public Texture2D closeBtn;
 
 	public Texture2D healthBackground; 	// fondo blanco (no el quee stan pensando)
 
@@ -127,9 +127,9 @@ public class enemyStatusGUI : MonoBehaviour {
 			GUI.Label (new Rect (anchorX, 3*anchorY, healthBar, 20),(int)(previousHealth) + "/" + maxHP.ToString (),style);
 
 			//Boton de cerrado
-			/*if(GUI.Button(new Rect(layoutWidth-anchorX, anchorY, 15, 15),closeBtn)){
+			if(GUI.Button(new Rect(layoutWidth-anchorX, anchorY, 15, 15),closeBtn)){
 				hideStatus();
-			}*/
+			}
 			GUILayout.EndArea (); 
 		} else {
 			gizmo_npc.GetComponent<MeshRenderer>().enabled = true;
