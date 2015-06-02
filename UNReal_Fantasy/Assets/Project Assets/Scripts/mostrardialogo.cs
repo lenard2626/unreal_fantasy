@@ -51,11 +51,11 @@ public class mostrardialogo : MonoBehaviour {
 		Rect rectBtn1 = new Rect (Screen.width * 4 / 6, Screen.width / 80, Screen.width / 7, Screen.height / 11);
 		Rect rectBtn2 = new Rect (Screen.width * 5 / 6, Screen.width / 80, Screen.width / 7, Screen.height / 11);
 		if (this.transform.parent.name == player.misionActual.dueño) {
-			if(player.misionActual.idMision==3){
+			if(player.misionActual.idMision==2){
 				mostrardialogo biblioTrigger = GameObject.Find ("TriggerBiblioteca").GetComponentInChildren<mostrardialogo>();
 				biblioTrigger.enabled=true;
 			}
-			if(player.misionActual.idMision==4){
+			if(player.misionActual.idMision==3){
 				mostrardialogo avisoTrigger = GameObject.Find ("TriggerAviso").GetComponentInChildren<mostrardialogo>();
 				avisoTrigger.enabled=true;
 			}
@@ -90,15 +90,12 @@ public class mostrardialogo : MonoBehaviour {
 			} else if(this.transform.parent.name=="ProfesorCuchilla"&& player.misionActual.idMision==1){
 				GUI.TextArea (rectText, "No tengo tiempo para usted, deberia estar leyendo un libro o algo, hay miles opciones en la universidad y " +
 					"usted dando vueltas por ahi...");
-			} else if(this.transform.parent.name=="ProfesorCuchilla"&& player.misionActual.idMision==2){
-				GUI.TextArea (rectText, "No tengo tiempo para usted, deberia estar leyendo un libro o algo, hay miles opciones en la universidad y " +
-				              "usted dando vueltas por ahi...");
-			} else if(this.transform.parent.name=="TriggerBiblioteca"&& player.misionActual.idMision==3){
+			} else if(this.transform.parent.name=="TriggerBiblioteca"&& player.misionActual.idMision==2){
 				GUI.TextArea (rectText, "Encontraste la biblioteca, felicitaciones, ahora busca un modo de entrar.");
-			} else if(this.transform.parent.name=="TriggerAviso"&& player.misionActual.idMision==4){
+			} else if(this.transform.parent.name=="TriggerAviso"&& player.misionActual.idMision==3){
 				GUI.TextArea (rectText, "El aviso dice: AVISO DE DESALOJO: El Rector Cara de Papa dio orden de desalojo por miedo a que los capuchines " +
 					"lo hagan pure. Por esto no se puede ingresar a la biblioteca. Original Firmado por el Rector Cara de Papa...");
-			} else if(this.transform.parent.name=="Capucho"&& player.misionActual.idMision==5){
+			} else if(this.transform.parent.name=="Capucho"&& player.misionActual.idMision==4){
 				GUI.TextArea (rectText, "No te dejare pasar hasta que repitas conmigo: QUIEN ES USTED; SOY ESTUDIANTE; UNA VEZ MAS...");
 			}
 			if(GUI.Button(rectBtn2, "Continuar")) {
@@ -122,14 +119,14 @@ public class mostrardialogo : MonoBehaviour {
 				isOpened=false;
 			}
 		} else if(this.transform.parent.name == player.misionActual.finaliza && player.misionActual.estado == Mision.ENTREGADA){
-			if(player.misionActual.idMision==3){
+			if(player.misionActual.idMision==2){
 				mostrardialogo biblioTrigger = GameObject.Find ("TriggerBiblioteca").GetComponentInChildren<mostrardialogo>();
 				biblioTrigger.enabled=false;
 				isOpened=false;
 			}
 			player.misionActual= player.getMision(player.state);
 			isOpened=false;
-		}else if(this.transform.parent.name != player.misionActual.dueño && (this.transform.parent.name != player.misionActual.finaliza || player.misionActual.estado==Mision.ENTREGADA)){
+		}else if(this.transform.parent.name != player.misionActual.finaliza && (this.transform.parent.name != player.misionActual.dueño || player.misionActual.estado==Mision.ENTREGADA)){
 			if(this.transform.parent.name=="Jimmy"){
 				GUI.TextArea (rectText, "Hola, como estas, en que puedo ayudarte? ");
 			} else if(this.transform.parent.name=="Nigga"){
