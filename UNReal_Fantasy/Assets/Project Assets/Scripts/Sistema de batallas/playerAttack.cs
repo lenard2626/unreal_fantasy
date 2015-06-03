@@ -101,7 +101,7 @@ public class playerAttack : MonoBehaviour {
 	public void die(){
 		Debug.Log ("jugador: me muero....");
 		sessionData.saveLastMisionStateBeforeBattle = Mision.SININICIAR;
-		sessionData.inBattle = 0;
+		sessionData.inBattle = 2;
 		Application.LoadLevel("MainWorld");
 	}
 	public void win(){

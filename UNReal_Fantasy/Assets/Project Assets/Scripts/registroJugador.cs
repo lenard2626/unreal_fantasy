@@ -15,12 +15,12 @@ public class registroJugador : MonoBehaviour {
 
 	public void loadMissions(){
 		if (!hasMission) {
-			this.addMission (new Mision (0, "Bienvenido a la Universidad", "Busca al vendedor de la plaza central, el te dara un consejo muy valioso.", "Jimmy", "Nigga"));
-			this.addMission (new Mision(1, "Estudiar no es facil", "Busca al profesor Cuchilla, el seguramente tiene ideas de como enseñarte cosas nuevas. El se encuentra en la perola", "Nigga", "ProfesorCuchilla"));
+			this.addMission (new Mision (0, "Bienvenido a la Universidad", "Hola! Bienvenido! Tu debes ser el nuevo primiparo. Tu amigo el VENDEDOR DE LA PLAZA CENTRAL te estaba buscando y al parecer tiene algo importante que decirte, mejor buscalo lo mas pronto posible", "Jimmy", "Nigga"));
+			this.addMission (new Mision(1, "La Justicia debe Prevalecer", "Me contaron que el PROFESOR CUCHILLA planea hacerte perder la materia solo por el placer de verte sufrir!. Debes hacerle frente y no dejar que ocurra tal injusticia. Si le das una lección tal vez aprenda a no meterse con los estudiante. Buscalo por la PEROLA, hace poco lo vi rondando el lugar", "Nigga", "ProfesorCuchilla","battle_scene_1"));
 			//this.addMission (new Mision(2, "No es facil lidiar con profesores cuchilla...", "Cree que puede conmigo señor?? le vpoy a poner CEROOO!!!", "ProfesorCuchilla", "ProfesorCuchilla", "battle_scene_1"));
-			this.addMission (new Mision(2, "La biblioteca, tu mejor aliada", "Vaya a estudiar a la biblioteca!!!", "ProfesorCuchilla", "TriggerBiblioteca"));
-			this.addMission (new Mision(3, "Edicifios cerrados y otras viscicitudes", "No lo puedo dejar entrar a la biblioteca, primero tendra que derrotarme...", "Celador", "TriggerAviso"));
-			this.addMission (new Mision(4, "El encuentro fatal", "Camina hacia la playita para llegar a la biblioteca del C&T", "TriggerAviso", "Capucho"));
+			this.addMission (new Mision(2, "Una oportunidad valiosa", "Noooo ... No es posible.... . Esta bien, solo por haber demostrado su punto y su valia le dare una oportunidad. Vaya a la BIBLIOTECA mas cercana envieme el trabajo hoy mismo y prometo ser justo al calificarlo", "ProfesorCuchilla", "TriggerBiblioteca"));
+			this.addMission (new Mision(3, "El cela", "Buenas Tardes, Carnet Por Favor...... oh no tiene carnet?, pues que lastima, no me importa si es su ultima oportunidad para graduarse, de aqui no podrá pasar jajaja y no hay nada que pueda hacer", "Celador", "TriggerAviso"));
+			this.addMission (new Mision(4, "La ultima esperanza", "Aun queda una biblioteca abierta antes de que se complete el desalojo, la BILIOTECA DEL CYT. Puedes llegar a ella a traves de la PLAYITA", "TriggerAviso", "Capucho","battle_scene_2"));
 
 			this.misionActual=this.getMision(0);
 			hasMission=true;
@@ -46,17 +46,18 @@ public class registroJugador : MonoBehaviour {
 		imagenMisionAceptada.CrossFadeAlpha (0, 6f, false);
 		imagenMisionCompletada.CrossFadeAlpha (1, 0, false);
 		imagenMisionCompletada.enabled = false;
-		if (misionActual.escena != null) {
+		mision.estado = Mision.ENPROGRESO;
 
+		if (mision.dueño == "Celador") {
 			GameObject pj = GameObject.Find("PersonajePrincipal");
 			sessionData.lastXBeforeBattle =pj.GetComponent<Transform> ().position.x;
 			sessionData.lastYBeforeBattle =pj.GetComponent<Transform> ().position.y;
 			sessionData.lastZBeforeBattle =pj.GetComponent<Transform> ().position.z;
 			sessionData.saveLastMisionBeforeBattle = pj.GetComponent<registroJugador> ().misionActual.idMision;
+			sessionData.saveStateBeforeBattle = pj.GetComponent<registroJugador> ().state;
 			sessionData.inBattle = 1;
-			Application.LoadLevel(misionActual.escena);
+			Application.LoadLevel("battle_scene_2");
 		}
-		mision.estado = Mision.ENPROGRESO;
 	}
 	public void cancelMission(Mision mision){
 		mision.estado = Mision.SININICIAR;

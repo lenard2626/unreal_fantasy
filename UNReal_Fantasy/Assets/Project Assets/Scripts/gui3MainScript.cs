@@ -58,6 +58,7 @@ public class gui3MainScript : MonoBehaviour {
 		sessionData.saveZ = actualCharacter.GetField ("z").n;
 		sessionData.saveLastMision = (int)actualCharacter.GetField ("lastMision").n;
 		sessionData.saveLastMisionState = (int)actualCharacter.GetField ("lastMisionState").n;
+		sessionData.saveState = (int)actualCharacter.GetField ("state").n;
 
 		GameObject.Find("PJ/default").GetComponent<MeshRenderer>().material = session.classMaterials[(int)actualCharacter.GetField("type").n];
 		GameObject.Find("nombrePersonajeTxt").GetComponent<Text>().text = actualCharacter.GetField("name").str;

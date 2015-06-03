@@ -74,35 +74,69 @@ public class mostrardialogo : MonoBehaviour {
 				GUI.TextArea (rectText, "Hola, como estas, en que puedo ayudarte!");
 					isOpened=false;
 			}else if(player.misionActual.estado==Mision.ENPROGRESO){
-				GUI.TextArea (rectText, "Espero que cumplas lo que te pedi");
+
+				if(this.transform.parent.name == "Jimmy"){
+					GUI.TextArea (rectText, "Ve y busca al VENDEDOR DE LA PLAZA CENTRAL  lo mas pronto posible, te necesita con urgencia");
+				}
+
+				if(this.transform.parent.name == "Nigga"){
+					GUI.TextArea (rectText, "Vamos! Enseñale una lección a ese sujeto");
+				}
+
+				if(this.transform.parent.name == "ProfesorCuchilla"){
+					GUI.TextArea (rectText, "Vaya y estudie antes de que cambie de opinion");
+				}
+
+				if(this.transform.parent.name == "Celador"){
+					GUI.TextArea (rectText, "Como carajos???. Me has derrotado!.... Emmm aun asi no puedo dejarte entrar, lee el cartel y lo entenderas");
+				}
+
+				if(this.transform.parent.name == "TriggerAviso"){
+					GUI.TextArea (rectText, "Llega lo mas rapido que puedas a la BIBLIOTECA DEL CYT para enviar el trabajo antes de que la cierren por el desalojo");
+				}
+				if( this.transform.parent.name != "Celador"){
 				if (GUI.Button(rectBtn2, "Cancelar")){
+
 					GUI.TextArea (rectText, "Vuelve Pronto!!");
 					player.cancelMission(player.misionActual);
 					player.hideMissions();
 					isOpened=false;
+
+					}
 				}
 			}
 			//texto.text = this.transform.parent.name + (this.transform.parent.name == "Jimmy");
 		} else if(this.transform.parent.name == player.misionActual.finaliza && player.misionActual.estado == Mision.ENPROGRESO){
 			if(this.transform.parent.name=="Nigga"&& player.misionActual.idMision==0){
-				GUI.TextArea (rectText, "Me contaron que el profesor Cuchilla, es bueno explicando, pero es muy de malgenio, si tienes suerte " +
-					"el te puede ayudar con tu experiencia universitaria...");
+				GUI.TextArea (rectText, "DONDE ESTABAS! Te andaba buscando!. Tengo que decirte algo muy importante");
 			} else if(this.transform.parent.name=="ProfesorCuchilla"&& player.misionActual.idMision==1){
-				GUI.TextArea (rectText, "No tengo tiempo para usted, deberia estar leyendo un libro o algo, hay miles opciones en la universidad y " +
-					"usted dando vueltas por ahi...");
+				GUI.TextArea (rectText, "Jajajaja, con que te has enterado de mis planes. No importa, igual no hay forma de que un mocoso vago como tu pueda vencerme. Preparate.");
 			} else if(this.transform.parent.name=="TriggerBiblioteca"&& player.misionActual.idMision==2){
-				GUI.TextArea (rectText, "Encontraste la biblioteca, felicitaciones, ahora busca un modo de entrar.");
+				GUI.TextArea (rectText, "Encontraste la BIBLIOTECA Central!. Vamos, no pierdas tiempo, busca la forma de entrar!");
 			} else if(this.transform.parent.name=="TriggerAviso"&& player.misionActual.idMision==3){
 				GUI.TextArea (rectText, "El aviso dice: AVISO DE DESALOJO: El Rector Cara de Papa dio orden de desalojo por miedo a que los capuchines " +
 					"lo hagan pure. Por esto no se puede ingresar a la biblioteca. Original Firmado por el Rector Cara de Papa...");
 			} else if(this.transform.parent.name=="Capucho"&& player.misionActual.idMision==4){
-				GUI.TextArea (rectText, "No te dejare pasar hasta que repitas conmigo: QUIEN ES USTED; SOY ESTUDIANTE; UNA VEZ MAS...");
+				GUI.TextArea (rectText, "Hey tu! Me has dicho Mamerto???.... No? .... Pero si te acabo de escuchar, no sabes con quien te has metido!. Camilo Vive! Soy Estudiante!");
 			}
 			if(GUI.Button(rectBtn2, "Continuar")) {
+				if (player.misionActual.escena != null) {
+					GameObject pj = GameObject.Find("PersonajePrincipal");
+					sessionData.lastXBeforeBattle =pj.GetComponent<Transform> ().position.x;
+					sessionData.lastYBeforeBattle =pj.GetComponent<Transform> ().position.y;
+					sessionData.lastZBeforeBattle =pj.GetComponent<Transform> ().position.z;
+					sessionData.saveLastMisionBeforeBattle = pj.GetComponent<registroJugador> ().misionActual.idMision;
+					sessionData.saveStateBeforeBattle = pj.GetComponent<registroJugador> ().state;
+					sessionData.inBattle = 1;
+					Application.LoadLevel(player.misionActual.escena);
+				}else{
+
+
 				player.completeMission(player.misionActual);
 				//player.hideMissions();
 				GUI.TextArea (rectText, player.misionActual.nombre + " finalizada!!!");
-				//isOpened=false;
+					//isOpened=false;
+				}
 			}
 		} else if(this.transform.parent.name == player.misionActual.finaliza && player.misionActual.estado == Mision.FINALIZADA){
 			GUI.TextArea (rectText, "Deseas finalizar la mision: "+ player.misionActual.nombre + "?");
@@ -142,6 +176,13 @@ public class mostrardialogo : MonoBehaviour {
 				              "lo hagan pure. Por esto no se puede ingresar a la biblioteca. Original Firmado por el Rector Cara de Papa...");
 			}
 		}
+
+
+
+		if(this.transform.parent.name=="Celador"&& player.misionActual.idMision==3 && player.misionActual.estado == Mision.ENPROGRESO){
+			GUI.TextArea (rectText, "Como carajos???. Me has derrotado!.... Emmm aun asi no puedo dejarte entrar, lee el cartel y lo entenderas");
+		}
+
 		//layout end
 		GUI.EndGroup(); 
 	}
