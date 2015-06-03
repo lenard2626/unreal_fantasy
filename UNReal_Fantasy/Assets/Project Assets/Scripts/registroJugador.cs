@@ -17,10 +17,10 @@ public class registroJugador : MonoBehaviour {
 		if (!hasMission) {
 			this.addMission (new Mision (0, "Bienvenido a la Universidad", "Busca al vendedor de la plaza central, el te dara un consejo muy valioso.", "Jimmy", "Nigga"));
 			this.addMission (new Mision(1, "Estudiar no es facil", "Busca al profesor Cuchilla, el seguramente tiene ideas de como enseñarte cosas nuevas. El se encuentra en la perola", "Nigga", "ProfesorCuchilla"));
-			this.addMission (new Mision(2, "No es facil lidiar con profesores cuchilla...", "Cree que puede conmigo señor?? le vpoy a poner CEROOO!!!", "ProfesorCuchilla", "ProfesorCuchilla", "battle_scene_1"));
-			this.addMission (new Mision(3, "La biblioteca, tu mejor aliada", "Cree que puede conmigo señor?? le vpoy a poner CEROOO!!!", "ProfesorCuchilla", "TriggerBiblioteca"));
-			this.addMission (new Mision(4, "Edicifios cerrados y otras viscicitudes", "No lo puedo dejar entrar a la biblioteca, primero tendra que derrotarme...", "Celador", "TriggerAviso"));
-			this.addMission (new Mision(5, "El encuentro fatal", "Camina hacia la playita para llegar a la biblioteca del C&T", "TriggerAviso", "Capucho"));
+			//this.addMission (new Mision(2, "No es facil lidiar con profesores cuchilla...", "Cree que puede conmigo señor?? le vpoy a poner CEROOO!!!", "ProfesorCuchilla", "ProfesorCuchilla", "battle_scene_1"));
+			this.addMission (new Mision(2, "La biblioteca, tu mejor aliada", "Vaya a estudiar a la biblioteca!!!", "ProfesorCuchilla", "TriggerBiblioteca"));
+			this.addMission (new Mision(3, "Edicifios cerrados y otras viscicitudes", "No lo puedo dejar entrar a la biblioteca, primero tendra que derrotarme...", "Celador", "TriggerAviso"));
+			this.addMission (new Mision(4, "El encuentro fatal", "Camina hacia la playita para llegar a la biblioteca del C&T", "TriggerAviso", "Capucho"));
 
 			this.misionActual=this.getMision(0);
 			hasMission=true;
