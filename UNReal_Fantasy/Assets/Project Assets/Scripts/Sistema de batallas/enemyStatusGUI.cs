@@ -5,7 +5,6 @@ public class enemyStatusGUI : MonoBehaviour {
 
 	
 	// texturas
-	public Texture2D icon;
 	public Texture2D statusLayoutBg; // fondo del layout para estatus
 	public Texture2D closeBtn;
 
@@ -74,6 +73,7 @@ public class enemyStatusGUI : MonoBehaviour {
 		adjustCurrentHealth();
 
 		//Deteccion de doble click para ataque de pesonaje
+		/*
 		if(Input.GetButtonDown("Fire1")){
 			if(Time.time-lastClickTime<catchTime){
 				Debug.Log ("Enemigo clickeado");
@@ -81,6 +81,7 @@ public class enemyStatusGUI : MonoBehaviour {
 			}
 			lastClickTime=Time.time;
 		}
+		*/
 	}
 	
 	public void adjustCurrentHealth(){
@@ -138,7 +139,14 @@ public class enemyStatusGUI : MonoBehaviour {
 
 	void OnMouseDown(){
 		ShowStatus ();
-		player.GetComponent<playerAttack>().setIsTargetSelected(true);
+		if (Time.time - lastClickTime < catchTime) {
+			Debug.Log ("Enemigo clickeado");
+			player.GetComponent<playerAttack> ().setAttackingEnemy (this);
+
+		} else {
+			player.GetComponent<playerAttack>().setIsTargetSelected(true);
+		}
+		lastClickTime=Time.time;
 	}
 
 	//Muestra el estado, se autoselecciona para el jugador como enemigo activo y oculta las demas interfaces

@@ -89,7 +89,6 @@ public class enemyAttackTrigger : MonoBehaviour {
 	}
 
 	void approach(){
-		//if(!meshAnim.IsPlaying ("run"))meshAnim.Play("run");
 		pAnimtr.SetBool ("Walking",true);
 		transform.position = Vector3.MoveTowards (transform.position,
 		                                          new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z),
@@ -116,7 +115,8 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	public void die(){
 		Debug.Log ("enemigo: me muero....");
-		Destroy (transform.parent.gameObject);
 		playerAtkScript.win ();						//Le decimos al jugador que gano
+		pAnimtr.SetBool("Lose",true);
+		//Destroy (transform.parent.gameObject);
 	}
 }

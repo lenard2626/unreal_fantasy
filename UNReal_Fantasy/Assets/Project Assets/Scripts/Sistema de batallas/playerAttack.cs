@@ -11,16 +11,23 @@ public class playerAttack : MonoBehaviour {
 	public float attackCoolDown=5;
 	public float meleeAttackRange=5;				//El rango de ataque del enemigo cuerp a cuerpo 			
 	public float moveSpeed=10;
+
+	public float sceneTransitionTimeout=10;
 	
 	private float attackCDTimer=0;
 	private bool isTargetSelected=false;		//Dice si en determinado instante, el jugador tiene un objetivo señalado
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
 
+	float sceneTransitionCounter=0;
+
+	public KeyCombo[] combos;
+	public Skill[] skills=new Skill[]{new Skill("Punch1",1.1f),new Skill("Punch2",1.4f)};
+	private int curSkillIndex=0;
+
 	private CapsuleCollider ccollider;			//Necesario para evitar colisiones
 
 	private Animator animtr;
 	private SFX sfx;
-
 	private ThirdPersonUserControl tpc;
 	
 	private enemyStatusGUI attackedEnemyScript=null;		//acceso al script de estado del enemigo
@@ -28,6 +35,7 @@ public class playerAttack : MonoBehaviour {
 	private screenFade screenfade;
 	
 	void Start () {
+		combos = new KeyCombo[]{new KeyCombo (new string[] {"Punch1", "Punch1","Punch2"}, animtr)};
 		animtr = GetComponent<Animator> ();
 		sfx = GetComponentInChildren<SFX> ();
 		ccollider = GetComponent<CapsuleCollider> ();
@@ -40,13 +48,16 @@ public class playerAttack : MonoBehaviour {
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
 			var distanceToEnemy = Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position);
 			//Debug.Log("Distancia al enemigo "+distanceToEnemy);
-			if (meleeAttackRange+(ccollider.radius*ccollider.radius)>= distanceToEnemy) {
+			if ((meleeAttackRange+(ccollider.radius*ccollider.radius)>= distanceToEnemy)) {
 				isAttacking=true;
 				tpc.setFollow(Vector3.zero);
 			}else{
 				approachToTarget();
 			}
 			if (isAttacking) {
+				//Evalua la skill a emplear
+				evaluateSkill();
+				evaluateCombo ();
 				attack();
 			}
 		}
@@ -58,8 +69,6 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	public void approachToTarget(){
-		//Debug.Log("acercandose al enemigo...");
-
 		//Mueve el personaje
 		if (attackedEnemyScript != null) {
 			Vector3 des = (new Vector3 (attackedEnemyScript.getTransform ().position.x,transform.position.y,attackedEnemyScript.getTransform ().position.z))-transform.position;
@@ -81,34 +90,73 @@ public class playerAttack : MonoBehaviour {
 	
 	void attack(){
 		//Debug.Log("atacando al enemigo!!!");
-		animtr.SetBool ("Attacking",true);
-		animtr.speed = (1.0f /getAttackCoolDown());		//Escala de velocidad de ataque
-		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
+		animtr.SetBool ("Attacking",isAttacking);
 
-			//calcula el daño
-			attackedEnemyScript.curHP -= meleeDamage;
-			//Reproduce un sonido de ataque asociado
+		animtr.speed = (1.0f /getAttackCoolDown());			//Escala de velocidad de ataque
+		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
+			useSkill (curSkillIndex);
+			//Reproduce un sonido de ataque aleatorio
 			sfx.PlayRandomAttack();
 			attackCDTimer = Time.time;
 		}
 	}
+
+	//Calcula el daño y anima la habilidad usada correspondiente
+	private void useSkill(int skillsIndex){
+		Debug.Log("usada skill "+skills[skillsIndex].SkillName);
+		animtr.SetTrigger (skills[skillsIndex].AnimParamName);
+		attackedEnemyScript.curHP -=calculateAttackDamage(skills[skillsIndex].DamageModifier);
+	}
+
+	private void evaluateSkill(){
+		int i=0;
+		foreach(Skill cur_skill in skills){
+			Debug.Log("examinando skill "+cur_skill.SkillName);
+			if(Input.GetButtonDown(cur_skill.SkillName)){
+				curSkillIndex=i;
+				return;
+			}
+			i++;
+		}
+	}
+
+	private void evaluateCombo(){
+		foreach(KeyCombo cur_combo in combos){
+			if(cur_combo.Check()){
+				Debug.Log("Combo aceptado");
+			}
+		}
+	}
 	
-	private int calculateAttackDamage(){
-		return (int)((2*meleeDamage+10)*Random.Range(0.1f,1f));
+	private int calculateAttackDamage(float damageModifier){
+		return (int)((damageModifier*meleeDamage)*Random.Range(0.8f,1.2f));
 	}
 	
 	
 	public void die(){
 		Debug.Log ("jugador: me muero....");
+		isAttacking = false;
+		attackedEnemyScript = null;
+		animtr.SetBool("Attacking",isAttacking);
+		animtr.SetBool("Lose",true);
 		sessionData.saveLastMisionStateBeforeBattle = Mision.SININICIAR;
 		sessionData.inBattle = 2;
-		Application.LoadLevel("MainWorld");
+		StartCoroutine (afterBattleCoroutine ());
 	}
 	public void win(){
 		Debug.Log ("jugador: ganeeeeee...");
+		isAttacking = false;
+		attackedEnemyScript = null;
+		animtr.SetBool("Attacking",isAttacking);
 		animtr.SetBool("VictoryDance",true);
 		sessionData.saveLastMisionStateBeforeBattle = Mision.FINALIZADA;
 		sessionData.inBattle = 2;
+		StartCoroutine (afterBattleCoroutine ());
+	}
+
+	IEnumerator afterBattleCoroutine(){
+		yield return new WaitForSeconds(sceneTransitionTimeout);
+		Debug.Log ("sceneTransitionCounter "+sceneTransitionCounter);
 		Application.LoadLevel ("MainWorld");
 	}
 	
@@ -125,4 +173,6 @@ public class playerAttack : MonoBehaviour {
 	public Vector3 getDestination(){
 		return attackedEnemyScript.getTransform().position;
 	}
+
+
 }

@@ -47,13 +47,10 @@ public class enemyPatrol : MonoBehaviour {
 			}
 			
 			//Control de animacion
-
-			if (isIdle /*&& anim!=null&&!anim.IsPlaying("attack")*/) {//TODO: Cambiar por la animacion "idle"
-				//anim.Play("attack");		
+			if (isIdle) {
 				animtr.SetBool("Idle",true);
 				animtr.SetBool("Walking",false);
 			} else {
-				//if(!anim.IsPlaying("walk") && !isIdle) anim.Play("walk");
 				animtr.SetBool("Idle",false);
 				animtr.SetBool("Walking",true);
 			}
