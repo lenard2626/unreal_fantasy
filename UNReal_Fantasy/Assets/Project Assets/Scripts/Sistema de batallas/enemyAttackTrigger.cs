@@ -99,6 +99,9 @@ public class enemyAttackTrigger : MonoBehaviour {
 	}
 
 	void attack(){
+		if(playerStatusBar.getCurrentHP()<=0){
+			win();
+		}
 		if (enemyStatusScript.curHP <= 0) {
 			die ();
 		} else {
@@ -112,11 +115,14 @@ public class enemyAttackTrigger : MonoBehaviour {
 		}
 	}
 
-
 	public void die(){
 		Debug.Log ("enemigo: me muero....");
 		playerAtkScript.win ();						//Le decimos al jugador que gano
 		pAnimtr.SetBool("Lose",true);
-		//Destroy (transform.parent.gameObject);
+	}
+	public void win(){
+		Debug.Log ("enemigo: gane....muahahaha");
+		playerAtkScript.die ();						//Le decimos al jugador que gano
+		pAnimtr.SetBool("VictoryDance",true);
 	}
 }

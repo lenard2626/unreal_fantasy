@@ -362,7 +362,7 @@ InputManager:
     descriptiveName: "Pu\xF1o debil"
     descriptiveNegativeName: "Cancela pu\xF1o debil"
     negativeButton: 
-    positiveButton: 1
+    positiveButton: j
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -378,7 +378,7 @@ InputManager:
     descriptiveName: "Pu\xF1o fuerte de combo"
     descriptiveNegativeName: "Cancela pu\xF1o fuerte de combo"
     negativeButton: 
-    positiveButton: 3
+    positiveButton: k
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -394,7 +394,7 @@ InputManager:
     descriptiveName: "Patada d\xE9bil"
     descriptiveNegativeName: Cancela patada debil
     negativeButton: 
-    positiveButton: 2
+    positiveButton: l
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

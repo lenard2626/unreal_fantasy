@@ -31,6 +31,7 @@ public class playerAttack : MonoBehaviour {
 	private ThirdPersonUserControl tpc;
 	
 	private enemyStatusGUI attackedEnemyScript=null;		//acceso al script de estado del enemigo
+	private playerStatusGUI playerStatusScript=null;
 
 	private screenFade screenfade;
 	
@@ -40,10 +41,15 @@ public class playerAttack : MonoBehaviour {
 		sfx = GetComponentInChildren<SFX> ();
 		ccollider = GetComponent<CapsuleCollider> ();
 		tpc = GetComponent<ThirdPersonUserControl> ();	//Para usar las funciones de movimiento de ethan
+		playerStatusScript = GetComponent<playerStatusGUI>();
 		meleeAttackRange *= meleeAttackRange;			//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
 	// Update is called once per frame
 	void Update () {
+		if (playerStatusScript.getCurrentHP() <= 0) {
+			die ();
+		}
+
 		//Evalua si esta atacando un enemigo
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
 			var distanceToEnemy = Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position);
@@ -137,8 +143,8 @@ public class playerAttack : MonoBehaviour {
 		Debug.Log ("jugador: me muero....");
 		isAttacking = false;
 		attackedEnemyScript = null;
-		animtr.SetBool("Attacking",isAttacking);
 		animtr.SetBool("Lose",true);
+		animtr.SetBool("Attacking",isAttacking);
 		sessionData.saveLastMisionStateBeforeBattle = Mision.SININICIAR;
 		sessionData.inBattle = 2;
 		StartCoroutine (afterBattleCoroutine ());
@@ -147,8 +153,8 @@ public class playerAttack : MonoBehaviour {
 		Debug.Log ("jugador: ganeeeeee...");
 		isAttacking = false;
 		attackedEnemyScript = null;
-		animtr.SetBool("Attacking",isAttacking);
 		animtr.SetBool("VictoryDance",true);
+		animtr.SetBool("Attacking",isAttacking);
 		sessionData.saveLastMisionStateBeforeBattle = Mision.FINALIZADA;
 		sessionData.inBattle = 2;
 		StartCoroutine (afterBattleCoroutine ());

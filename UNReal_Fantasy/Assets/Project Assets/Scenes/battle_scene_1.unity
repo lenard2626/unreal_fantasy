@@ -336,7 +336,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065113959}
   m_LocalRotation: {x: 8.03131428e-17, y: .920226395, z: -3.23821027e-17, w: -.391386598}
-  m_LocalPosition: {x: -14.5, y: 3.0999999, z: -43.4000015}
+  m_LocalPosition: {x: -43.2000008, y: 3.0999999, z: -15.2200003}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 1468800067}
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebf4ba83427cfe45a85abf996585113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeDamage: 50.8499985
+  meleeDamage: 50
   meleeAttackRange: 1
   viewRange: 15
   moveSpeed: 5
@@ -1176,17 +1176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXContainer: {fileID: 1100408519}
---- !u!114 &1620734871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1620734859}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6e612257437564cbd4c94cf0087056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1699127221
 GameObject:
   m_ObjectHideFlags: 0
