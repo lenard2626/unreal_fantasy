@@ -6,7 +6,8 @@ using System;
 [RequireComponent(typeof(playerInfoGUI))]
 
 public class playerAttack : MonoBehaviour {
-	
+
+	private sessionData session;
 	/*Variables publicas para configurar el ataque*/
 	public float meleeDamage=70;
 	public float attackCoolDown=5;
@@ -43,13 +44,17 @@ public class playerAttack : MonoBehaviour {
 	private screenFade screenfade;
 	
 	void Start () {
+		GameObject sessionInstance = GameObject.Find ("SessionData");
 		combos = new KeyCombo[]{new KeyCombo (new string[] {"Skill1", "Skill2","Skill3"}, animtr)};
 		animtr = GetComponent<Animator> ();
 		sfx = GetComponentInChildren<SFX> ();
 		ccollider = GetComponent<CapsuleCollider> ();
 		tpc = GetComponent<ThirdPersonUserControl> ();	//Para usar las funciones de movimiento de ethan
 		playerStatusScript = GetComponent<playerStatusGUI>();
-		meleeAttackRange *= meleeAttackRange;			//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
+		meleeAttackRange *= meleeAttackRange;		
+		this.session = sessionInstance.GetComponent<sessionData> ();
+		GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
+		GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 	}
 	// Update is called once per frame
 	void Update () {
