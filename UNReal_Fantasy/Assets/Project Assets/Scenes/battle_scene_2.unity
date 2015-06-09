@@ -141,7 +141,7 @@ GameObject:
   - 64: {fileID: 98124161}
   - 23: {fileID: 98124160}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d62f0e6844319f04b9fed0895b409e82, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -762,6 +762,7 @@ MonoBehaviour:
   attackCoolDown: 1
   meleeAttackRange: 1
   moveSpeed: 5
+  sceneTransitionTimeout: 10
 --- !u!114 &1620734868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,6 +1036,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2c6cf7b139ef80e4398a48a570fab8b7, type: 2}
+    - target: {fileID: 11493622, guid: 07c1968d2146f57478645b0b5bd6cd2e, type: 2}
+      propertyPath: meleeDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493622, guid: 07c1968d2146f57478645b0b5bd6cd2e, type: 2}
+      propertyPath: attackCoolDown
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07c1968d2146f57478645b0b5bd6cd2e, type: 2}
   m_IsPrefabParent: 0

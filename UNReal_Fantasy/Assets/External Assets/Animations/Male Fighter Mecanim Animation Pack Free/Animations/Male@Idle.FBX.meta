@@ -117,7 +117,7 @@ ModelImporter:
     400108: //RootNode
     400110: Mesh_Male
     400112: Motion
-    7400000: Idle
+    7400000: AttackStance
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -128,7 +128,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 0
+    animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -136,10 +136,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: AttackStance
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 29
+      lastFrame: 3
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

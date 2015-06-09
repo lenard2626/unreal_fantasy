@@ -6,10 +6,10 @@ public class Skill{
 	private float damageModifier = 0;
 	private string  animParamName;
 
-	public Skill(string sn,float dm){
+	public Skill(string sn,float dm,string an){
 		skillName = sn;
 		damageModifier = dm;
-		animParamName=skillName;
+		animParamName = an;
 	}
 
 	public string SkillName {

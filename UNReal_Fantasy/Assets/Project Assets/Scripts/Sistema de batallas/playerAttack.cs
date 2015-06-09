@@ -21,7 +21,13 @@ public class playerAttack : MonoBehaviour {
 	float sceneTransitionCounter=0;
 
 	public KeyCombo[] combos;
-	public Skill[] skills=new Skill[]{new Skill("Punch1",1.1f),new Skill("Punch2",1.4f)};
+
+	private Skill[] skills=new Skill[]{
+		new Skill("Ataque simple",1.0f,"Skill1"),
+		new Skill("Bailao fuerte",2.5f,"Skill2"),
+		new Skill("Patada karateka",3.0f,"Skill3"),
+		};
+
 	private int curSkillIndex=0;
 
 	private CapsuleCollider ccollider;			//Necesario para evitar colisiones
@@ -36,7 +42,7 @@ public class playerAttack : MonoBehaviour {
 	private screenFade screenfade;
 	
 	void Start () {
-		combos = new KeyCombo[]{new KeyCombo (new string[] {"Punch1", "Punch1","Punch2"}, animtr)};
+		combos = new KeyCombo[]{new KeyCombo (new string[] {"Skill1", "Skill2","Skill3"}, animtr)};
 		animtr = GetComponent<Animator> ();
 		sfx = GetComponentInChildren<SFX> ();
 		ccollider = GetComponent<CapsuleCollider> ();
@@ -63,7 +69,7 @@ public class playerAttack : MonoBehaviour {
 			if (isAttacking) {
 				//Evalua la skill a emplear
 				evaluateSkill();
-				evaluateCombo ();
+				evaluateCombo();
 				attack();
 			}
 		}
@@ -97,10 +103,11 @@ public class playerAttack : MonoBehaviour {
 	void attack(){
 		//Debug.Log("atacando al enemigo!!!");
 		animtr.SetBool ("Attacking",isAttacking);
-
 		animtr.speed = (1.0f /getAttackCoolDown());			//Escala de velocidad de ataque
+
+
 		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
-			useSkill (curSkillIndex);
+			useSkill ();
 			//Reproduce un sonido de ataque aleatorio
 			sfx.PlayRandomAttack();
 			attackCDTimer = Time.time;
@@ -108,22 +115,27 @@ public class playerAttack : MonoBehaviour {
 	}
 
 	//Calcula el daño y anima la habilidad usada correspondiente
-	private void useSkill(int skillsIndex){
-		Debug.Log("usada skill "+skills[skillsIndex].SkillName);
-		animtr.SetTrigger (skills[skillsIndex].AnimParamName);
-		attackedEnemyScript.curHP -=calculateAttackDamage(skills[skillsIndex].DamageModifier);
+	private void useSkill(){
+		if (curSkillIndex >= 0) {
+			Debug.Log("usada skill "+skills[curSkillIndex].SkillName);
+			animtr.SetTrigger (skills[curSkillIndex].AnimParamName);
+			attackedEnemyScript.curHP -=calculateAttackDamage(skills[curSkillIndex].DamageModifier);
+			curSkillIndex = -1;
+		}
 	}
 
 	private void evaluateSkill(){
 		int i=0;
+		if(curSkillIndex==-1)			//Candado necesario para respetar el CoolDown entre ataques
 		foreach(Skill cur_skill in skills){
-			Debug.Log("examinando skill "+cur_skill.SkillName);
-			if(Input.GetButtonDown(cur_skill.SkillName)){
+			if(Input.GetButtonDown(cur_skill.AnimParamName)){
+				Debug.Log("examinando skill con animacion "+cur_skill.AnimParamName);
 				curSkillIndex=i;
 				return;
 			}
 			i++;
 		}
+		//curSkillIndex = 0;
 	}
 
 	private void evaluateCombo(){

@@ -44,13 +44,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Punch1
+  - m_Name: Skill1
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Punch2
+  - m_Name: Skill2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -68,7 +68,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Kick1
+  - m_Name: Skill3
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -816,6 +816,20 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
+--- !u!206 &20688816
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Blend Tree
+  m_Childs: []
+  m_BlendParameter: Turn
+  m_BlendParameterY: Turn
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
 --- !u!206 &20689324
 BlendTree:
   m_ObjectHideFlags: 1
@@ -876,6 +890,26 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1101 &110108028
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 110233734}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_ExitTime: .899999976
+  m_HasExitTime: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &110110910
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -919,6 +953,29 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: .899999976
   m_HasExitTime: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &110133736
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Skill3
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 110247546}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: .258620679
+  m_TransitionOffset: 0
+  m_ExitTime: .741379321
+  m_HasExitTime: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -976,7 +1033,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Punch2
+    m_ConditionEvent: Skill2
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110279734}
@@ -1068,7 +1125,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Punch1
+    m_ConditionEvent: Skill1
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110210488}
@@ -1223,7 +1280,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Punch1
+  m_Name: Skill1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1259,19 +1316,38 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackStance
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110161136}
   - {fileID: 110138662}
   - {fileID: 110157632}
   - {fileID: 110184070}
+  - {fileID: 110133736}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 664d2fb3a87d96346a11f067b703e2ac, type: 3}
+  m_Tag: 
+--- !u!1102 &110247546
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Skill3
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 110108028}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 1
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_Motion: {fileID: 7400000, guid: 04b993802f656f545a392780d4e95f2c, type: 3}
   m_Tag: 
 --- !u!1102 &110276412
 AnimatorState:
@@ -1315,7 +1391,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Punch2
+  m_Name: Skill2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1368,19 +1444,22 @@ AnimatorStateMachine:
     m_Position: {x: 24, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110210488}
-    m_Position: {x: 348, y: 192, z: 0}
+    m_Position: {x: 324, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110276910}
     m_Position: {x: 720, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110279734}
-    m_Position: {x: 588, y: 192, z: 0}
+    m_Position: {x: 408, y: 252, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110233734}
     m_Position: {x: 504, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110231600}
     m_Position: {x: 408, y: -36, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 110247546}
+    m_Position: {x: 624, y: 252, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

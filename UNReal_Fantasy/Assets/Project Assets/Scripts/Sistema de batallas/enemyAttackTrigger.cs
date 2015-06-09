@@ -10,9 +10,9 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	/*Variables publicas para configurar el ataque*/
 	public float meleeDamage=50;
-	public float meleeAttackRange=2;				//El rango de ataque del enemigo cuerp a cuerpo 
-	public float viewRange=15;						//El rango en el cual debe entrar el jugador para ser atacado por el enemigo
-	public float moveSpeed=5;
+	public float meleeAttackRange=1;				//El rango de ataque del enemigo cuerp a cuerpo 
+	public float viewRange;						//El rango en el cual debe entrar el jugador para ser atacado por el enemigo
+	public float moveSpeed;
 	public float attackCoolDown=3;					//0-10: rango de tiempo entre ataques
 
 	private Transform playerTrans;
@@ -58,9 +58,13 @@ public class enemyAttackTrigger : MonoBehaviour {
 		if (distance < meleeAttackRange) {
 			isAttacking = true;
 			isApproaching = false;
-		} else if ((distance > meleeAttackRange)&&isAttacking) {
+		} else if (distance > meleeAttackRange) {
 			isAttacking=false;
-			isApproaching = true;
+			if(isAttacking){
+				isApproaching = true;
+			}else{
+				isAttacking=false;
+			}
 		}
 
 		if (isApproaching) {
@@ -92,7 +96,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 		pAnimtr.SetBool ("Walking",true);
 		transform.position = Vector3.MoveTowards (transform.position,
 		                                          new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z),
-		                                            moveSpeed * Time.deltaTime);
+		                                          moveSpeed * Time.deltaTime);
 		transform.LookAt(player.transform.position);
 		transform.LookAt (player.transform.position);
 
@@ -105,14 +109,20 @@ public class enemyAttackTrigger : MonoBehaviour {
 		if (enemyStatusScript.curHP <= 0) {
 			die ();
 		} else {
+			//Forza el ataque en el jugador
+			playerAtkScript.setAttackingEnemy(enemyStatusScript);
+
 			if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
 				//ataca
-				playerStatusBar.setCurrentHP(playerStatusBar.getCurrentHP() - meleeDamage);
+				playerStatusBar.setCurrentHP(playerStatusBar.getCurrentHP() - calculateAttackDamage());
 				//Reproduce un sonido de ataque asociado
-				sfx.PlayRandomAttack();
+				//sfx.PlayRandomAttack();
 				attackCDTimer = Time.time;
 			}
 		}
+	}
+	private int calculateAttackDamage(){
+		return (int)((1.0f*meleeDamage)*Random.Range(0.8f,1.2f));
 	}
 
 	public void die(){
