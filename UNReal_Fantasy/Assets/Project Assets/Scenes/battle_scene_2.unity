@@ -408,7 +408,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 939153784}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1ad9f491cf04343fe97f1a060d27d515, type: 3}
@@ -1038,7 +1038,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 2c6cf7b139ef80e4398a48a570fab8b7, type: 2}
     - target: {fileID: 11493622, guid: 07c1968d2146f57478645b0b5bd6cd2e, type: 2}
       propertyPath: meleeDamage
-      value: 100
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 11493622, guid: 07c1968d2146f57478645b0b5bd6cd2e, type: 2}
       propertyPath: attackCoolDown

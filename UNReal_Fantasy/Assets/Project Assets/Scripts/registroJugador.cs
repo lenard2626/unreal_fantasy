@@ -20,7 +20,7 @@ public class registroJugador : MonoBehaviour {
 			//this.addMission (new Mision(2, "No es facil lidiar con profesores cuchilla...", "Cree que puede conmigo señor?? le vpoy a poner CEROOO!!!", "ProfesorCuchilla", "ProfesorCuchilla", "battle_scene_1"));
 			this.addMission (new Mision(2, "Una oportunidad valiosa", "Noooo ... No es posible.... . Esta bien, solo por haber demostrado su punto y su valia le dare una oportunidad. Vaya a la BIBLIOTECA mas cercana envieme el trabajo hoy mismo y prometo ser justo al calificarlo", "ProfesorCuchilla", "TriggerBiblioteca"));
 			this.addMission (new Mision(3, "El cela", "Buenas Tardes, Carnet Por Favor...... oh no tiene carnet?, pues que lastima, no me importa si es su ultima oportunidad para graduarse, de aqui no podrá pasar jajaja y no hay nada que pueda hacer", "Celador", "TriggerAviso"));
-			this.addMission (new Mision(4, "La ultima esperanza", "Aun queda una biblioteca abierta antes de que se complete el desalojo, la BILIOTECA DEL CYT. Puedes llegar a ella a traves de la PLAYITA", "TriggerAviso", "Capucho","battle_scene_2"));
+			this.addMission (new Mision(4, "La ultima esperanza", "Aun queda una biblioteca abierta antes de que se complete el desalojo, la BILIOTECA DEL CYT. Puedes llegar a ella a traves de la PLAYITA", "TriggerAviso", "Capucho","battle_scene_3"));
 
 			this.misionActual=this.getMision(0);
 			hasMission=true;

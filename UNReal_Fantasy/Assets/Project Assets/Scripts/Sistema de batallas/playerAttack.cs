@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
+using System;
 
 [RequireComponent(typeof(playerInfoGUI))]
 
@@ -147,7 +148,7 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	private int calculateAttackDamage(float damageModifier){
-		return (int)((damageModifier*meleeDamage)*Random.Range(0.8f,1.2f));
+		return (int)((damageModifier*meleeDamage)*UnityEngine.Random.Range(0.8f,1.2f));
 	}
 	
 	
@@ -157,9 +158,14 @@ public class playerAttack : MonoBehaviour {
 		attackedEnemyScript = null;
 		animtr.SetBool("Lose",true);
 		animtr.SetBool("Attacking",isAttacking);
-		sessionData.saveLastMisionStateBeforeBattle = Mision.SININICIAR;
+		sessionData.saveLastMisionStateBeforeBattle = Mision.ENPROGRESO;
 		sessionData.inBattle = 2;
-		StartCoroutine (afterBattleCoroutine ());
+		if(sessionData.saveLastMisionBeforeBattle == 4){
+			StartCoroutine (afterBattleCoroutine ("gameOver"));
+		}else{
+			StartCoroutine (afterBattleCoroutine ("MainWorld"));
+		}
+
 	}
 	public void win(){
 		Debug.Log ("jugador: ganeeeeee...");
@@ -169,13 +175,13 @@ public class playerAttack : MonoBehaviour {
 		animtr.SetBool("Attacking",isAttacking);
 		sessionData.saveLastMisionStateBeforeBattle = Mision.FINALIZADA;
 		sessionData.inBattle = 2;
-		StartCoroutine (afterBattleCoroutine ());
+		StartCoroutine (afterBattleCoroutine ("MainWorld"));
 	}
 
-	IEnumerator afterBattleCoroutine(){
+	IEnumerator afterBattleCoroutine(String scene){
 		yield return new WaitForSeconds(sceneTransitionTimeout);
 		Debug.Log ("sceneTransitionCounter "+sceneTransitionCounter);
-		Application.LoadLevel ("MainWorld");
+		Application.LoadLevel (scene);
 	}
 	
 	public enemyStatusGUI getAttackedEnemyScript(){
