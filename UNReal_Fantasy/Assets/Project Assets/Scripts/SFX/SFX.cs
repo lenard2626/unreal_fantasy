@@ -18,7 +18,7 @@ public class SFX : MonoBehaviour {
 			int index = Random.Range (0, attackSFXs.Length);
 			if (attackSFXs [index] != null ) {
 				attackSFXs[index].enabled = true;
-				attackSFXs[index].Play();	
+				attackSFXs[index].PlayOneShot(attackSFXs[index].clip);	
 			}
 		}
 	}

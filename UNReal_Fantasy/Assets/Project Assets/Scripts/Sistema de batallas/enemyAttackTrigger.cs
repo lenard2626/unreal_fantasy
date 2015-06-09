@@ -4,7 +4,6 @@ using System.Collections;
 [RequireComponent(typeof (enemyStatusGUI))]
 
 public class enemyAttackTrigger : MonoBehaviour {
-	
 
 	private GameObject player;						//Para acceder a componentes de player
 
@@ -18,7 +17,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 	private Transform playerTrans;
 	private playerStatusGUI playerStatusBar;
 	private playerAttack playerAtkScript;
-	private enemyPatrol enemyPatrolScript;
+	//private enemyPatrol enemyPatrolScript;
 	private enemyStatusGUI enemyStatusScript;
 
 	private Animator pAnimtr;
@@ -28,6 +27,8 @@ public class enemyAttackTrigger : MonoBehaviour {
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
 
 	private float attackCDTimer=0;
+
+	private NavMeshAgent nma;
 
 	void Start () {
 		//parent=(GetComponent<Transform>().root).GetComponent<GameObject>();			///Lo que hay que hacer para sacarle el parent a un script...
@@ -40,10 +41,12 @@ public class enemyAttackTrigger : MonoBehaviour {
 		attackTriggerScript.radius = viewRange;
 		sfx = GetComponent<SFX> ();
  
-		enemyPatrolScript = GetComponent<enemyPatrol>();
+		//enemyPatrolScript = GetComponent<enemyPatrol>();
 		enemyStatusScript = GetComponent<enemyStatusGUI> ();
 		playerStatusBar = player.GetComponent<playerStatusGUI>();
 		playerAtkScript = player.GetComponent<playerAttack>();
+
+		nma = GetComponentInParent<NavMeshAgent>();
 
 		pAnimtr.speed =1.0f /attackCoolDown;						//Escala de velocidad de ataque
 
@@ -55,10 +58,10 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 		var distance = Vector3.SqrMagnitude (transform.position - playerTrans.transform.position);
 
-		if (distance < meleeAttackRange) {
+		if (distance < meleeAttackRange+nma.radius) {
 			isAttacking = true;
 			isApproaching = false;
-		} else if (distance > meleeAttackRange) {
+		} else if (distance > meleeAttackRange+nma.radius) {
 			isAttacking=false;
 			if(isAttacking){
 				isApproaching = true;
@@ -78,31 +81,37 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider playerCollider){
 		if (playerCollider.tag == "Player") {
-			enemyPatrolScript.disableLocalMovement=true;
+			//enemyPatrolScript.disableLocalMovement=true;
 			isApproaching=true;
 			enemyStatusScript.ShowStatus();
-			//Debug.Log("Ataca!!!!");
+			Debug.Log("Ataca!!!!");
 		}
 	}
 	void OnTriggerExit(Collider playerCollider){
 		if (playerCollider.tag == "Player") {
-			enemyPatrolScript.disableLocalMovement=false;
+			//enemyPatrolScript.disableLocalMovement=false;
 			isApproaching=false;
 			isAttacking=false;
 		}
 	}
 
 	void approach(){
+		nma.destination = new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z);
 		pAnimtr.SetBool ("Walking",true);
+		Debug.Log("Acecha!!!!");
+		/*
 		transform.position = Vector3.MoveTowards (transform.position,
 		                                          new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z),
 		                                          moveSpeed * Time.deltaTime);
-		transform.LookAt(player.transform.position);
-		transform.LookAt (player.transform.position);
 
+		transform.LookAt (player.transform.position);
+		*/
 	}
 
 	void attack(){
+		//Nos aseguramos de que este pelmazo siempre mire al jugador
+		transform.LookAt(player.transform.position);
+
 		if(playerStatusBar.getCurrentHP()<=0){
 			win();
 		}
@@ -116,7 +125,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 				//ataca
 				playerStatusBar.setCurrentHP(playerStatusBar.getCurrentHP() - calculateAttackDamage());
 				//Reproduce un sonido de ataque asociado
-				//sfx.PlayRandomAttack();
+				sfx.PlayRandomAttack();
 				attackCDTimer = Time.time;
 			}
 		}

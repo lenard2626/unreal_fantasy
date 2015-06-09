@@ -5,10 +5,11 @@ public class enemyPatrol : MonoBehaviour {
 
 	public Transform[] patrolPoints;
 	public float moveSpeed = 10;
-	private int currentTarget = 0;
+
 	public float maxRandStopTime= 5;
 	public float minRandStopTime= 2;
 
+	private int currentTarget = 0;
 	public bool disableLocalMovement=false;			//para activar/desactivar el control del movimiento desde scripts externos
 	private bool isIdle=false;
 
@@ -18,12 +19,18 @@ public class enemyPatrol : MonoBehaviour {
 	private Animator animtr;
 
 	private Transform thisTransform;
+	private NavMeshAgent nma;
 	
 	void Start () {
 		transform.position = patrolPoints[0].position;
 		currentTarget = 0;
 		animtr = GetComponentInParent<Animator> ();
 		thisTransform = GetComponent<Transform> ();
+		if (!(nma = GetComponent<NavMeshAgent> ())) {
+			nma = GetComponentInParent<NavMeshAgent> ();
+		}
+		if(nma!=null)
+			nma.speed = moveSpeed;
 	}	
 
 	void Update () {
@@ -36,6 +43,7 @@ public class enemyPatrol : MonoBehaviour {
 				maxCurrentIdleTime = Random.Range(minRandStopTime,maxRandStopTime);
 			}
 			//Control de idle
+
 			if (idleTimeCounter >= maxCurrentIdleTime) {
 				isIdle = false;
 				idleTimeCounter = 0;
@@ -58,11 +66,17 @@ public class enemyPatrol : MonoBehaviour {
 
 			if (!isIdle) {
 
+				//Sin (farmaton) navMeshAgent
+
 				thisTransform.position = Vector3.MoveTowards (transform.position,
 				                                          patrolPoints [currentTarget].position,
 				                                          moveSpeed * Time.deltaTime);
-
 				thisTransform.LookAt(patrolPoints [currentTarget].position);
+
+				//Con (farmaton) navMeshAgent
+				if(nma!=null)
+					nma.destination = patrolPoints [currentTarget].position;
+
 			}
 		}
 	}

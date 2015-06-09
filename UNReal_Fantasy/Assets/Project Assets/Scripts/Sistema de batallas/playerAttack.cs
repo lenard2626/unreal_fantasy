@@ -52,9 +52,13 @@ public class playerAttack : MonoBehaviour {
 		tpc = GetComponent<ThirdPersonUserControl> ();	//Para usar las funciones de movimiento de ethan
 		playerStatusScript = GetComponent<playerStatusGUI>();
 		meleeAttackRange *= meleeAttackRange;		
-		this.session = sessionInstance.GetComponent<sessionData> ();
-		GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
-		GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
+
+		if (this.session != null) {
+			this.session = sessionInstance.GetComponent<sessionData> ();
+			GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
+			GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
+		}
+			
 	}
 	// Update is called once per frame
 	void Update () {
@@ -65,8 +69,9 @@ public class playerAttack : MonoBehaviour {
 		//Evalua si esta atacando un enemigo
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
 			var distanceToEnemy = Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position);
-			//Debug.Log("Distancia al enemigo "+distanceToEnemy);
-			if ((meleeAttackRange+(ccollider.radius*ccollider.radius)>= distanceToEnemy)) {
+			Debug.Log("Distancia al enemigo "+distanceToEnemy);
+			if ((meleeAttackRange+(ccollider.radius*ccollider.radius)>= distanceToEnemy)) {			//Candado para la bandera de ataque
+				animtr.SetBool ("AttackStance",true);
 				isAttacking=true;
 				tpc.setFollow(Vector3.zero);
 			}else{
@@ -108,11 +113,11 @@ public class playerAttack : MonoBehaviour {
 	
 	void attack(){
 		//Debug.Log("atacando al enemigo!!!");
-		animtr.SetBool ("Attacking",isAttacking);
+
 		animtr.speed = (1.0f /getAttackCoolDown());			//Escala de velocidad de ataque
-
-
+		
 		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
+			animtr.SetBool ("Attacking",isAttacking);
 			useSkill ();
 			//Reproduce un sonido de ataque aleatorio
 			sfx.PlayRandomAttack();
@@ -141,7 +146,7 @@ public class playerAttack : MonoBehaviour {
 			}
 			i++;
 		}
-		//curSkillIndex = 0;
+		//curSkillIndex = 0;																	//Para el ataque por defecto
 	}
 
 	private void evaluateCombo(){
