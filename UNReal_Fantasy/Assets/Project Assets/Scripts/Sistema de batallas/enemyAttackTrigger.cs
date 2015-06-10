@@ -29,6 +29,8 @@ public class enemyAttackTrigger : MonoBehaviour {
 	private float attackCDTimer=0;
 
 	private NavMeshAgent nma;
+	private float ptd_distance;
+
 
 	void Start () {
 		//parent=(GetComponent<Transform>().root).GetComponent<GameObject>();			///Lo que hay que hacer para sacarle el parent a un script...
@@ -56,12 +58,12 @@ public class enemyAttackTrigger : MonoBehaviour {
 		pAnimtr.SetBool ("Walking",isApproaching);
 		pAnimtr.SetBool ("Attacking",isAttacking);
 
-		var distance = Vector3.SqrMagnitude (transform.position - playerTrans.transform.position);
+		ptd_distance = Vector3.SqrMagnitude (transform.position - playerTrans.transform.position);
 
-		if (distance < meleeAttackRange+nma.radius) {
+		if (ptd_distance < meleeAttackRange+nma.radius*nma.radius) {
 			isAttacking = true;
 			isApproaching = false;
-		} else if (distance > meleeAttackRange+nma.radius) {
+		} else if (ptd_distance >= meleeAttackRange+nma.radius*nma.radius) {
 			isAttacking=false;
 			if(isAttacking){
 				isApproaching = true;
