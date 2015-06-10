@@ -9,21 +9,22 @@ public class barraProgreso : MonoBehaviour {
 	public float velocidadProgreso=0f;
 	public AsyncOperation async;
 	void Start(){
-		StartCoroutine("load");
+		StartCoroutine ("load");
 	}
 
 	IEnumerator load() {
 		Debug.LogWarning("ASYNC LOAD STARTED - " +
 		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
+		yield return new WaitForSeconds (2);
 		async = Application.LoadLevelAsync("MainWorld");
 		async.allowSceneActivation = false;
 		async.priority = 1;
-		yield return async;
 	}
 
 	void Update(){
 		if (progreso < Screen.width / 5 - 2) {
 			progreso += Time.deltaTime * velocidadProgreso;
+			Debug.Log ("Progreso"+progreso);
 		} else {
 			//Application.LoadLevel("MainWorld");
 			if(async != null){
