@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour {
 		
 		///////pause menu buttons
 		//game resume button
-		if(GUI.Button(new Rect(Screen.width/8, Screen.height/8, Screen.width/4, Screen.height/10), "Volver al Juego")) {
+		if(GUI.Button(new Rect(Screen.width/8, Screen.height/12, Screen.width/4, Screen.height/14), "Volver al Juego")) {
 			//resume the game
 			Time.timeScale = 1;
 			//disable pause menu
@@ -28,12 +28,19 @@ public class PauseMenu : MonoBehaviour {
 		}
 		
 		//main menu return button (level 0)
-		if(GUI.Button(new Rect(Screen.width/8, Screen.height/4, Screen.width/4, Screen.height/10), "Menu de Seleccion de Personajes")) {
+		if(GUI.Button(new Rect(Screen.width/8, Screen.height*2/12, Screen.width/4, Screen.height/14), "Menu de Seleccion de Personajes")) {
 			Application.LoadLevel("gui-3");
+		}
+		//tutorial
+		if(GUI.Button(new Rect(Screen.width/8, Screen.height*3/12, Screen.width/4, Screen.height/14), "Tutorial")) {
+			tutorial tut=GameObject.Find ("Tutorial").GetComponent<tutorial>();
+			tut.showStatus();
+			scriptMenu = GetComponent<PauseMenu>();
+			scriptMenu.enabled = false;
 		}
 		
 		//quit button
-		if(GUI.Button(new Rect(Screen.width/8, Screen.height*3/8, Screen.width/4, Screen.height/10), "Salir")) {
+		if(GUI.Button(new Rect(Screen.width/8, Screen.height*4/12, Screen.width/4, Screen.height/14), "Salir")) {
 			Application.Quit();
 		}
 		
