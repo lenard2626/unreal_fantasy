@@ -7,16 +7,35 @@ public class barraProgreso : MonoBehaviour {
 	public Texture2D barraFrente;
 	public float progreso= 0f;
 	public float velocidadProgreso=0f;
-
+	public AsyncOperation async;
 	void Start(){
+		StartCoroutine ("load");
+	}
+
+	IEnumerator load() {
+		Debug.LogWarning("ASYNC LOAD STARTED - " +
+		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
+		yield return new WaitForSeconds (2);
+		async = Application.LoadLevelAsync("MainWorld");
+		async.allowSceneActivation = false;
+		async.priority = 1;
 	}
 
 	void Update(){
 		if (progreso < Screen.width / 5 - 2) {
 			progreso += Time.deltaTime * velocidadProgreso;
+			Debug.Log ("Progreso"+progreso);
 		} else {
-			Application.LoadLevel("MainWorld");
+			//Application.LoadLevel("MainWorld");
+			if(async != null){
+				ActivateScene();
+			}
+		
 		}
+	}
+
+	public void ActivateScene() {
+		async.allowSceneActivation = true;
 	}
 
 	void OnGUI(){
