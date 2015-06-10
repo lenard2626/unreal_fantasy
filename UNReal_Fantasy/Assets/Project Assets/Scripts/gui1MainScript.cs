@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using System.IO;
 
 public class gui1MainScript : MonoBehaviour {
 	public sessionData session;
@@ -13,11 +14,34 @@ public class gui1MainScript : MonoBehaviour {
 	void Start () {
 		this.hideLoginError();
 		this.session = GameObject.Find("SessionData").GetComponent<sessionData>();
+		String url = this.readUrlFromConfig ();
+		this.session.apiUrl = url;
 		this.apiUrl = session.apiUrl;
 	}
 
 	void Update () {
 	
+	}
+
+
+	public String readUrlFromConfig(){
+		FileInfo theSourceFile = null;
+		StreamReader reader = null;
+		String url = "http://unrealfantasy.herokuapp.com/";
+		theSourceFile = new FileInfo (Application.dataPath + "/unrealconfig.txt");
+		if ( theSourceFile != null && theSourceFile.Exists )
+			reader = theSourceFile.OpenText();
+		
+		if ( reader == null )
+		{
+			Debug.Log("unrealconfig.txt not found or not readable");
+		}
+		else
+		{
+			url = reader.ReadLine();
+			url.Trim();
+		}
+		return url;
 	}
 
 	public void hideLoginError(){
