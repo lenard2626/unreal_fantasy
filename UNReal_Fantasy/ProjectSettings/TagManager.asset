@@ -12,6 +12,8 @@ TagManager:
   - DgImage
   - MenuMisiones
   - fader
+  - plazaChe
+  - playita
   layers:
   - Default
   - TransparentFX

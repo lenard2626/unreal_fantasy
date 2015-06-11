@@ -924,12 +924,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non cursus
-    nulla. Praesent nisi mi, pulvinar eget convallis ut, vulputate sed turpis. Curabitur
-    euismod a eros eget sagittis. Donec feugiat tincidunt dolor, et porta velit rutrum
-    ut. Nunc non ligula in mauris malesuada sodales nec vitae mauris. Integer nec
-    ullamcorper mi, vitae efficitur justo. Nam ultrices diam euismod ligula sollicitudin
-    tempus. Nulla vel tincidunt libero. Aliquam malesuada nibh metus.
+  m_Text: "Ser admitido en esta a\xF1orada tierra no es sencillo, se necesita tener
+    habilidades de nacimiento o tez\xF3n para aprenderlas en un largo recorrido, perseverancia
+    para no desistir si no se es digno y un poco de suerte en el momento adecuado,
+    ya que es necesario presentar una dura prueba para demostrar que se tiene merecido
+    el codiciado puesto dentro de la universidad y que existe gran potencial por explotar
+    y descubrir"
 --- !u!222 &1595061510
 CanvasRenderer:
   m_ObjectHideFlags: 0
