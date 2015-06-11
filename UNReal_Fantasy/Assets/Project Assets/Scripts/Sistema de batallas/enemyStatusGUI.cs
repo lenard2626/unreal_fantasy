@@ -72,6 +72,11 @@ public class enemyStatusGUI : MonoBehaviour {
 	
 	void Update(){
 		adjustCurrentHealth();
+
+		if(player.GetComponent<playerAttack>().getCurSkillIndex()!=-1&&
+		   Input.anyKey){
+			player.GetComponent<playerAttack> ().setAttackingEnemy (this);
+		}
 	}
 	
 	public void adjustCurrentHealth(){
