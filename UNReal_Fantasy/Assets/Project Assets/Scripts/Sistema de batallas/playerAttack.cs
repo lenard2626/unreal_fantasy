@@ -33,7 +33,7 @@ public class playerAttack : MonoBehaviour {
 		new Skill("Patada definitiva",3.0f,"Skill5"),
 		};
 
-	private int curSkillIndex=0;
+	private int curSkillIndex=-1;
 	private int curCDTime=0;					//CoolDowntime del skill actual
 
 	private CapsuleCollider ccollider;			//Necesario para evitar colisiones

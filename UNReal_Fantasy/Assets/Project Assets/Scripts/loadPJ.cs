@@ -5,8 +5,10 @@ using UnityEngine.UI;
 public class loadPJ : MonoBehaviour {
 	private sessionData session;
 	private GameObject pj;
+	private int correct=0;
 	// Use this for initialization
 	void Start () {
+		this.correct = 0;
 		GameObject sessionInstance = GameObject.Find ("SessionData");
 		if (!sessionData.inBattle.Equals (2)) {
 			this.pj = GameObject.Find ("PersonajePrincipal");
@@ -28,7 +30,10 @@ public class loadPJ : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(correct ==0){
+			this.pj.transform.position = new Vector3 (sessionData.saveX, sessionData.saveY, sessionData.saveZ);
+			correct=1;
+		}
 	}
 
 	void OnDestroy(){
@@ -38,7 +43,7 @@ public class loadPJ : MonoBehaviour {
 			sessionData.saveLastMision = pj.GetComponent<registroJugador> ().misionActual.idMision;
 		sessionData.saveState = pj.GetComponent<registroJugador> ().state;
 			sessionData.saveLastMisionState = pj.GetComponent<registroJugador> ().misionActual.estado;
-		if (session != null) {
+		if (this.session != null) {
 			session.saveCharacter ();
 		}
 	}
