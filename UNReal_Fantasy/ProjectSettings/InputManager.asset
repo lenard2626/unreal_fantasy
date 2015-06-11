@@ -362,7 +362,7 @@ InputManager:
     descriptiveName: "Pu\xF1o debil"
     descriptiveNegativeName: "Cancela pu\xF1o debil"
     negativeButton: 
-    positiveButton: m
+    positiveButton: y
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -378,7 +378,7 @@ InputManager:
     descriptiveName: "Pu\xF1o fuerte de combo"
     descriptiveNegativeName: "Cancela pu\xF1o fuerte de combo"
     negativeButton: 
-    positiveButton: n
+    positiveButton: u
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -394,7 +394,7 @@ InputManager:
     descriptiveName: "Patada d\xE9bil"
     descriptiveNegativeName: Cancela patada debil
     negativeButton: 
-    positiveButton: b
+    positiveButton: i
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -407,10 +407,10 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Skill4
-    descriptiveName: "Patada d\xE9bil"
-    descriptiveNegativeName: Cancela patada debil
+    descriptiveName: Patada Fuerte
+    descriptiveNegativeName: Cancela patada fuerte
     negativeButton: 
-    positiveButton: v
+    positiveButton: o
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -423,10 +423,10 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Skill5
-    descriptiveName: "Patada d\xE9bil"
-    descriptiveNegativeName: Cancela patada debil
+    descriptiveName: Patada definitiva
+    descriptiveNegativeName: Cancela patada definitiva
     negativeButton: 
-    positiveButton: l
+    positiveButton: p
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

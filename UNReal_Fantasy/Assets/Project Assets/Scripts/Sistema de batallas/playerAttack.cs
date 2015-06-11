@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 using System;
@@ -26,8 +27,10 @@ public class playerAttack : MonoBehaviour {
 
 	private Skill[] skills=new Skill[]{
 		new Skill("Ataque simple",1.0f,"Skill1"),
-		new Skill("Bailao fuerte",2.5f,"Skill2"),
-		new Skill("Patada karateka",3.0f,"Skill3"),
+		new Skill("Bailao fuerte",1.5f,"Skill2"),
+		new Skill("Patada karateka",2.0f,"Skill3"),
+		new Skill("Patada Fuerte",2.5f,"Skill4"),
+		new Skill("Patada definitiva",3.0f,"Skill5"),
 		};
 
 	private int curSkillIndex=0;
@@ -42,7 +45,13 @@ public class playerAttack : MonoBehaviour {
 	private playerStatusGUI playerStatusScript=null;
 
 	private screenFade screenfade;
-	
+
+	public int getCurSkillIndex(){
+		return curSkillIndex;
+	}
+	public void setCurSkillIndex(int index){
+		this.curSkillIndex=index;
+	}
 	void Start () {
 		GameObject sessionInstance = GameObject.Find ("SessionData");
 		combos = new KeyCombo[]{new KeyCombo (new string[] {"Skill1", "Skill2","Skill3"}, animtr)};
