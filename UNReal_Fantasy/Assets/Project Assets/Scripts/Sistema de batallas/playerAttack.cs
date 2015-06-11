@@ -20,7 +20,7 @@ public class playerAttack : MonoBehaviour {
 	private float attackCDTimer=0;
 	private bool isTargetSelected=false;		//Dice si en determinado instante, el jugador tiene un objetivo señalado
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
-	public AsyncOperation async;
+
 	float sceneTransitionCounter=0;
 
 	public KeyCombo[] combos;
@@ -192,7 +192,7 @@ public class playerAttack : MonoBehaviour {
 			StartCoroutine (afterBattleCoroutine ("gameOver"));
 		}else{
 			StartCoroutine (afterBattleCoroutine ("MainWorld"));
-			StartCoroutine ("load");
+		
 		}
 
 	}
@@ -205,7 +205,7 @@ public class playerAttack : MonoBehaviour {
 		sessionData.saveLastMisionStateBeforeBattle = Mision.FINALIZADA;
 		sessionData.inBattle = 2;
 		StartCoroutine (afterBattleCoroutine ("MainWorld"));
-		StartCoroutine ("load");
+
 	}
 
 	IEnumerator afterBattleCoroutine(String scene){
@@ -213,7 +213,7 @@ public class playerAttack : MonoBehaviour {
 		Debug.Log ("sceneTransitionCounter "+sceneTransitionCounter);
 		if(scene == "MainWorld"){
 			Application.LoadLevel("gui-7");
-			//async.allowSceneActivation = true;
+	
 
 		}else{
 			Application.LoadLevel (scene);
@@ -233,14 +233,7 @@ public class playerAttack : MonoBehaviour {
 	public Vector3 getDestination(){
 		return attackedEnemyScript.getTransform().position;
 	}
-	IEnumerator load() {
-		Debug.LogWarning("ASYNC LOAD STARTED - " +
-		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
-		yield return new WaitForSeconds (1);
-		async = Application.LoadLevelAsync("MainWorld");
-		async.allowSceneActivation = false;
-		async.priority = 1;
-	}
+
 
 
 
