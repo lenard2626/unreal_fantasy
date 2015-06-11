@@ -254,7 +254,6 @@ GameObject:
   - 33: {fileID: 651583353}
   - 64: {fileID: 651583352}
   - 23: {fileID: 651583351}
-  - 114: {fileID: 651583350}
   - 114: {fileID: 651583349}
   m_Layer: 0
   m_Name: BotonSalir
@@ -290,21 +289,6 @@ MonoBehaviour:
   inactivo: {fileID: 2100000, guid: 4e26ea4c783fa0d44afcdb434f690598, type: 2}
   activo: {fileID: 2100000, guid: 2d773e4261311824aac27158bfa22ce8, type: 2}
   presionado: {fileID: 2100000, guid: 3f6c559555cb82c478924248bb822d1b, type: 2}
---- !u!114 &651583350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 651583347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: 
-  inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
-  activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
-  presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
 --- !u!23 &651583351
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -503,7 +487,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838701410}
---- !u!4 &1056567889
+--- !u!4 &1056567889 stripped
 Transform:
   m_PrefabParentObject: {fileID: 439786, guid: 9ce1683f3f52f0a488db800f00668ae8, type: 2}
   m_PrefabInternal: {fileID: 1248756698}
@@ -1205,7 +1189,6 @@ GameObject:
   - 33: {fileID: 1982750491}
   - 64: {fileID: 1982750490}
   - 23: {fileID: 1982750489}
-  - 114: {fileID: 1982750488}
   - 114: {fileID: 1982750492}
   m_Layer: 0
   m_Name: BotonCrearPJ
@@ -1226,21 +1209,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2031843640}
   m_RootOrder: 2
---- !u!114 &1982750488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1982750486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551a21550f5f4814a898d07d70c16756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: 
-  inactivo: {fileID: 2100000, guid: 8dfc83d8204380140849837dffb2a246, type: 2}
-  activo: {fileID: 2100000, guid: 026a8fc074d4c7c4b8712a9cd1b3c9ce, type: 2}
-  presionado: {fileID: 2100000, guid: 63a77c2eb6dce7e44a1ede1cfb5d658b, type: 2}
 --- !u!23 &1982750489
 MeshRenderer:
   m_ObjectHideFlags: 0
