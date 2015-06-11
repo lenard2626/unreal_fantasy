@@ -71,6 +71,7 @@ public class playerAttack : MonoBehaviour {
 			this.session = sessionInstance.GetComponent<sessionData> ();
 			GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
 			GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
+			GameObject.Find ("PersonajePrincipal").GetComponent<playerStatusGUI> ().playerName = sessionData.creation_selectedName;
 		}
 
 	}
@@ -186,7 +187,11 @@ public class playerAttack : MonoBehaviour {
 		attackedEnemyScript = null;
 		animtr.SetBool("Lose",true);
 		animtr.SetBool("Attacking",isAttacking);
-		sessionData.saveLastMisionStateBeforeBattle = Mision.ENPROGRESO;
+		if (sessionData.saveLastMisionBeforeBattle == 3) {
+			sessionData.saveLastMisionStateBeforeBattle = Mision.SININICIAR;
+		} else {
+			sessionData.saveLastMisionStateBeforeBattle = Mision.ENPROGRESO;
+		}
 		sessionData.inBattle = 2;
 		if(sessionData.saveLastMisionBeforeBattle == 4){
 			StartCoroutine (afterBattleCoroutine ("gameOver"));

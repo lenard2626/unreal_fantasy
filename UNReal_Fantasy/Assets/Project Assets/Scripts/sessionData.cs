@@ -95,6 +95,7 @@ public class sessionData : MonoBehaviour {
 		}
 
 		pj.GetComponent<registroJugador> ().state = saveStateBeforeBattle;
+		pj.GetComponent<playerStatusGUI> ().playerName = sessionData.creation_selectedName;
 		inBattle = 0;
 		//GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
 		//GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;

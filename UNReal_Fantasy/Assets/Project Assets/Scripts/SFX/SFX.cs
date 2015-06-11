@@ -14,12 +14,12 @@ public class SFX : MonoBehaviour {
 	}
 
 	public void PlayRandomAttack(){
-		if (attackSFXs.Length > 0) {
+	/*	if (attackSFXs.Length > 0) {
 			int index = Random.Range (0, attackSFXs.Length);
 			if (attackSFXs [index] != null ) {
 				attackSFXs[index].enabled = true;
 				attackSFXs[index].PlayOneShot(attackSFXs[index].clip);	
 			}
-		}
+		}*/
 	}
 }

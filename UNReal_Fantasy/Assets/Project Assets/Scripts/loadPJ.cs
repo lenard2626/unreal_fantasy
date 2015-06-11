@@ -17,6 +17,7 @@ public class loadPJ : MonoBehaviour {
 			this.pj.GetComponent<registroJugador> ().misionActual = this.pj.GetComponent<registroJugador> ().missions.Find (it => it.idMision == sessionData.saveLastMision);
 			this.pj.GetComponent<registroJugador> ().misionActual.estado = sessionData.saveLastMisionState;
 			this.pj.GetComponent<registroJugador> ().state = sessionData.saveState;
+			this.pj.GetComponent<playerStatusGUI> ().playerName = sessionData.creation_selectedName;
 		} else {
 			sessionData.loadPjAfterBattle();
 		}

@@ -27,11 +27,11 @@ public class playerInfoGUI : MonoBehaviour {
 	public bool showStatus=true;
 	
 	//valores de estado  IMPROTANTE: CAMBIAR DE PUBLICO A PRIVADO AL TERMINAR DEBUG
-	public int level=1;
-	public int strength=1;
-	public int intelligence=1;
-	public int agility=1;
-	public int spirit=1;
+	public int level=0;
+	public int strength=0;
+	public int intelligence=0;
+	public int agility=0;
+	public int spirit=0;
 
 	private sessionData sd;
 	/*
@@ -49,6 +49,12 @@ public class playerInfoGUI : MonoBehaviour {
 		anchorY = (int)(layoutHeight * 0.05);
 
 		columnWidth = (int)(layoutWidth * 0.5f);
+
+		level=0;
+		strength=0;
+		intelligence=0;
+		agility=0;
+		spirit=0;
 	}
 	
 	void Update(){
