@@ -31,6 +31,7 @@ public class loadPJ : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(correct ==0){
+			this.pj = GameObject.Find ("PersonajePrincipal");
 			this.pj.transform.position = new Vector3 (sessionData.saveX, sessionData.saveY, sessionData.saveZ);
 			correct=1;
 		}
