@@ -10,7 +10,7 @@ public class SFX : MonoBehaviour {
 
 	void Start ()
 	{
-		attackSFXs = SFXContainer.GetComponents<AudioSource> ();
+		//attackSFXs = SFXContainer.GetComponents<AudioSource> ();
 	}
 
 	public void PlayRandomAttack(){

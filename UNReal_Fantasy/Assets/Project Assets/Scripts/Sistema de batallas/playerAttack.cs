@@ -47,6 +47,7 @@ public class playerAttack : MonoBehaviour {
 	private CoolDownBar cdbScript=null;
 
 	private screenFade screenfade;
+	private golpe punchSound;
 
 	public int getCurSkillIndex(){
 		return curSkillIndex;
@@ -55,6 +56,7 @@ public class playerAttack : MonoBehaviour {
 		this.curSkillIndex=index;
 	}
 	void Start () {
+		this.punchSound = GameObject.Find ("PersonajePrincipal").GetComponent<golpe> ();
 		GameObject sessionInstance = GameObject.Find ("SessionData");
 		combos = new KeyCombo[]{new KeyCombo (new string[] {"Skill1", "Skill2","Skill3"}, animtr)};
 		animtr = GetComponent<Animator> ();
@@ -134,7 +136,7 @@ public class playerAttack : MonoBehaviour {
 			animtr.SetBool ("Attacking",isAttacking);
 			useSkill ();
 			//Reproduce un sonido de ataque aleatorio
-			sfx.PlayRandomAttack();
+
 			attackCDTimer = Time.time;
 		}
 	}
@@ -149,6 +151,7 @@ public class playerAttack : MonoBehaviour {
 			
 			animtr.SetTrigger (skills[curSkillIndex].AnimParamName);
 			attackedEnemyScript.curHP -=calculateAttackDamage(skills[curSkillIndex].DamageModifier);
+			this.punchSound.play();
 			curSkillIndex = -1;
 		}
 	}
