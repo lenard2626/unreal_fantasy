@@ -19,7 +19,7 @@ public class playerAttack : MonoBehaviour {
 	private float attackCDTimer=0;
 	private bool isTargetSelected=false;		//Dice si en determinado instante, el jugador tiene un objetivo señalado
 	private bool isAttacking=false;				//Dice si en determinado instante, el enemigo esta atacando al jugador
-
+	public AsyncOperation async;
 	float sceneTransitionCounter=0;
 
 	public KeyCombo[] combos;
@@ -44,6 +44,7 @@ public class playerAttack : MonoBehaviour {
 	private screenFade screenfade;
 	
 	void Start () {
+		StartCoroutine ("load");
 		GameObject sessionInstance = GameObject.Find ("SessionData");
 		combos = new KeyCombo[]{new KeyCombo (new string[] {"Skill1", "Skill2","Skill3"}, animtr)};
 		animtr = GetComponent<Animator> ();
@@ -58,13 +59,14 @@ public class playerAttack : MonoBehaviour {
 			GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
 			GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 		}
-			
+
 	}
 	// Update is called once per frame
 	void Update () {
 		if (playerStatusScript.getCurrentHP() <= 0) {
 			die ();
 		}
+	
 
 		//Evalua si esta atacando un enemigo
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
@@ -191,7 +193,12 @@ public class playerAttack : MonoBehaviour {
 	IEnumerator afterBattleCoroutine(String scene){
 		yield return new WaitForSeconds(sceneTransitionTimeout);
 		Debug.Log ("sceneTransitionCounter "+sceneTransitionCounter);
-		Application.LoadLevel (scene);
+		if(scene == "MainWorld"){
+			async.allowSceneActivation = true;
+
+		}else{
+			Application.LoadLevel (scene);
+		}
 	}
 	
 	public enemyStatusGUI getAttackedEnemyScript(){
@@ -207,6 +214,17 @@ public class playerAttack : MonoBehaviour {
 	public Vector3 getDestination(){
 		return attackedEnemyScript.getTransform().position;
 	}
+
+
+	IEnumerator load() {
+		Debug.LogWarning("ASYNC LOAD STARTED - " +
+		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
+		yield return new WaitForSeconds (1);
+		async = Application.LoadLevelAsync("MainWorld");
+		async.allowSceneActivation = false;
+		async.priority = 1;
+	}
+
 
 
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 
 
-[RequireComponent(typeof(playerAttack))]
 public class playerInfoGUI : MonoBehaviour {
 	
 	
