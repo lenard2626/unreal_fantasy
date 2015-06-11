@@ -22,8 +22,15 @@ public class tutorial : MonoBehaviour {
 	}
 	void OnGUI(){
 		if (GUI.Button (new Rect (Screen.width / 2.0f - 25, 0,50,50), btnOpen)) {
-			show=true;
-			btnOpen=btnOpenActive;
+			if(show){
+				show=false;
+				btnOpen=btnOpenInactive;
+			}else{
+				show=true;
+				btnOpen=btnOpenActive;
+			}
+
+
 		}
 		if (show) {
 			GUI.BeginGroup (new Rect (Screen.width / 4.0f, Screen.height / 4.0f, Screen.width / 2.0f, Screen.height / 2.0f));

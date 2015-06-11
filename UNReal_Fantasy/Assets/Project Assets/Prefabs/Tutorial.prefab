@@ -45,7 +45,7 @@ MonoBehaviour:
   btnPatadaDebil: {fileID: 2800000, guid: dac1a46b54dd775459197e04ee6f8b97, type: 3}
   btnPatadaFuerte: {fileID: 2800000, guid: 35b7d2264efb0614a8af5b4bef5a03d0, type: 3}
   btnPatadaDefinitiva: {fileID: 2800000, guid: 89882747079f07940bab38c70cc8ad78, type: 3}
-  show: 1
+  show: 0
 --- !u!114 &11470660
 MonoBehaviour:
   m_ObjectHideFlags: 1
