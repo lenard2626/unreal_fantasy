@@ -55,7 +55,6 @@ public class playerAttack : MonoBehaviour {
 		this.curSkillIndex=index;
 	}
 	void Start () {
-		StartCoroutine ("load");
 		GameObject sessionInstance = GameObject.Find ("SessionData");
 		combos = new KeyCombo[]{new KeyCombo (new string[] {"Skill1", "Skill2","Skill3"}, animtr)};
 		animtr = GetComponent<Animator> ();
@@ -193,6 +192,7 @@ public class playerAttack : MonoBehaviour {
 			StartCoroutine (afterBattleCoroutine ("gameOver"));
 		}else{
 			StartCoroutine (afterBattleCoroutine ("MainWorld"));
+			StartCoroutine ("load");
 		}
 
 	}
@@ -205,13 +205,15 @@ public class playerAttack : MonoBehaviour {
 		sessionData.saveLastMisionStateBeforeBattle = Mision.FINALIZADA;
 		sessionData.inBattle = 2;
 		StartCoroutine (afterBattleCoroutine ("MainWorld"));
+		StartCoroutine ("load");
 	}
 
 	IEnumerator afterBattleCoroutine(String scene){
 		yield return new WaitForSeconds(sceneTransitionTimeout);
 		Debug.Log ("sceneTransitionCounter "+sceneTransitionCounter);
 		if(scene == "MainWorld"){
-			async.allowSceneActivation = true;
+			Application.LoadLevel("gui-7");
+			//async.allowSceneActivation = true;
 
 		}else{
 			Application.LoadLevel (scene);
