@@ -302,9 +302,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "UNReal Fantasy\n\nCreado por:\n\nDavid Camilo Delgado\nCristian Eduardo
-    Parada\nFabian Leonardo\nJuli\xE1n David Torregrosa\n\n\nDesarrollo de Videojuegos\nUniversidad
-    Nacional de Colombia\n\nCreado con: \n\nUnity   \nVersion 5.0.2f1 Personal\n\nAgradecimientos
-    especiales a:\n\nJohn Higuera\n\n\n\n2015"
+    Parada\nFabian Leonardo Ramirez\nJuli\xE1n David Torregrosa\n\n\nDesarrollo de
+    Videojuegos\nUniversidad Nacional de Colombia\n\nCreado con: \n\nUnity   \nVersion
+    5.0.2f1 Personal\n\nAgradecimientos especiales a:\n\nJohn Higuera\n\n\n\n2015"
 --- !u!222 &175165017
 CanvasRenderer:
   m_ObjectHideFlags: 0
