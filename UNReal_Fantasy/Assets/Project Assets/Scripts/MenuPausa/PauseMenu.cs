@@ -29,6 +29,8 @@ public class PauseMenu : MonoBehaviour {
 		
 		//main menu return button (level 0)
 		if(GUI.Button(new Rect(Screen.width/8, Screen.height*2/12, Screen.width/4, Screen.height/14), "Menu de Seleccion de Personajes")) {
+			sessionData instance = GameObject.Find("SessionData").GetComponent<sessionData>();
+			instance.saveCharacter();
 			Application.LoadLevel("gui-3");
 		}
 		//tutorial
@@ -41,6 +43,8 @@ public class PauseMenu : MonoBehaviour {
 		
 		//quit button
 		if(GUI.Button(new Rect(Screen.width/8, Screen.height*4/12, Screen.width/4, Screen.height/14), "Salir")) {
+			sessionData instance = GameObject.Find("SessionData").GetComponent<sessionData>();
+			instance.saveCharacter();
 			Application.Quit();
 		}
 		
