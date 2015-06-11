@@ -60,18 +60,17 @@ public class enemyAttackTrigger : MonoBehaviour {
 
 		ptd_distance = Vector3.SqrMagnitude (transform.position - playerTrans.transform.position);
 
-		if (ptd_distance < meleeAttackRange+nma.radius*nma.radius) {
+		if (ptd_distance <= meleeAttackRange + nma.radius * nma.radius) {
 			isAttacking = true;
 			isApproaching = false;
-		} else if (ptd_distance >= meleeAttackRange+nma.radius*nma.radius) {
-			isAttacking=false;
-			if(isAttacking){
+		} else {
+			if (ptd_distance <= viewRange * viewRange) {
 				isApproaching = true;
-			}else{
-				isAttacking=false;
+			} else {
+				isApproaching = false;
 			}
-		}
-
+			isAttacking=false;
+		} 
 		if (isApproaching) {
 			approach ();
 		}
@@ -111,6 +110,8 @@ public class enemyAttackTrigger : MonoBehaviour {
 	}
 
 	void attack(){
+		//Desactivamos caminata
+		pAnimtr.SetBool ("Walking",false);
 		//Nos aseguramos de que este pelmazo siempre mire al jugador
 		transform.LookAt(player.transform.position);
 
@@ -121,7 +122,7 @@ public class enemyAttackTrigger : MonoBehaviour {
 			die ();
 		} else {
 			//Forza el ataque en el jugador
-			playerAtkScript.setAttackingEnemy(enemyStatusScript);
+			//playerAtkScript.setAttackingEnemy(enemyStatusScript);
 
 			if(Time.time - attackCDTimer > attackCoolDown) {  // espera entre ataques 
 				//ataca
