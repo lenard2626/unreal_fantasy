@@ -6,7 +6,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
 
-	[RequireComponent(typeof(playerAttack))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;

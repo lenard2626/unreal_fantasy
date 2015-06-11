@@ -650,7 +650,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50931685}
   m_LocalRotation: {x: 8.03131428e-17, y: .920226395, z: -3.23821027e-17, w: -.391386598}
-  m_LocalPosition: {x: -40.4199982, y: 3.05999994, z: -16.5}
+  m_LocalPosition: {x: -40.4199982, y: 3.04099989, z: -16.5}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 1667843115}
@@ -1806,7 +1806,7 @@ MonoBehaviour:
   closeBtn: {fileID: 0}
   healthBackground: {fileID: 2800000, guid: 83748ff74fd7141e186488bc0158f00a, type: 3}
   healthForeground: {fileID: 2800000, guid: d35d2ab8d69905e46b27fe102897528b, type: 3}
-  healthDamage: {fileID: 2800000, guid: d35d2ab8d69905e46b27fe102897528b, type: 3}
+  healthDamage: {fileID: 2800000, guid: 23fa0146f1043414b92c102c7d077544, type: 3}
   style:
     m_Name: 
     m_Normal:
@@ -1868,12 +1868,13 @@ MonoBehaviour:
     m_StretchHeight: 0
   layoutWidth: 250
   layoutHeight: 100
+  maxHP: 1200
+  curHP: 3000
   enemyName: El Cela
   gizmo_npc: {fileID: 100000, guid: c143f89085fd9074e8de58c7769f4ee8, type: 3}
   showStatus: 0
   yGUIDistance: 120
   selectableDistance: 300
-  curHP: 1000
 --- !u!114 &1667843119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1887,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 700
-  meleeAttackRange: 1.27999997
+  meleeAttackRange: 2
   viewRange: 60
   moveSpeed: 5
   attackCoolDown: 2
