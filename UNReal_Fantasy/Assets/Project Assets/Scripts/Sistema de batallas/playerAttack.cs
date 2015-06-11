@@ -67,8 +67,9 @@ public class playerAttack : MonoBehaviour {
 
 		meleeAttackRange *= meleeAttackRange;		
 
-		this.session = sessionInstance.GetComponent<sessionData> ();
-		if (this.session != null) {
+
+		if (sessionInstance != null) {
+			this.session = sessionInstance.GetComponent<sessionData> ();
 			GameObject.Find ("PersonajePrincipal/EthanBody").GetComponent<SkinnedMeshRenderer> ().material = session.classMaterials [sessionData.load_selectedPjClass];
 			GameObject.Find ("PersonajePrincipal/characterName").GetComponent<TextMesh> ().text = sessionData.load_selectedPjName;//Usamos distancia al cuadrado para ahorrarnos la raiz cuadrada
 		}

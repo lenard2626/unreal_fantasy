@@ -4106,7 +4106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1620734859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625689975b4ce6841976ba0ee8d5f01c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c832d693bab16843bd0b2c91d587086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   barraProgresoStyle:
@@ -4169,8 +4169,8 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   barraFondo: {fileID: 2800000, guid: 58de89866ef14d6489ad213d8f819bd9, type: 3}
-  barraFrente: {fileID: 2800000, guid: f554a8fc1aa21164aa73d113bd647fd0, type: 3}
-  barY: 106
+  barraFrente: {fileID: 2800000, guid: 149c686c48a61f5409633fa9c274218e, type: 3}
+  barY: 150
 --- !u!114 &1620734871
 MonoBehaviour:
   m_ObjectHideFlags: 0
