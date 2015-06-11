@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 700
-  meleeAttackRange: 1.27999997
+  meleeAttackRange: 2
   viewRange: 60
   moveSpeed: 5
   attackCoolDown: 2

@@ -804,7 +804,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400034, guid: 7fd0a5ed75ab6c444bfbf5f9b8284fcc, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 487518394}
-  m_LocalRotation: {x: .420470744, y: .801424861, z: -.420444816, w: .0644093305}
+  m_LocalRotation: {x: .420470774, y: .801424921, z: -.420444846, w: .0644093379}
   m_LocalPosition: {x: .0716634169, y: -.107025996, z: .114421748}
   m_LocalScale: {x: .999999821, y: 1.00000012, z: 1.00000012}
   m_Children:
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   closeBtn: {fileID: 2800000, guid: 9f6e36aba72196541923b48daf330169, type: 3}
   healthBackground: {fileID: 2800000, guid: 83748ff74fd7141e186488bc0158f00a, type: 3}
   healthForeground: {fileID: 2800000, guid: d35d2ab8d69905e46b27fe102897528b, type: 3}
-  healthDamage: {fileID: 2800000, guid: d35d2ab8d69905e46b27fe102897528b, type: 3}
+  healthDamage: {fileID: 2800000, guid: 23fa0146f1043414b92c102c7d077544, type: 3}
   style:
     m_Name: 
     m_Normal:
@@ -1914,12 +1914,13 @@ MonoBehaviour:
     m_StretchHeight: 0
   layoutWidth: 250
   layoutHeight: 100
+  maxHP: 1000
+  curHP: 1000
   enemyName: Cuchilla
   gizmo_npc: {fileID: 100000, guid: c143f89085fd9074e8de58c7769f4ee8, type: 3}
   showStatus: 0
   yGUIDistance: 120
   selectableDistance: 300
-  curHP: 1000
 --- !u!114 &1468800072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,7 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 300
-  meleeAttackRange: 1
+  meleeAttackRange: 2
   viewRange: 60
   moveSpeed: 5
   attackCoolDown: 2
