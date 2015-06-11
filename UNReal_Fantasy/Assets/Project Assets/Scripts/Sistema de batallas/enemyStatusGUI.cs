@@ -22,6 +22,8 @@ public class enemyStatusGUI : MonoBehaviour {
 	//interfaz
 	public int layoutWidth=250;
 	public int layoutHeight=100;
+	public float maxHP=1000; 
+	public float curHP=0; 
 
 	public string enemyName;
 	public GameObject gizmo_npc;
@@ -45,8 +47,7 @@ public class enemyStatusGUI : MonoBehaviour {
 	private float healthBar; 
 	private float myFloat; 
 
-	public static float maxHP=1000; 
-	public float curHP=maxHP; 
+
 
 	//Variables para manejo de doble clic
 	private float lastClickTime=0f;

@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebf4ba83427cfe45a85abf996585113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeDamage: 1000
+  meleeDamage: 500
   meleeAttackRange: 5
   viewRange: 60
   moveSpeed: 2
@@ -1104,7 +1104,7 @@ MonoBehaviour:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -1161,12 +1161,13 @@ MonoBehaviour:
     m_StretchHeight: 0
   layoutWidth: 250
   layoutHeight: 100
+  maxHP: 5000
+  curHP: 5000
   enemyName: El "Camarada"
   gizmo_npc: {fileID: 100000, guid: c143f89085fd9074e8de58c7769f4ee8, type: 3}
   showStatus: 0
   yGUIDistance: 120
   selectableDistance: 300
-  curHP: 10000
 --- !u!1 &382501010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,7 +1932,7 @@ Transform:
   m_PrefabParentObject: {fileID: 442440, guid: ddde2b8aab8a1e84294ee2a16075863e, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 651598055}
-  m_LocalRotation: {x: .532675147, y: .0703404471, z: .836132646, w: -.110415131}
+  m_LocalRotation: {x: .532675207, y: .0703404546, z: .836132765, w: -.110415146}
   m_LocalPosition: {x: 2.22714643e-05, y: -6.1504652e-05, z: .0260270257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2281,7 +2282,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 826451323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.8699989, y: .00999999978, z: -15.3599997}
+  m_LocalPosition: {x: -39.8699989, y: -.0299999993, z: -15.3599997}
   m_LocalScale: {x: 2.55839801, y: 2.55839705, z: 2.55839705}
   m_Children:
   - {fileID: 351323876}
@@ -2593,7 +2594,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
-  m_StereoMirrorMode: 0
 --- !u!1 &949388079
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +4009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 50
-  attackCoolDown: 1
+  atkSpeed: 1
   meleeAttackRange: 1
   moveSpeed: 5
   sceneTransitionTimeout: 10

@@ -10,7 +10,7 @@ public class playerAttack : MonoBehaviour {
 	private sessionData session;
 	/*Variables publicas para configurar el ataque*/
 	public float meleeDamage=70;
-	public float attackCoolDown=5;
+	public float atkSpeed=1;
 	public float meleeAttackRange=5;				//El rango de ataque del enemigo cuerp a cuerpo 			
 	public float moveSpeed=10;
 
@@ -25,12 +25,13 @@ public class playerAttack : MonoBehaviour {
 	public KeyCombo[] combos;
 
 	private Skill[] skills=new Skill[]{
-		new Skill("Ataque simple",1.0f,"Skill1"),
-		new Skill("Bailao fuerte",2.5f,"Skill2"),
-		new Skill("Patada karateka",3.0f,"Skill3"),
+		new Skill("Ataque simple",1.0f,"Skill1",0.5f),
+		new Skill("Bailao fuerte",2.5f,"Skill2",1.7f),
+		new Skill("Patada karateka",3.0f,"Skill3",2.0f),
 		};
 
 	private int curSkillIndex=0;
+	private int curCDTime=0;					//CoolDowntime del skill actual
 
 	private CapsuleCollider ccollider;			//Necesario para evitar colisiones
 
@@ -65,6 +66,8 @@ public class playerAttack : MonoBehaviour {
 		if (playerStatusScript.getCurrentHP() <= 0) {
 			die ();
 		}
+		//Dibuja el cooldown
+		//GetComponent<Renderer>().material.SetFloat("_Cutoff", Mathf.InverseLerp(0, Screen.width, Input.mousePosition.x));
 
 		//Evalua si esta atacando un enemigo
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
@@ -104,6 +107,8 @@ public class playerAttack : MonoBehaviour {
 		//Decimos que no siga nada
 		tpc.setFollow (Vector3.zero);
 		setAttacking (false);
+		animtr.SetBool ("Attacking",isAttacking);
+		animtr.SetBool ("AttackStance",isAttacking);
 		setIsTargetSelected (false);
 	}
 	
@@ -116,7 +121,7 @@ public class playerAttack : MonoBehaviour {
 
 		animtr.speed = (1.0f /getAttackCoolDown());			//Escala de velocidad de ataque
 		
-		if(Time.time - attackCDTimer > attackCoolDown) {  	// espera entre ataques 
+		if(Time.time - attackCDTimer > curCDTime) {  	// espera entre ataques 
 			animtr.SetBool ("Attacking",isAttacking);
 			useSkill ();
 			//Reproduce un sonido de ataque aleatorio
@@ -129,6 +134,7 @@ public class playerAttack : MonoBehaviour {
 	private void useSkill(){
 		if (curSkillIndex >= 0) {
 			Debug.Log("usada skill "+skills[curSkillIndex].SkillName);
+			curCDTime=(int)(skills[curSkillIndex].CoolDownModifier*atkSpeed);
 			animtr.SetTrigger (skills[curSkillIndex].AnimParamName);
 			attackedEnemyScript.curHP -=calculateAttackDamage(skills[curSkillIndex].DamageModifier);
 			curSkillIndex = -1;
@@ -158,7 +164,7 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	private int calculateAttackDamage(float damageModifier){
-		return (int)((damageModifier*meleeDamage)*UnityEngine.Random.Range(0.8f,1.2f));
+		return (int)((damageModifier*meleeDamage)*UnityEngine.Random.Range(0.6f,1.0f));
 	}
 	
 	
@@ -199,7 +205,7 @@ public class playerAttack : MonoBehaviour {
 	}
 
 	public float getAttackCoolDown(){
-		return attackCoolDown;
+		return atkSpeed;
 	}
 	public void setAttacking(bool attack){
 		isAttacking = attack;
@@ -207,6 +213,5 @@ public class playerAttack : MonoBehaviour {
 	public Vector3 getDestination(){
 		return attackedEnemyScript.getTransform().position;
 	}
-
 
 }
