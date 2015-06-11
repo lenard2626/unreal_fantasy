@@ -25,7 +25,7 @@ public class playerAttack : MonoBehaviour {
 	public KeyCombo[] combos;
 
 	private Skill[] skills=new Skill[]{
-		new Skill("Ataque simple",1.0f,"Skill1",0.5f),
+		new Skill("Ataque simple",1.0f,"Skill1",1.0f),
 		new Skill("Bailao fuerte",2.5f,"Skill2",1.7f),
 		new Skill("Patada karateka",3.0f,"Skill3",2.0f),
 		};
@@ -41,6 +41,7 @@ public class playerAttack : MonoBehaviour {
 	
 	private enemyStatusGUI attackedEnemyScript=null;		//acceso al script de estado del enemigo
 	private playerStatusGUI playerStatusScript=null;
+	private CoolDownBar cdbScript=null;
 
 	private screenFade screenfade;
 	
@@ -52,6 +53,8 @@ public class playerAttack : MonoBehaviour {
 		ccollider = GetComponent<CapsuleCollider> ();
 		tpc = GetComponent<ThirdPersonUserControl> ();	//Para usar las funciones de movimiento de ethan
 		playerStatusScript = GetComponent<playerStatusGUI>();
+		cdbScript = GetComponent<CoolDownBar> ();
+
 		meleeAttackRange *= meleeAttackRange;		
 
 		this.session = sessionInstance.GetComponent<sessionData> ();
@@ -66,9 +69,6 @@ public class playerAttack : MonoBehaviour {
 		if (playerStatusScript.getCurrentHP() <= 0) {
 			die ();
 		}
-		//Dibuja el cooldown
-		//GetComponent<Renderer>().material.SetFloat("_Cutoff", Mathf.InverseLerp(0, Screen.width, Input.mousePosition.x));
-
 		//Evalua si esta atacando un enemigo
 		if (attackedEnemyScript != null && isTargetSelected) {			//Si ha seleccionado a un enemigo, este valor no debe ser nulo
 			var distanceToEnemy = Vector3.SqrMagnitude (attackedEnemyScript.getTransform().position - transform.position);
@@ -117,8 +117,6 @@ public class playerAttack : MonoBehaviour {
 	}
 	
 	void attack(){
-		//Debug.Log("atacando al enemigo!!!");
-
 		animtr.speed = (1.0f /getAttackCoolDown());			//Escala de velocidad de ataque
 		
 		if(Time.time - attackCDTimer > curCDTime) {  	// espera entre ataques 
@@ -135,6 +133,9 @@ public class playerAttack : MonoBehaviour {
 		if (curSkillIndex >= 0) {
 			Debug.Log("usada skill "+skills[curSkillIndex].SkillName);
 			curCDTime=(int)(skills[curSkillIndex].CoolDownModifier*atkSpeed);
+			//Dibuja el cooldown
+			cdbScript.start(curCDTime);
+			
 			animtr.SetTrigger (skills[curSkillIndex].AnimParamName);
 			attackedEnemyScript.curHP -=calculateAttackDamage(skills[curSkillIndex].DamageModifier);
 			curSkillIndex = -1;
@@ -147,6 +148,7 @@ public class playerAttack : MonoBehaviour {
 		foreach(Skill cur_skill in skills){
 			if(Input.GetButtonDown(cur_skill.AnimParamName)){
 				Debug.Log("examinando skill con animacion "+cur_skill.AnimParamName);
+
 				curSkillIndex=i;
 				return;
 			}
@@ -213,5 +215,4 @@ public class playerAttack : MonoBehaviour {
 	public Vector3 getDestination(){
 		return attackedEnemyScript.getTransform().position;
 	}
-
 }
